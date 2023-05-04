@@ -1,0 +1,90 @@
+---
+# tasks file for aix_trace
+- name: Get current date
+  ansible.builtin.set_fact:
+    custom_date: "{{ lookup( 'pipe',  'date +%Y-%m-%d') }}"
+    custom_timestamp: "{{ lookup( 'pipe',  'date +%Y-%m-%d-%Hh%Mm%Ss') }}"
+      
+- name: Create output directory
+  ansible.builtin.file:
+    path: "{{ dir_name }}"
+    state: directory
+  delegate_to: localhost
+  loop:
+    - "{{ report_path }}/{{ inventory_hostname_short }}/log_{{ custom_date }}"
+  loop_control:
+    loop_var: dir_name
+
+- name: Gather information on lpar
+  ansible.builtin.shell: "{{ cmd_name }}"
+  register: cmd_output
+  ignore_errors: true
+  no_log: true
+  loop:
+    - oslevel -s
+    - uname -a
+    - uptime
+    - bootinfo -b
+    - bootlist -o -m normal
+    - lspv
+    - lsvg
+    - lsvg rootvg
+    - lsvg -l rootvg
+    - df -tg $(lsvgfs rootvg)
+    - df -tg
+    - errpt | head
+    - who
+    - date
+    - netstat -rn
+    - netstat -in
+    - lspath
+    - lsdev -Cc disk
+    - lsmpio
+    - emgr -l
+    - emgr -P
+    - instfix -i | grep ML
+    - instfix -i | grep SP
+    - lppchk -v
+    - lppchk -vm3
+    - rpm -qa
+    - yum check
+    - lslpp -lc
+    - sudo -V
+    - openssl version
+    - ps -ef | grep -i microf
+  loop_control:
+    loop_var: cmd_name
+      
+- name: Store stdout on local node
+  local_action:
+    module: lineinfile
+    line: "{{ item.cmd_name }} \n {{ item.stdout }} {{ item.stderr }} \nEND_OF_BLOCK\n"
+    path: "{{ report_path }}/{{ inventory_hostname_short }}/log_{{ custom_date }}/{{ report_name }}_{{ custom_timestamp}}.txt"
+    create: yes
+  changed_when: false
+  no_log: true
+  loop: "{{ cmd_output.results }}"
+
+- name: Execute control script
+  ansible.builtin.script: "{{ script_name }} || /bin/true"
+  register: script_output
+  ignore_errors: true
+  no_log: true
+  loop:
+    - ctl_lan.ksh
+    - ctl_mpio.ksh
+    - ctl_errpt.ksh
+  loop_control:
+    loop_var: script_name
+
+- name: Store outut on local node
+  local_action:
+    module: lineinfile
+    line: "{{ item.script_name }} \n {{ item.stdout }} {{ item.stderr }} \nEND_OF_BLOCK\n"
+    path: "{{ report_path }}/{{ inventory_hostname_short }}/log_{{ custom_date }}/{{ report_name }}_{{ custom_timestamp}}.txt"
+    create: yes
+  changed_when: false
+  no_log: true
+  loop: "{{ script_output.results }}"
+
+  

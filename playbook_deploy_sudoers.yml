@@ -1,0 +1,7 @@
+- name: Gather zos facts
+  hosts: ZOS
+  become: true
+  environment: "{{ environment_vars }}"
+
+  roles:
+    - z_deploy_sudoers

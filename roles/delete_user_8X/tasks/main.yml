@@ -1,0 +1,13 @@
+---
+# tasks file for delete_user_8X
+- name: "Get list of user to delete => user_to_delete.txt "
+  ansible.builtin.set_fact:
+    user_to_delete: "{{ lookup('file',user_file_name) | split('\n') }}"
+    
+- name: "Remove all user"
+  ansible.builtin.include_tasks:
+    file: tasks_delete_user_8x.yml
+  loop: "{{ user_to_delete }}"
+  loop_control:
+    loop_var: item_user
+      

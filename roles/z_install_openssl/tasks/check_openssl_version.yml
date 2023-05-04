@@ -1,0 +1,12 @@
+---
+# tasks file for check_openssl_version
+#
+- name: "openssl version {{ openssl_version }}"
+  ansible.builtin.shell: "openssl version || /bin/true"
+  ignore_errors: true
+  register: vers_output
+
+- name: "openssl already in {{ openssl_version }} on {{ inventory_hostname }}"
+  ansible.builtin.fail:
+    msg: "openssl '{{ openssl_version }}' already installed on {{ inventory_hostname}} "
+  when: openssl_version in vers_output.stdout  

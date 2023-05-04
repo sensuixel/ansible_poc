@@ -1,0 +1,4 @@
+# Common variables
+ansible_connection: ssh
+ansible_user: p09435
+ansible_python_interpreter: /usr/lpp/produit/ISV/python_oe/v3r11/bin/python

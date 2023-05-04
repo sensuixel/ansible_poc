@@ -1,0 +1,11 @@
+---
+# tasks file for aix_alt_disk_copy
+- name: Cleanup any existing alt_disk_copy
+  ibm.power_aix.alt_disk:
+    action: clean
+
+- name: Create an alt_disk_copy for backup
+  ibm.power_aix.alt_disk:
+    action: copy
+    disk_size_policy: nearest
+    

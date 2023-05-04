@@ -1,0 +1,4 @@
+- hosts: admmi007
+  gather_facts: false
+  roles:
+    - create_user_8X

@@ -1,0 +1,9 @@
+---
+- name: Check openssl version
+  hosts: ZOS
+  gather_facts: false
+  environment: "{{ environment_vars }}"
+  tasks:
+
+  roles:
+    - z_verify_openssl

@@ -1,0 +1,15 @@
+---
+# tasks file for create_openssl_symlink.yml
+- name: "Create symlink to openssl bin"
+  ansible.builtin.file:
+    src: "{{ openssl_directory }}/v{{ openssl_version }}/bin/openssl"
+    dest: "{{ openssl_bin_path }}"
+    force: true
+    state: link
+    
+- name: "Create symlink to openssl cnf"
+  ansible.builtin.file:
+    src: "{{ openssl_directory }}/v{{ openssl_version }}/ssl/openssl.cnf"
+    dest: "{{ openssl_conf_path }}"
+    force: true
+    state: link

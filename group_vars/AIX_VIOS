@@ -1,0 +1,4 @@
+# Common variables
+ansible_user: padmin
+ansible_become_user: root
+ansible_become_method: oem_setup_env

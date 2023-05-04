@@ -1,0 +1,51 @@
+---
+- name: AIX update
+  hosts: ataai028.server.lan
+  gather_facts: false
+  vars:
+    file_suffix: "pre_patch"
+   
+  tasks:
+  
+  - name: Get current python3 install
+    ansible.builtin.stat:
+      path: /usr/bin/python3
+    register: lnk_output
+    
+  - name: Save it into fact
+    ansible.builtin.set_fact:
+      original_python3_target: "{{ lnk_output.stat.lnk_target }}"
+      
+  - name: Python3 point to 3_32 for dnf compat.
+    ansible.builtin.file:
+      src: "/opt/freeware/bin/python3_32"
+      dest: "/usr/bin/python3"
+      force: true
+      state: link
+      
+  - name: Get current python3 install
+    ansible.builtin.stat:
+      path: /usr/bin/python3
+    register: lnk_output
+    
+  - name: Print new value
+    debug:
+      msg: " {{ lnk_output.stat.lnk_target }}"
+  
+  - name: Revert it
+    ansible.builtin.file:
+      src: "{{ original_python3_target }}"
+      dest: "/usr/bin/python3"
+      force: true
+      state: link    
+  
+  - name: Get python3 install
+    ansible.builtin.stat:
+      path: /usr/bin/python3
+    register: lnk_output
+    
+  - name: Print new value
+    debug:
+      msg: " {{ lnk_output.stat.lnk_target }}"
+      
+  

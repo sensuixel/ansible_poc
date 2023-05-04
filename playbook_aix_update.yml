@@ -1,0 +1,65 @@
+---
+- name: AIX update
+  hosts: 
+  gather_facts: false
+  vars:
+    nim_master: apaai001.server.lan
+    nim_lpp_source: 7100-05-11-2246-lpp_source
+    report_path: "/home/pichard/ansible/aix_output"
+    file_suffix: "pre_7100-05-11-2246"
+    file_list:
+      - /etc/inetd.conf
+      - /etc/inittab
+      - /etc/ssh/sshd_config
+      - /etc/ssh/ssh_config
+      - /etc/sudoers
+    
+  tasks:
+
+  - name: "Trace Before"
+    ansible.builtin.include_role:
+      name: aix_trace
+    vars:
+      report_name: "trace_before"
+      
+  - name: "Backup File before"
+    ansible.builtin.copy:
+      src: "{{ file_name }}"
+      dest: "{{ file_name }}_{{ file_suffix }}"
+      backup: yes
+      force: true
+      remote_src: true
+    loop: "{{ file_list }}"
+    loop_control:
+      loop_var: file_name
+
+  - name: "Update operation"
+    ansible.builtin.include_role:
+      name: "{{ role_name }}"
+    loop:
+      - aix_alt_disk_copy
+      - aix_nim_update
+      - hpov_maintenance
+      - aix_reboot
+      - aix_yum_update
+    loop_control:
+        loop_var: role_name
+
+  - name: "Trace After"
+    ansible.builtin.include_role:
+      name: aix_trace
+    vars:
+      report_name: "trace_after"
+      
+  - name: "Compare File after"
+    ansible.builtin.shell: "diff {{ file_name }} {{ file_name }}_{{ file_suffix }}"
+    loop: "{{ file_list }}"
+    loop_control:
+      loop_var: file_name
+
+  - name: Infinite retry on rootvg
+    ansible.builtin.shell: chvg -O y rootvg
+
+  - name: Réactivation supervision
+    ansible.builtin.include_role: 
+      name: hpov_supervision

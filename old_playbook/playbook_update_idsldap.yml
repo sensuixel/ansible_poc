@@ -1,0 +1,36 @@
+---
+# playbook_update_idsldap.yml
+- name: AIX update
+  gather_facts: false
+  hosts: ataai028.server.lan
+  vars:
+    gsk_filesets: GSK*
+    gsk_version: 8.0.50.88
+    idsldap_filesets: idsldap.clt*
+    idsldap_version: 6.4.0.23
+  
+  tasks:
+
+  - name: Check GSK 
+    ansible.builtin.shell: "lslpp -l {{ gsk_filesets }} || /bin/true"
+    no_log: true
+    ignore_errors: true
+    register: gsk_status
+ 
+  - name: Check idsldap Version
+    ansible.builtin.shell: "lslpp -l {{ idsldap_filesets }} || /bin/true"
+    no_log: true
+    ignore_errors: true
+    register: idsldap_status
+    
+  - name: Check if GSK* installed and in target version
+    debug:
+      msg: "{{ gsk_filesets }} are to be installed/updated"
+    when: '"not installed" in gsk_status.stderr or gsk_version not in gsk_status.stdout'
+
+  - name: Check if idsldap* installed and in target version
+    debug:
+      msg: "{{ idsldap_filesets }} are to be installed/updated"
+    when: '"not installed" in idsldap_status.stderr or idsldap_version not in idsldap_status.stdout'
+
+      

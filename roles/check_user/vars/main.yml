@@ -1,0 +1,4 @@
+---
+# vars file for check_user
+user_names:
+  - apic

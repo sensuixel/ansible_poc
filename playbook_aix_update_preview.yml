@@ -1,0 +1,40 @@
+---
+- name: AIX update preview
+  hosts: apmmi023
+  gather_facts: false
+  vars:
+    nim_lpp_source: "7100-05-11-2246-lpp_source"
+    report_path: "/home/pichard/ansible/aix_output"
+    file_suffix: "pre_patch_7100-05-11-2246"
+    file_list:
+      - /etc/inetd.conf
+      - /etc/inittab
+      - /etc/ssh/sshd_config
+      - /etc/ssh/ssh_config
+      - /etc/sudoers
+    
+  tasks:
+  - name: Preview install
+    ansible.builtin.include_role:
+      name: aix_update_preview
+
+  - name: Trace before 
+    ansible.builtin.include_role:
+      name: aix_trace
+    vars:
+      report_name: trace_initial
+
+  - name: Backup File
+    ansible.builtin.copy:
+      src: "{{ file_name }}"
+      dest: "{{ file_name }}_{{ file_suffix }}"
+      backup: yes
+      force: true
+      remote_src: true
+    loop: "{{ file_list }}"
+    loop_control:
+      loop_var: file_name
+    tags:
+      - never
+      - backup
+

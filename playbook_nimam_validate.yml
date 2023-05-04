@@ -1,0 +1,20 @@
+---
+- name: AIX update
+  hosts: apaai001.server.lan
+  gather_facts: false
+  collections:
+  - ibm.power_aix
+    
+  tasks:
+  - include_role:
+      name: nim_alt_disk_migration
+    vars:
+      nim_client: ataai028-bck
+      target_disk:
+        disk_size_policy: nearest
+      lpp_source: lpp_7200-05-04-2220
+      spot: spot_7200-05-04-2220
+      control_phases:
+        validate_nim_resources: true
+        perform_nim_migration: false
+

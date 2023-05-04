@@ -1,0 +1,548 @@
+
+*******************************************************************************
+installp PREVIEW:  installation will not actually occur.
+*******************************************************************************
+
++-----------------------------------------------------------------------------+
+		    Pre-installation Verification...
++-----------------------------------------------------------------------------+
+Verifying selections...done
+Verifying requisites...done
+Results...
+
+FAILURES
+--------
+  Filesets listed in this section failed pre-installation verification
+  and will not be installed.
+
+  Requisite Failures
+  ------------------
+  SELECTED FILESETS:  The following is a list of filesets that you asked to
+  install.  They cannot be installed until all of their requisite filesets
+  are also installed.  See subsequent lists for details of requisites.
+
+    X11.base.lib 7.2.5.200                    # AIXwindows Runtime Libraries
+    X11.base.rte 7.2.5.100                    # AIXwindows Runtime Environment
+    adde.v2.ethernet.rte 7.2.5.200            # ADDE Ethernet Device Runtime...
+    artex.base.rte 7.2.5.200                  # AIX Runtime Expert
+    artex.base.samples 7.2.5.100              # AIX Runtime Expert sample pr...
+    bos.64bit 7.2.5.200                       # Base Operating System 64 bit...
+    bos.acct 7.2.5.200                        # Accounting Services
+    bos.adt.base 7.2.5.200                    # Base Application Development...
+    bos.adt.debug 7.2.5.200                   # Base Application Development...
+    bos.adt.include 7.2.5.200                 # Base Application Development...
+    bos.adt.lib 7.2.5.200                     # Base Application Development...
+    bos.adt.prof 7.2.5.200                    # Base Profiling Support
+    bos.adt.samples 7.2.5.200                 # Base Operating System Samples
+    bos.adt.syscalls 7.2.5.200                # System Calls Application Dev...
+    bos.ahafs 7.2.5.100                       # Aha File System
+    bos.aixpert.cmds 7.2.5.200                # AIX Security Hardening
+    bos.alt_disk_install.boot_images 7.2.5.201 # Alternate Disk Installation Disk Boot Images
+    bos.alt_disk_install.rte 7.2.5.200        # Alternate Disk Installation ...
+    bos.aso 7.2.5.200                         # Active System Optimizer
+    bos.cifs_fs.rte 7.2.5.200                 # Runtime for SMBFS
+    bos.cluster.rte 7.2.5.200                 # Cluster Aware AIX
+    bos.diag.com 7.2.5.200                    # Common Hardware Diagnostics
+    bos.diag.rte 7.2.5.200                    # Hardware Diagnostics
+    bos.diag.util 7.2.5.200                   # Hardware Diagnostics Utilities
+    bos.ecc_client.rte 7.2.5.200              # Electronic Customer Care Run...
+    bos.esagent 7.2.5.200                     # Electronic Service Agent
+    bos.iocp.rte 7.2.5.100                    # I/O Completion Ports API
+    bos.mp64 7.2.5.201                        # Base Operating System 64-bit...
+    bos.net.ipsec.keymgt 7.2.5.200            # IP Security Key Management
+    bos.net.ipsec.rte 7.2.5.200               # IP Security
+    bos.net.nfs.client 7.2.5.200              # Network File System Client
+    bos.net.tcp.adt 7.2.5.100                 # TCP/IP Application Toolkit
+    bos.net.tcp.smit 7.2.5.1                  # TCP/IP SMIT Support
+    bos.perf.libperfstat 7.2.5.200            # Performance Statistics Libra...
+    bos.perf.perfstat 7.2.5.200               # Performance Statistics Inter...
+    bos.perf.pmaix 7.2.5.200                  # Performance Management
+    bos.perf.tools 7.2.5.200                  # Base Performance Tools
+    bos.perf.tune 7.2.5.200                   # Performance Tuning Support
+    bos.pmapi.events 7.2.5.200                # Performance Monitor API Even...
+    bos.pmapi.lib 7.2.5.200                   # Performance Monitor API Library
+    bos.pmapi.pmsvcs 7.2.5.200                # Performance Monitor API Kern...
+    bos.pmapi.tools 7.2.5.100                 # Performance Monitor API Tools
+    bos.rte 7.2.5.201                         # Base Operating System Runtime
+    bos.rte.ILS 7.2.5.100                     # International Language Support
+    bos.rte.SRC 7.2.5.200                     # System Resource Controller
+    bos.rte.aio 7.2.5.200                     # Asynchronous I/O Extension
+    bos.rte.archive 7.2.5.200                 # Archive Commands
+    bos.rte.bind_cmds 7.2.5.200               # Binder and Loader Commands
+    bos.rte.boot 7.2.5.200                    # Boot Commands
+    bos.rte.commands 7.2.5.200                # Commands
+    bos.rte.console 7.2.5.100                 # Console
+    bos.rte.control 7.2.5.200                 # System Control Commands
+    bos.rte.date 7.2.5.200                    # Date Control Commands
+    bos.rte.devices_msg 7.2.5.100             # Device Driver Messages
+    bos.rte.edit 7.2.5.200                    # Editors
+    bos.rte.filesystem 7.2.5.200              # Filesystem Administration
+    bos.rte.install 7.2.5.201                 # LPP Install Commands
+    bos.rte.jfscomp 7.2.5.200                 # JFS Compression
+    bos.rte.libc 7.2.5.200                    # libc Library
+    bos.rte.libcur 7.2.5.100                  # libcurses Library
+    bos.rte.libpthreads 7.2.5.200             # libpthreads Library
+    bos.rte.lvm 7.2.5.200                     # Logical Volume Manager
+    bos.rte.methods 7.2.5.200                 # Device Config Methods
+    bos.rte.misc_cmds 7.2.5.200               # Miscellaneous Commands
+    bos.rte.printers 7.2.5.200                # Front End Printer Support
+    bos.rte.security 7.2.5.200                # Base Security Function
+    bos.rte.serv_aid 7.2.5.200                # Error Log Service Aids
+    bos.rte.shell 7.2.5.200                   # Shells (bsh, ksh, csh)
+    bos.rte.streams 7.2.5.200                 # Streams Libraries
+    bos.rte.tty 7.2.5.200                     # Base TTY Support and Commands
+    bos.suma 7.2.5.200                        # Service Update Management As...
+    bos.sysmgt.nim.client 7.2.5.200           # Network Install Manager - Cl...
+    bos.sysmgt.serv_aid 7.2.5.200             # Software Error Logging and D...
+    bos.sysmgt.sysbr 7.2.5.200                # System Backup and BOS Instal...
+    bos.sysmgt.trace 7.2.5.200                # Software Trace Service Aids
+    bos.txt.tfs 7.2.5.100                     # Text Formatting Services Com...
+    devices.artic960.rte 7.2.5.200            # IBM ARTIC960 Runtime Support
+    devices.chrp.base.diag 7.2.5.200          # RISC CHRP Base System Device...
+    devices.chrp.base.rte 7.2.5.200           # RISC PC Base System Device S...
+    devices.chrp.pci.rte 7.2.5.200            # PCI Bus Software (CHRP)
+    devices.chrp.vdevice.rte 7.2.5.200        # Virtual I/O Bus Support
+    devices.chrp_lpar.base.ras 7.2.5.200      # CHRP LPAR RAS Support
+    devices.common.IBM.crypt.rte 7.2.5.200    # Cryptographic Common Runtime...
+    devices.common.IBM.ethernet.rte 7.2.5.200 # Common Ethernet Software
+    devices.common.IBM.fc.hba-api 7.2.5.200   # Common HBA API Library
+    devices.common.IBM.fc.rte 7.2.5.201       # Common IBM FC Software
+    devices.common.IBM.ib.rte 7.2.5.200       # Infiniband Common Runtime En...
+    devices.common.IBM.iscsi.rte 7.2.5.200    # Common iSCSI Files
+    devices.common.IBM.mpio.rte 7.2.5.200     # MPIO Disk Path Control Module
+    devices.common.IBM.mpt2.rte 7.2.5.200     # MPT SAS Device Software
+    devices.common.IBM.scsi.rte 7.2.5.200     # Common SCSI I/O Controller S...
+    devices.common.IBM.sissas.rte 7.2.5.200   # Common IBM SAS RAID Software
+    devices.common.IBM.storfwork.rte 7.2.5.200 # Storage Framework Module
+    devices.common.IBM.usb.rte 7.2.5.200      # USB System Software
+    devices.common.IBM.xhci.rte 7.2.5.100     # Common xHCI Adapter Device S...
+    devices.ethernet.lnc2.rte 7.2.5.200       # 10 Gigabit Ethernet PCI-Expr...
+    devices.ethernet.mlx.rte 7.2.5.200        # RoCE Converged Network Adapter
+    devices.ethernet.mlxc.rte 7.2.5.200       # MLXC RoCE Adapter Software
+    devices.ethernet.sha.rte 7.2.5.200        # Ethernet PCIe Adapter Softwa...
+    devices.ethernet.shi.rte 7.2.5.200        # 10 Gigabit Ethernet PCI-Expr...
+    devices.fcp.disk.rte 7.2.5.200            # FC SCSI CD-ROM, Disk, Read/W...
+    devices.fcp.tape.rte 7.2.5.200            # FC SCSI Tape Device Software
+    devices.ide.cdrom.rte 7.2.5.200           # IDE CDROM Device Software
+    devices.iscsi_sw.rte 7.2.5.200            # iSCSI Software Device Driver
+    devices.loopback.rte 7.2.5.200            # Loopback Device Driver
+    devices.pci.00100f00.rte 7.2.5.200        # SYM53C8xxA PCI SCSI I/O Cont...
+    devices.pci.00105000.com 7.2.5.200        # Common SAS Expansion Card De...
+    devices.pci.14102e00.rte 7.2.5.200        # IBM PCI SCSI RAID Adapter De...
+    devices.pci.14106602.rte 7.2.5.200        # PCI-X Dual Channel SCSI Adap...
+    devices.pci.14107802.rte 7.2.5.200        # PCI-X Dual Channel Ultra320 ...
+    devices.pci.1410d002.com 7.2.5.200        # Common PCI iSCSI TOE Adapter...
+    devices.pci.4f11c800.diag 7.2.5.200       # 2-port Asynchronous EIA-232 ...
+    devices.pci.4f11c800.rte 7.2.5.100        # 2-Port Asynchronous EIA-232 ...
+    devices.pci.77101223.com 7.2.5.200        # PCI FC Adapter (77101223) Co...
+    devices.pci.77101223.diag 7.2.5.100       # PCI FC Adapter (77101223) Di...
+    devices.pci.77102224.com 7.2.5.200        # PCI-X FC Adapter (77102224) ...
+    devices.pci.df1000f7.com 7.2.5.200        # Common PCI FC Adapter Device...
+    devices.pciex.1410110614101106.diag 7.2.5.0 # IBM 4769 PCIe3 Cryptographic Coprocessor (1410110614101106) Diagnostics Software 
+    devices.pciex.1410110614101106.diag 7.2.5.100 # IBM 4769 PCIe3 Cryptographic Coprocessor (1410110614101106) Diagnostics Software
+    devices.pciex.1410110614101106.rte 7.2.5.0 # IBM 4769 PCIe3 Cryptographic Coprocessor (1410110614101106) Device Software 
+    devices.pciex.1410110614101106.rte 7.2.5.100 # IBM 4769 PCIe3 Cryptographic Coprocessor (1410110614101106) Device Software
+    devices.pciex.14104b0414104b04.com 7.2.5.200 # Common PCIe FPGA Accelerator Adapter Device Software
+    devices.pciex.1410660414100000.diag 7.2.5.100 # IBM 4767 PCIe3 Cryptographic Coprocessor (1410660414100000) Diagnostics Software
+    devices.pciex.1410660414100000.rte 7.2.5.100 # IBM 4767 PCIe3 Cryptographic Coprocessor (1410660414100000) Device Software
+    devices.pciex.14107a0314107b03.diag 7.2.5.100 # IBM Y4 PCI-E Cryptographic CoProcessor Model 4765 (14107a0314107b03) Diagnostics
+    devices.pciex.14107a0314107b03.rte 7.2.5.100 # IBM Y4 PCI-E Cryptographic Coprocessor (14107a0314107b03) Device Software
+    devices.pciex.771001801410af03.diag 7.2.5.100 # 10 Gb FCoE PCI Express Dual Port Adapter (771001801410af03) Diagnostics
+    devices.pciex.771001801410af03.rte 7.2.5.200 # 10 Gb FCoE PCI Express Dual Port Adapter (771001801410af03) Device Software
+    devices.pciex.77103225141004f3.rte 7.2.5.200 # 8Gb 2-Port PCIe2 FC (77103225141004f3) Runtime Software
+    devices.pciex.7710322514101e04.rte 7.2.5.200 # Low Profile 8Gb 4-Port PCIe2 FC (7710322514101e04) Device Software
+    devices.pciex.7710712014109e06.diag 7.2.5.0 # 16Gb FC PCIe4 4 Port (7710712014109e06) Diagnostic Software 
+    devices.pciex.7710712014109e06.diag 7.2.5.100 # 16Gb FC PCIe4 4 Port (7710712014109e06) Diagnostic Software
+    devices.pciex.7710712014109e06.rte 7.2.5.0 # 16Gb FC PCIe3 4 Port Adapter Device Software 
+    devices.pciex.7710712014109e06.rte 7.2.5.200 # 16Gb FC PCIe3 4 Port Adapter Device Software
+    devices.pciex.7710812214105106.diag 7.2.5.0 # 32Gb FC PCIe4 2 Port (7710812214105106) Diagnostic Software 
+    devices.pciex.7710812214105106.diag 7.2.5.100 # 32Gb FC PCIe4 2 Port (7710812214105106) Diagnostic Software
+    devices.pciex.7710812214105106.rte 7.2.5.0 # 32Gb FC PCIe4 2 Port Adapter Device Software 
+    devices.pciex.7710812214105106.rte 7.2.5.200 # 32Gb FC PCIe4 2 Port Adapter Device Software
+    devices.pciex.8680ff1514100000.diag 7.2.5.200 # PCIe3 4-Port 10GbE Base-T Adapter Diagnostic 
+    devices.pciex.8680ff1514100000.rte 7.2.5.200 # PCIe3 4-Port 10GbE Base-T Adapter Software 
+    devices.pciex.b31513101410f704.rte 7.2.5.200 # PCIe3 100Gbit 2-port RoCE Adapter Software
+    devices.pciex.b31514101410f704.rte 7.2.5.200 # PCIe3 100Gbit 2-port RoCE Adapter Software
+    devices.pciex.b315151014101e06.rte 7.2.5.200 # PCIe3 25Gbit 2-port RoCE Adapter Software
+    devices.pciex.b315151014101f06.rte 7.2.5.200 # PCIe3 10Gbit 2-port RoCE Adapter Software
+    devices.pciex.b315161014101e06.rte 7.2.5.200 # PCIe3 25Gbit 2-port RoCE Adapter VF Software
+    devices.pciex.b315161014101f06.rte 7.2.5.200 # PCIe3 10Gbit 2-port RoCE Adapter VF Software
+    devices.pciex.b315191014103506.rte 7.2.5.200 # PCIe4 100Gbit 2-port RoCE Adapter Software
+    devices.pciex.b3151a1014103506.rte 7.2.5.200 # PCIe4 100Gbit 2-port RoCE Adapter Software
+    devices.pciex.b3151d101410a606.diag 7.2.5.0 # PCIe4 100Gbit 2-port RoCE Adapter Diagnostics Software 
+    devices.pciex.b3151d101410a606.diag 7.2.5.100 # PCIe4 100Gbit 2-port RoCE Adapter Diagnostics Software
+    devices.pciex.b3151d101410a606.rte 7.2.5.0 # PCIe4 100Gbit 2-port RoCE Adapter Software 
+    devices.pciex.b3151d101410a606.rte 7.2.5.200 # PCIe4 100Gbit 2-port RoCE Adapter Software
+    devices.pciex.b3151e101410a606.diag 7.2.5.100 # PCIe4 100Gbit 2-port RoCE VF Adapter Diagnostics Software 
+    devices.pciex.b3151e101410a606.rte 7.2.5.100 # PCIe4 100Gbit 2-port RoCE VF Adapter Software 
+    devices.pciex.b3151e101410a606.rte 7.2.5.200 # PCIe4 100Gbit 2-port RoCE VF Adapter Software
+    devices.pciex.b3151e101410aa06.diag 7.2.5.200 # PCIe4 25/10/1 Gbit 2-port RoCE VF Adapter Diagnostics 
+    devices.pciex.b3151e101410aa06.rte 7.2.5.200 # PCIe4 25/10/1 Gbit 2-port RoCE VF Adapter Software 
+    devices.pciex.b3151f101410aa06.diag 7.2.5.200 # PCIe4 25/10/1 Gbit 2-port RoCE Adapter Diagnostics 
+    devices.pciex.b3151f101410aa06.rte 7.2.5.200 # PCIe4 25/10/1 Gbit 2-port RoCE Adapter Software 
+    devices.pciex.b3154a63.diag 7.2.5.200     # PCI-E 4X DDR Infiniband Devi...
+    devices.pciex.df1000e214105e04.rte 7.2.5.200 # GX++ 16Gb FC 2 Port Adapter Device Software
+    devices.pciex.df1000e21410f103.rte 7.2.5.200 # 16Gb FC PCIe2 2 Port Adapter Device Software
+    devices.pciex.df1000e314101406.rte 7.2.5.200 # 16Gb FC PCIe3 4 Port Adapter Device Software
+    devices.pciex.df1000e314101506.rte 7.2.5.200 # 32Gb FC PCIe3 2 Port Adapter Device Software
+    devices.pciex.df1000e31410a006.rte 7.2.5.200 # 16Gb FC PCIe3 2 Port Adapter Device Software
+    devices.pciex.df1000f114100104.rte 7.2.5.200 # 8Gb FC PCI Express Quad Port Adapter Device Software
+    devices.pciex.df1000f114108a03.rte 7.2.5.200 # 8Gb FC PCI Express Dual Port Adapter Device Software
+    devices.pciex.df1000f51410c106.diag 7.2.5.200 # PCIe4 4-Port 32Gb FC Adapter Device Diagnostics 
+    devices.pciex.df1000f51410c106.rte 7.2.5.200 # 32Gb FC PCIe4 4 Port Adapter Device Software 
+    devices.pciex.df1000f51410c206.diag 7.2.5.200 # PCIe4 2-Port 64 Gb FC Adapter Device Diagnostics 
+    devices.pciex.df1000f51410c206.rte 7.2.5.200 # 64Gb FC PCIe4 2 Port Adapter Device Software 
+    devices.pciex.df1020e214100f04.rte 7.2.5.100 # PCIe3 10GbE SFP+ SR Adapter Software
+    devices.pciex.df1020e214103604.rte 7.2.5.100 # PCIe2 10GbE SFP+ SR 4-port Adapter Software
+    devices.pciex.df1020e214103804.rte 7.2.5.100 # PCIe2 10GBaseT 4-port Adapter Software
+    devices.pciex.df1020e214103904.rte 7.2.5.100 # PCIe2 10GbE SFP+ Cu 4-port Adapter Software
+    devices.pciex.df1020e214103b04.rte 7.2.5.100 # PCIe2 10GBaseT 4-port Adapter Software
+    devices.pciex.df1020e214103c04.rte 7.2.5.100 # PCIe3 10/100/1000 Base-TX Adapter Software
+    devices.pciex.df1020e214103d04.rte 7.2.5.100 # PCIe3 10GbE SFP+ Cu Adapter Software
+    devices.pciex.df1020e214103f04.rte 7.2.5.100 # PCIe3 100/1000 Base-TX Adapter Software
+    devices.pciex.df1020e214104004.rte 7.2.5.100 # PCIe3 10GbE SFP+ LR Adapter Software
+    devices.pciex.df1020e214104204.rte 7.2.5.100 # PCIe3 100/1000 Base-TX Adapter Software
+    devices.pciex.df1020e214105104.rte 7.2.5.100 # PCIe2 10GbE Mezz Adapter Software
+    devices.pciex.df1020e214105d04.rte 7.2.5.100 # PCIe2 10GbE 2-port GX++ Gen2 Converged Network Adapter Software
+    devices.pciex.df1028e214100f04.rte 7.2.5.100 # PCIe2 10GbE SFP+ SR VF Adapter Software
+    devices.pciex.df1028e214103604.rte 7.2.5.100 # PCIe2 10GbE SFP+ SR 4-port VF Adapter Software
+    devices.pciex.df1028e214103804.rte 7.2.5.100 # PCIe2 10GBaseT 4-port VF Adapter Software
+    devices.pciex.df1028e214103904.rte 7.2.5.100 # PCIe2 10GbE SFP+ Cu 4-port VF Adapter Software
+    devices.pciex.df1028e214103b04.rte 7.2.5.100 # PCIe2 10GBaseT 4-port VF Adapter Software
+    devices.pciex.df1028e214103c04.rte 7.2.5.100 # PCIe2 10/100/1000 Base-TX VF Adapter Software
+    devices.pciex.df1028e214103d04.rte 7.2.5.100 # PCIe2 10GbE SFP+ Cu VF Adapter Software
+    devices.pciex.df1028e214103f04.rte 7.2.5.100 # PCIe2 100/1000 Base-TX VF Adapter Software
+    devices.pciex.df1028e214104004.rte 7.2.5.100 # PCIe2 10GbE SFP+ LR VF Adapter Software
+    devices.pciex.df1028e214104204.rte 7.2.5.100 # PCIe2 100/1000 Base-TX VF Adapter Software
+    devices.pciex.df1060e214101004.rte 7.2.5.200 # 10Gb FCoE PCIe2 4 Port Adapter Device Software
+    devices.pciex.df1060e214103704.rte 7.2.5.200 # Integrated 10Gb 4-Port FCoE Adapter Device Software
+    devices.pciex.df1060e214103a04.rte 7.2.5.200 # Integrated 10Gb Cu 4-Port FCoE Adapter Device Software
+    devices.pciex.df1060e214103e04.rte 7.2.5.200 # PCIe2 10Gb Cu 4-Port FCoE Adapter Device Software
+    devices.pciex.df1060e214104104.rte 7.2.5.200 # PCIe2 10Gb LR 4-Port FCoE Adapter Device Software
+    devices.pciex.df1060e214105f04.rte 7.2.5.200 # GX++ 10Gb FCoE Adapter Device Software
+    devices.pciex.e4145616e4140518.rte 7.2.5.200 # 2-Port Gigabit Ethernet PCI-Express Adapter Software
+    devices.pciex.e4148a1614109304.rte 7.2.5.200 # PCIe2 4-Port (10GbE SFP+ & 1GbE RJ45) Adapter
+    devices.pciex.e4148a1614109404.rte 7.2.5.200 # PCIe2 4-Port (10GbE SFP+ & 1GbE RJ45) Adapter
+    devices.pciex.e4148e1614109204.diag 7.2.5.100 # PCIe2 2-Port 10GbE Base-T Adapter Diagnostics
+    devices.pciex.e4148e1614109204.rte 7.2.5.200 # PCIe2 2-Port 10GbE Base-T Adapter
+    devices.pciex.pciexclass.010802.diag 7.2.5.200 # PCIe NVMe Adapter Diagnostics
+    devices.pciex.pciexclass.010802.rte 7.2.5.200 # PCIe NVMe Adapter Software
+    devices.sas.diag 7.2.5.200                # Serial Attached SCSI Device ...
+    devices.sas.rte 7.2.5.200                 # Serial Attached SCSI Device ...
+    devices.scsi.disk.diag.com 7.2.5.200      # Common Disk Diagnostic Servi...
+    devices.scsi.disk.rte 7.2.5.200           # SCSI CD-ROM, Disk, Read/Writ...
+    devices.scsi.ses.rte 7.2.5.200            # SCSI Enclosure Device Software
+    devices.scsi.tape.rte 7.2.5.200           # SCSI Tape Device Software
+    devices.scsi.tm.rte 7.2.5.200             # SCSI Target Mode Software
+    devices.tty.rte 7.2.5.200                 # TTY Device Driver Support So...
+    devices.usbif.030101.rte 7.2.5.200        # USB Keyboard Client Driver
+    devices.usbif.030102.rte 7.2.5.200        # USB Mouse Client Driver
+    devices.usbif.08025002.rte 7.2.5.200      # USB Mass Storage Device Soft...
+    devices.usbif.080400.rte 7.2.5.200        # USB Diskette Client Driver
+    devices.vdevice.IBM.l-lan.rte 7.2.5.200   # Virtual I/O Ethernet Software
+    devices.vdevice.IBM.v-scsi.rte 7.2.5.200  # Virtual SCSI Client Support
+    devices.vdevice.IBM.vfc-client.rte 7.2.5.200 # Virtual Fibre Channel Client Support
+    devices.vdevice.IBM.vnic.rte 7.2.5.200    # Virtual NIC Client Software
+    devices.virtio.scsi.rte 7.2.5.200         # virtio SCSI Adapter Device S...
+    mcr.rte 7.2.5.200                         # Metacluster Checkpoint and R...
+    perfagent.tools 7.2.5.200                 # Local Performance Analysis &...
+    printers.rte 7.2.5.200                    # Printer Backend
+    rsct.basic.rte 3.2.6.4                    # RSCT Basic Function
+    rsct.core.errm 3.2.6.2                    # RSCT Event Response Resource...
+    rsct.core.hostrm 3.2.6.3                  # RSCT Host Resource Manager
+    rsct.core.rmc 3.2.6.4                     # RSCT Resource Monitoring and...
+    rsct.core.sec 3.2.6.1                     # RSCT Security
+    rsct.core.sr 3.2.6.4                      # RSCT Registry
+    rsct.core.utils 3.2.6.4                   # RSCT Utilities
+    security.acf 7.2.5.200                    # ACF/PKCS11 Device Driver
+
+  MISSING REQUISITES:  The following filesets are required by one or more
+  of the selected filesets listed above.  They are not currently installed
+  and could not be found on the installation media.
+
+    X11.base.lib 7.2.0.0                      # Base Level Fileset
+    X11.base.rte 7.2.0.0                      # Base Level Fileset
+    adde.v2.ethernet.rte 7.2.0.0              # Base Level Fileset
+    artex.base.rte 7.2.0.0                    # Base Level Fileset
+    artex.base.samples 7.2.0.0                # Base Level Fileset
+    bos.64bit 7.2.0.0                         # Base Level Fileset
+    bos.acct 7.2.0.0                          # Base Level Fileset
+    bos.adt.base 7.2.0.0                      # Base Level Fileset
+    bos.adt.debug 7.2.0.0                     # Base Level Fileset
+    bos.adt.include 7.2.0.0                   # Base Level Fileset
+    bos.adt.lib 7.2.0.0                       # Base Level Fileset
+    bos.adt.prof 7.2.0.0                      # Base Level Fileset
+    bos.adt.samples 7.2.0.0                   # Base Level Fileset
+    bos.adt.syscalls 7.2.0.0                  # Base Level Fileset
+    bos.ahafs 7.2.0.0                         # Base Level Fileset
+    bos.aixpert.cmds 7.2.0.0                  # Base Level Fileset
+    bos.alt_disk_install.boot_images 7.2.0.0  # Base Level Fileset
+    bos.alt_disk_install.rte 7.2.0.0          # Base Level Fileset
+    bos.aso 7.2.0.0                           # Base Level Fileset
+    bos.cifs_fs.rte 7.2.0.0                   # Base Level Fileset
+    bos.cluster.rte 7.2.0.0                   # Base Level Fileset
+    bos.diag.com 7.2.0.0                      # Base Level Fileset
+    bos.diag.rte 7.2.0.0                      # Base Level Fileset
+    bos.diag.util 7.2.0.0                     # Base Level Fileset
+    bos.ecc_client.rte 7.2.3.16               # Fileset Update
+    bos.esagent 7.2.3.16                      # Fileset Update
+    bos.iocp.rte 7.2.0.0                      # Base Level Fileset
+    bos.mp64 7.2.0.0                          # Base Level Fileset
+    bos.net.ipsec.keymgt 7.2.0.0              # Base Level Fileset
+    bos.net.ipsec.rte 7.2.0.0                 # Base Level Fileset
+    bos.net.nfs.client 7.2.0.0                # Base Level Fileset
+    bos.net.tcp.adt 7.2.5.0                   # Base Level Fileset
+    bos.net.tcp.smit 7.2.5.0                  # Base Level Fileset
+    bos.net.tcp.syslogd 7.2.0.0               # Base Level Fileset
+    bos.perf.libperfstat 7.2.0.0              # Base Level Fileset
+    bos.perf.perfstat 7.2.0.0                 # Base Level Fileset
+    bos.perf.pmaix 7.2.0.0                    # Base Level Fileset
+    bos.perf.tools 7.2.0.0                    # Base Level Fileset
+    bos.perf.tune 7.2.0.0                     # Base Level Fileset
+    bos.pmapi.events 7.2.0.0                  # Base Level Fileset
+    bos.pmapi.lib 7.2.0.0                     # Base Level Fileset
+    bos.pmapi.pmsvcs 7.2.0.0                  # Base Level Fileset
+    bos.pmapi.tools 7.2.0.0                   # Base Level Fileset
+    bos.rte 7.2.0.0                           # Base Level Fileset
+    bos.rte.ILS 7.2.0.0                       # Base Level Fileset
+    bos.rte.SRC 7.2.0.0                       # Base Level Fileset
+    bos.rte.aio 7.2.0.0                       # Base Level Fileset
+    bos.rte.archive 7.2.0.0                   # Base Level Fileset
+    bos.rte.bind_cmds 7.2.0.0                 # Base Level Fileset
+    bos.rte.boot 7.2.0.0                      # Base Level Fileset
+    bos.rte.commands 7.2.0.0                  # Base Level Fileset
+    bos.rte.console 7.2.0.0                   # Base Level Fileset
+    bos.rte.control 7.2.0.0                   # Base Level Fileset
+    bos.rte.date 7.2.0.0                      # Base Level Fileset
+    bos.rte.devices_msg 7.2.0.0               # Base Level Fileset
+    bos.rte.edit 7.2.0.0                      # Base Level Fileset
+    bos.rte.filesystem 7.2.0.0                # Base Level Fileset
+    bos.rte.install 7.2.0.0                   # Base Level Fileset
+    bos.rte.jfscomp 7.2.0.0                   # Base Level Fileset
+    bos.rte.libc 7.2.0.0                      # Base Level Fileset
+    bos.rte.libcur 7.2.0.0                    # Base Level Fileset
+    bos.rte.libpthreads 7.2.0.0               # Base Level Fileset
+    bos.rte.lvm 7.2.0.0                       # Base Level Fileset
+    bos.rte.methods 7.2.0.0                   # Base Level Fileset
+    bos.rte.misc_cmds 7.2.0.0                 # Base Level Fileset
+    bos.rte.printers 7.2.0.0                  # Base Level Fileset
+    bos.rte.security 7.2.0.0                  # Base Level Fileset
+    bos.rte.serv_aid 7.2.0.0                  # Base Level Fileset
+    bos.rte.shell 7.2.0.0                     # Base Level Fileset
+    bos.rte.streams 7.2.0.0                   # Base Level Fileset
+    bos.rte.tty 7.2.0.0                       # Base Level Fileset
+    bos.suma 7.2.0.0                          # Base Level Fileset
+    bos.sysmgt.nim.client 7.2.0.0             # Base Level Fileset
+    bos.sysmgt.serv_aid 7.2.0.0               # Base Level Fileset
+    bos.sysmgt.sysbr 7.2.0.0                  # Base Level Fileset
+    bos.sysmgt.trace 7.2.0.0                  # Base Level Fileset
+    bos.txt.tfs 7.2.0.0                       # Base Level Fileset
+    devices.artic960.rte 7.2.0.0              # Base Level Fileset
+    devices.chrp.base.diag 7.2.0.0            # Base Level Fileset
+    devices.chrp.base.rte 7.2.0.0             # Base Level Fileset
+    devices.chrp.pci.rte 7.2.0.0              # Base Level Fileset
+    devices.chrp.vdevice.rte 7.2.0.0          # Base Level Fileset
+    devices.chrp_lpar.base.ras 7.2.0.0        # Base Level Fileset
+    devices.common.IBM.crypt.rte 7.2.0.0      # Base Level Fileset
+    devices.common.IBM.crypt.rte 7.2.0.0      # Base Level Fileset
+    devices.common.IBM.ethernet.rte 7.2.0.0   # Base Level Fileset
+    devices.common.IBM.fc.hba-api 7.2.0.0     # Base Level Fileset
+    devices.common.IBM.fc.rte 7.2.0.0         # Base Level Fileset
+    devices.common.IBM.ib.rte 7.2.0.0         # Base Level Fileset
+    devices.common.IBM.iscsi.rte 7.2.0.0      # Base Level Fileset
+    devices.common.IBM.mpio.rte 7.2.0.0       # Base Level Fileset
+    devices.common.IBM.mpt2.rte 7.2.0.0       # Base Level Fileset
+    devices.common.IBM.scsi.rte 7.2.0.0       # Base Level Fileset
+    devices.common.IBM.sissas.rte 7.2.0.0     # Base Level Fileset
+    devices.common.IBM.storfwork.rte 7.2.0.0  # Base Level Fileset
+    devices.common.IBM.usb.rte 7.2.0.0        # Base Level Fileset
+    devices.common.IBM.xhci.rte 7.2.0.0       # Base Level Fileset
+    devices.ethernet.lnc2.rte 7.2.0.0         # Base Level Fileset
+    devices.ethernet.mlx.rte 7.2.0.0          # Base Level Fileset
+    devices.ethernet.mlxc.rte 7.2.0.0         # Base Level Fileset
+    devices.ethernet.shi.rte 7.2.0.0          # Base Level Fileset
+    devices.fcp.disk.rte 7.2.0.0              # Base Level Fileset
+    devices.fcp.tape.rte 7.2.0.0              # Base Level Fileset
+    devices.ide.cdrom.rte 7.2.0.0             # Base Level Fileset
+    devices.iscsi_sw.rte 7.2.0.0              # Base Level Fileset
+    devices.loopback.rte 7.2.0.0              # Base Level Fileset
+    devices.pci.00100f00.rte 7.2.0.0          # Base Level Fileset
+    devices.pci.00105000.com 7.2.0.0          # Base Level Fileset
+    devices.pci.14102e00.rte 7.2.0.0          # Base Level Fileset
+    devices.pci.14106602.rte 7.2.0.0          # Base Level Fileset
+    devices.pci.14107802.rte 7.2.0.0          # Base Level Fileset
+    devices.pci.1410d002.com 7.2.0.0          # Base Level Fileset
+    devices.pci.4f11c800.diag 7.2.0.0         # Base Level Fileset
+    devices.pci.4f11c800.rte 7.2.0.0          # Base Level Fileset
+    devices.pci.77101223.com 7.2.0.0          # Base Level Fileset
+    devices.pci.77101223.diag 7.2.0.0         # Base Level Fileset
+    devices.pci.77102224.com 7.2.0.0          # Base Level Fileset
+    devices.pci.df1000f7.com 7.2.0.0          # Base Level Fileset
+    devices.pciex.14104b0414104b04.com 7.2.0.0 # Base Level Fileset
+    devices.pciex.1410660414100000.diag 7.2.0.0 # Base Level Fileset
+    devices.pciex.1410660414100000.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.14107a0314107b03.diag 7.2.0.0 # Base Level Fileset
+    devices.pciex.14107a0314107b03.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.771001801410af03.diag 7.2.0.0 # Base Level Fileset
+    devices.pciex.771001801410af03.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.77103225141004f3.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.7710322514101e04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.7710612214105006.com 7.2.0.0 # Base Level Fileset
+    devices.pciex.7710612214105006.diag 7.2.0.0 # Base Level Fileset
+    devices.pciex.b31513101410f704.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.b31514101410f704.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.b315151014101e06.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.b315151014101f06.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.b315161014101e06.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.b315161014101f06.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.b315191014103506.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.b3151a1014103506.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.b3154a63.diag 7.2.0.0       # Base Level Fileset
+    devices.pciex.df1000e214105e04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1000e21410f103.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1000e314101406.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1000e314101506.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1000e31410a006.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1000f114100104.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1000f114108a03.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214100f04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214103604.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214103804.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214103904.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214103b04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214103c04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214103d04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214103f04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214104004.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214104204.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214105104.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1020e214105d04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1028e214100f04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1028e214103604.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1028e214103804.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1028e214103904.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1028e214103b04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1028e214103c04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1028e214103d04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1028e214103f04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1028e214104004.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1028e214104204.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1060e214101004.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1060e214103704.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1060e214103a04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1060e214103e04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1060e214104104.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.df1060e214105f04.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.e4145616e4140518.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.e4148a1614109304.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.e4148a1614109404.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.e4148e1614109204.diag 7.2.0.0 # Base Level Fileset
+    devices.pciex.e4148e1614109204.rte 7.2.0.0 # Base Level Fileset
+    devices.pciex.pciexclass.010802.diag 7.2.0.0 # Base Level Fileset
+    devices.pciex.pciexclass.010802.rte 7.2.0.0 # Base Level Fileset
+    devices.sas.diag 7.2.0.0                  # Base Level Fileset
+    devices.sas.rte 7.2.0.0                   # Base Level Fileset
+    devices.scsi.disk.diag.com 7.2.0.0        # Base Level Fileset
+    devices.scsi.disk.rte 7.2.0.0             # Base Level Fileset
+    devices.scsi.ses.rte 7.2.0.0              # Base Level Fileset
+    devices.scsi.tape.rte 7.2.0.0             # Base Level Fileset
+    devices.scsi.tm.rte 7.2.0.0               # Base Level Fileset
+    devices.tty.rte 7.2.0.0                   # Base Level Fileset
+    devices.usbif.030101.rte 7.2.0.0          # Base Level Fileset
+    devices.usbif.030102.rte 7.2.0.0          # Base Level Fileset
+    devices.usbif.08025002.rte 7.2.0.0        # Base Level Fileset
+    devices.usbif.080400.rte 7.2.0.0          # Base Level Fileset
+    devices.vdevice.IBM.l-lan.rte 7.2.0.0     # Base Level Fileset
+    devices.vdevice.IBM.v-scsi.rte 7.2.0.0    # Base Level Fileset
+    devices.vdevice.IBM.vfc-client.rte 7.2.0.0 # Base Level Fileset
+    devices.vdevice.IBM.vnic.rte 7.2.0.0      # Base Level Fileset
+    devices.virtio.scsi.rte 7.2.2.15          # Fileset Update
+    mcr.rte 7.2.0.0                           # Base Level Fileset
+    perfagent.tools 7.2.0.0                   # Base Level Fileset
+    printers.rte 7.2.0.0                      # Base Level Fileset
+    rsct.basic.rte 3.2.6.0                    # Base Level Fileset
+    rsct.core.errm 3.2.6.0                    # Base Level Fileset
+    rsct.core.hostrm 3.2.6.0                  # Base Level Fileset
+    rsct.core.rmc 3.2.6.0                     # Base Level Fileset
+    rsct.core.sec 3.2.6.0                     # Base Level Fileset
+    rsct.core.sr 3.2.6.0                      # Base Level Fileset
+    rsct.core.utils 3.2.6.0                   # Base Level Fileset
+    security.acf 7.2.0.0                      # Base Level Fileset
+
+  AVAILABLE REQUISITES:  You specified that requisite software should be
+  automatically installed.  Additional filesets (3) would have been
+  installed automatically had the selected filesets passed all requisite
+  checks.
+
+  << End of Failure Section >>
+
+SUCCESSES
+---------
+  Filesets listed in this section passed pre-installation verification
+  and will be installed.
+
+  Selected Filesets
+  -----------------
+  devices.pciex.df1060e214103404.com 7.2.5.0  # Common PCIe3 FC Adapter Devi...
+  devices.pciex.df1060e214103404.com 7.2.5.200 # Common PCIe3 FC Adapter Device Software
+  devices.pciex.df1060e214103404.diag 7.2.5.0 # PCIe2 10Gb 4-Port FCoE Mezza...
+  devices.pciex.df1060e214103404.diag 7.2.5.200 # PCIe2 10Gb 4-Port FCoE Mezzanine Adapter Device Diagnostics
+  devices.pciex.df1060e214103404.rte 7.2.0.0  # PCIe3 10Gb 4-Port FCoE Mezza...
+  invscout.rte 2.2.0.23                       # Inventory Scout Runtime
+  openssh.base.client 8.1.102.2106            # Open Secure Shell Commands
+  openssh.base.server 8.1.102.2106            # Open Secure Shell Server
+  openssh.man.en_US 8.1.102.2106              # Open Secure Shell Documentat...
+  openssh.msg.en_US 8.1.102.2106              # Open Secure Shell Messages -...
+  rpm.rte 4.15.1.1006                         # RPM Package Manager
+  xlC.aix61.rte 16.1.0.10                     # IBM XL C++ Runtime for AIX 6...
+  xlC.msg.en_US.rte 16.1.0.10                 # IBM XL C++ Runtime Messages-...
+  xlC.rte 16.1.0.10                           # IBM XL C++ Runtime for AIX 
+
+  << End of Success Section >>
+
++-----------------------------------------------------------------------------+
+		   BUILDDATE Verification ...
++-----------------------------------------------------------------------------+
+Verifying build dates...done
++-----------------------------------------------------------------------------+
+		   BUILDDATE Verification ...
++-----------------------------------------------------------------------------+
+Verifying build dates...done
+FILESET STATISTICS 
+------------------
+  248  Selected to be installed, of which:
+       14  Passed pre-installation verification
+      234  FAILED pre-installation verification
+  ----
+   14  Total to be installed
+
+RESOURCES
+---------
+  Estimated system resource requirements for filesets being installed:
+		(All sizes are in 512-byte blocks)
+      Filesystem                     Needed Space             Free Space
+      /                                     924                 374384
+      /usr                               147825                 847112
+      /var                                    8                4117520
+      /tmp                                43952                5734688
+      -----                            --------                 ------
+      TOTAL:                             192709               11073704
+
+  NOTE:  "Needed Space" values are calculated from data available prior
+  to installation.  These are the estimated resources required for the
+  entire operation.  Further resource checks will be made during
+  installation to verify that these initial estimates are sufficient.
+
+ADDITIONAL INFORMATION 
+---------------------- 
+One or more of the selected filesets will cause a bosboot to be performed.
+The bosboot command will rebuild the boot image.  As a result it may 
+be necessary to reboot your system for the changes to take effect.
+
+It is recommended that you reboot the system as soon as possible
+after the installation of this software to avoid disruption of
+current functionality.
+
+******************************************************************************
+End of installp PREVIEW.  No apply operation has actually occurred.
+******************************************************************************

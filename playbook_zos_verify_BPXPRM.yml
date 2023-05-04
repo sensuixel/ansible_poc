@@ -1,0 +1,8 @@
+---
+- name: OMVS Syntax Check
+  hosts: ZOS 
+  environment: "{{ environment_vars }}"
+  tasks:
+
+  roles:
+    - z_verify_bpxprm

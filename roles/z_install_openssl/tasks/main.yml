@@ -1,0 +1,72 @@
+---
+# tasks file for z_install_openssl
+#
+- name: "openssl version {{ openssl_version }}"
+  ansible.builtin.shell: "openssl version || /bin/true"
+  ignore_errors: true
+  register: vers_output
+
+- name: "openssl already in {{ openssl_version }} on {{ inventory_hostname }}"
+  ansible.builtin.fail:
+    msg: "openssl '{{ openssl_version }}' already installed on {{ inventory_hostname}} "
+  when: openssl_version in vers_output.stdout  
+
+- name: "Check if {{openssl_directory}}/v{{openssl_version}} exists"
+  ansible.builtin.stat:
+    path: "{{openssl_directory}}/v{{openssl_version}}"
+  register: dir_status
+  
+- debug: 
+    msg: "directory {{openssl_directory}}/v{{openssl_version}} already exists on {{ inventory_hostname }}"
+  when: dir_status.stat.exists
+  
+- name: "Remove current directory {{openssl_directory}}/v{{openssl_version}}"
+  ansible.builtin.file:
+    path: "{{openssl_directory}}/v{{openssl_version}}"
+    state: absent
+  when: dir_status.stat.exists
+    
+- name: "Create target dir {{openssl_directory}}/v{{openssl_version}} if it does'nt exist"
+  ansible.builtin.file:
+    path: "{{openssl_directory}}/v{{openssl_version}}"
+    state: directory
+    mode: '0775'
+    
+- name: "Copy package to remote dir"
+  ibm.ibm_zos_core.zos_copy:
+    src: "{{ openssl_local_path }}/{{ openssl_tar_name }}"
+    dest: "{{ openssl_directory }}/v{{openssl_version}}/{{ openssl_tar_name }}"
+    is_binary: true
+    mode: '0775'
+
+- name: "Extract openssl"
+  ansible.builtin.shell: "cd {{ openssl_directory }}/v{{openssl_version}} && pax -p p -r -f {{ openssl_tar_name }}"
+  
+- name: "Create symlink to openssl bin"
+  ansible.builtin.file:
+    src: "{{ openssl_directory }}/v{{ openssl_version }}/bin/openssl"
+    dest: "{{ openssl_bin_path }}"
+    force: true
+    state: link
+    
+- name: "Create symlink to openssl cnf"
+  ansible.builtin.file:
+    src: "{{ openssl_directory }}/v{{ openssl_version }}/ssl/openssl.cnf"
+    dest: "{{ openssl_conf_path }}"
+    force: true
+    state: link
+  
+- name: "Validate openssl version"
+  ansible.builtin.shell: "openssl version || /bin/true" 
+  ignore_errors: true
+  register: openssl_status
+  
+- debug:
+    msg: "openssl  is in version {{ openssl_version }} on {{ inventory_hostname }}"
+  when: openssl_version in openssl_status.stdout  
+  
+- name: "openssl not in {{ openssl_version }} on {{ inventory_hostname }}"
+  ansible.builtin.fail:
+    msg: " {{ openssl_status.stderr }}"
+  when: openssl_version not in openssl_status.stdout 
+  

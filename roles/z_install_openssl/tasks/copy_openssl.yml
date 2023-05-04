@@ -1,0 +1,11 @@
+---
+# tasks file for copy_openssl.yml
+- name: "Copy package to remote dir"
+  ibm.ibm_zos_core.zos_copy:
+    src: "{{ openssl_local_path }}/{{ openssl_tar_name }}"
+    dest: "{{ openssl_directory }}/v{{openssl_version}}/{{ openssl_tar_name }}"
+    is_binary: true
+    mode: '0775'
+
+- name: "Extract openssl"
+  ansible.builtin.shell: "cd {{ openssl_directory }}/v{{openssl_version}} && pax -p p -r -f {{ openssl_tar_name }}"

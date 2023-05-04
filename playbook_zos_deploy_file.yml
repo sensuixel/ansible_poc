@@ -1,0 +1,52 @@
+- name: ZOS copy file to all lpar
+  hosts: zos_rs
+  gather_facts: false
+  become: true
+  environment: "{{ environment_vars }}"
+  vars:
+    local_script: /home/pichard/ansible/local_files/hpov.py
+    remote_script: /usr/lpp/produit/ISV/hpov/hpov.py
+  
+  tasks:
+  
+  - name: Get current date
+    ansible.builtin.set_fact:
+      custom_date: "{{ lookup( 'pipe',  'date +%Y-%m-%d') }}"
+      custom_timestamp: "{{ lookup( 'pipe',  'date +%Y-%m-%d-%Hh%Mm%Ss') }}"
+    delegate_to: localhost
+    
+  - name: "Check if target file already exists"
+    ansible.builtin.stat:
+      path: "{{ remote_script }}"
+    register: remote_file_status
+  
+  - name: "Backup file if it exists"
+    ibm.ibm_zos_core.zos_copy:
+      src: "{{ remote_script }}"
+      dest: "{{ remote_script }}_{{ custom_timestamp }}.bck"
+      encoding:
+        from: IBM-1047
+        to: IBM-1047
+      remote_src: true
+      mode: '0755'
+    when: remote_file_status.stat.exists
+    
+  - name: "Remove file if it exists"
+    ansible.builtin.file:
+      path: "{{ remote_script }}"
+      state: absent
+    when: remote_file_status.stat.exists
+    
+  - name: "Copy local script to remote script"
+    ibm.ibm_zos_core.zos_copy:
+      src: "{{ local_script }}"
+      dest: "{{  remote_script }}"
+      mode: '0755'
+      
+  - name: "list file"
+    ansible.builtin.shell: "{{ remote_script }} -h"
+    register: remote_file_display
+    
+  - name: "print list"
+    debug:
+      msg: "{{ remote_file_display.stdout }}"

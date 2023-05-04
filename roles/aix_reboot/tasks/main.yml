@@ -1,0 +1,13 @@
+---
+# tasks file for aix_reboot
+- name: Reboot {{ inventory_hostname }}
+  ibm.power_aix.reboot:
+    reboot_timeout: 300
+
+- name: Check Oslevel
+  ansible.builtin.shell: oslevel -s
+  register: cmd_output
+  
+- name: Print osvlevel
+  debug:
+    msg: "{{ inventory_hostname }} os level is {{ cmd_output.stdout }}"

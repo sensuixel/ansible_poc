@@ -1,0 +1,165 @@
+#!/usr/bin/ksh93
+export LANG=C
+# Ecrit un peu a l'arrache
+# Ujm 2021/08 pour Extension 8X Madelin =48vg
+# Ujm 2022/03 Rajout de -L sur les lsvg (accés concurrent si mirroir en cours)
+
+# Pour filtrer la liste, $0 liste uniquement les VG contenant $1
+Filtre="$1"
+[ -z "$Filtre" ] && Filtre="."
+VGref=""
+Tiret="======"
+Point="..."
+
+
+# =========================================================
+# Pour les VG non actifs (les VG=None, les LUN HORCM, ...)
+# Les infos VG ne sont pas dsipo : 0516-010 : Volume group must be varied on; use varyonvg command.
+# Je prend que les infos hdisks
+# =========================================================
+lsvg_none()
+{
+echo $LIGNE | tr ";" " " | read VG LUN Nul
+MoPV=`bootinfo -s $LUN`
+typeset -F2 GoPV=MoPV/1024.00
+Libelle="Inactif"
+lscfg -vl $LUN | grep -q "Device Specific.(Z1)\.*C7" && Libelle="horcm"
+
+# Dsk HITACHI PURE IBM ou inconu
+Manufacturer=`lscfg -vl $LUN | grep  Manufacturer`
+MARQUE="???"
+echo $Manufacturer|grep -iq HITACHI && MARQUE="hita"
+echo $Manufacturer|grep -iq PURE    && MARQUE="pure"
+echo $Manufacturer|grep -iq IBM     && MARQUE="ibm"
+
+
+
+printf "#%14s %7s %4s %8s %8s %8s %9s %7s %4s %20s \n" $VG $LUN $MARQUE "$Libelle"  $GoPV
+}
+
+# =========================================================
+# Pour les VG actifs
+# =========================================================
+lsvg_fct()
+{
+
+echo $LIGNE | tr ";" " " | read VG LUN Nul
+# echo "$VG $LUN $Nul"
+PPSize=`lsvg -L $VG| grep "PP SIZE" | sed "s/^.*PP SIZE: *//" | awk '{print $1}'`
+MaxPPVG=`lsvg -L $VG | grep "^MAX PPs per VG" |sed "s/^MAX PPs per VG: *//"|awk '{print $1}'`
+TotalPP=`lsvg -L $VG | grep "TOTAL PPs:" | sed "s/^.*TOTAL PPs: *//" | awk '{print $1}'`
+FreePP=`lsvg -L $VG | grep "FREE PPs:" | sed "s/^.*FREE PPs: *//" | awk '{print $1}'`
+MaxPPPV=`lsvg -L $VG | grep "^MAX PPs per PV" |sed "s/^MAX PPs per PV: *//"|awk '{print $1}'`
+
+# Mirroir HS, sauf si snapshot VGprimaire ou le stale signale la dérive
+# lsvg -L $VG|grep STALE| egrep -q "[1-9]." && StaleVG=STALE
+# Pour afficher l'avancement
+StaleVG=`lsvg -L $VG|grep STALE| egrep  "[1-9]."|sed "s/^.*STALE PPs: */STALE:/"`
+
+
+PrimaryVG=`lsvg -L $VG | grep "PRIMARY VG:" | sed "s/^.*PRIMARY VG: */Primary VG:/" | sed "s/  */ /g"`
+SnapshotVG=`lsvg -L $VG | grep "SNAPSHOT VG:" |grep -v "VG: *yes" | sed "s/^.*SNAPSHOT VG: */Snapshot VG:/" | sed "s/  */ /g"`
+
+# Si le VG est un snapshotVG, un des disques  n'est pas vu via lspv => on signale
+# Idéalement, il faudrait l'afficher
+if [ ! -z "$SnapshotVG" ]
+then  SnapshotVG="$SnapshotVG"
+fi
+
+
+#En Go
+typeset -F2 PPSizeF2=PPSize
+typeset -F2 GoMaxVG=MaxPPVG*PPSizeF2/1024.00
+typeset -F2 GoAlloueVG=TotalPP*PPSizeF2/1024.00
+typeset -F2 GoFreeVG=FreePP*PPSizeF2/1024.00
+
+# Les VG de type original/big ont un plafond MaxPV, pas les scalable
+# La vrai méthode pour déterminer est sous:
+# http://aix4admins.blogspot.com/2011/05/volume-group-when-you-install-system.html
+# Unset car parfois text, parfois décimal
+unset GoMaxPV
+if [ -z "$MaxPPPV" ]
+then GoMaxPV="scale"
+else typeset -F2 GoMaxPV=MaxPPPV*PPSizeF2/1024.00
+fi
+
+# Taille du LUN
+MoPV=`bootinfo -s $LUN`
+typeset -F2 GoPV=MoPV/1024.00
+
+# Si N disk ds le VG,
+# - Si tous les LV ont 2 LUN, c'est un mirroir
+# - Si des LV ont 1 ou 2 LUN, c'est un LUN en + pour étendre le VG
+# - cas particulier des VIO lg_dumplv0+lg_dumplv1
+unset LIBlun
+if [ "$VG" = "$VGref" ]
+then Copie1=0
+     Copie2=0
+     DumpVio=0
+     lsvg -Ll $VG| grep -v -e lg_dumplv0 -e lg_dumplv1 | awk '{print $5}' | grep -q "^1" && Copie1=1
+     lsvg -Ll $VG| grep -e lg_dumplv0 -e lg_dumplv1 | awk '{print $5}' | grep -q "^1" && DumpVio=1
+     lsvg -Ll $VG| awk '{print $5}' | grep -q "^2" && Copie2=1
+     case "$Copie1$Copie2$DumpVio" in
+     010) LIBlun="LUN Mirroir" ;;
+     011) LIBlun="Mirroir VIO" ;;
+     100) LIBlun="extension LUN" ;;
+     110) LIBlun="extension LUN" ;;
+     *)  LIBlun="LUN Bâtard" ;;
+     esac
+fi
+
+# Dsk HITACHI PURE IBM ou inconu
+lscfg -vl $LUN | grep -q "Device Specific.(Z1)\.*C7" && Libelle="horcm"
+Manufacturer=`lscfg -vl $LUN | grep  Manufacturer`
+MARQUE="???"
+echo $Manufacturer|grep -iq HITACHI && MARQUE="hita"
+echo $Manufacturer|grep -iq PURE    && MARQUE="pure"
+echo $Manufacturer|grep -iq IBM     && MARQUE="ibm"
+
+
+# Si LUN meme VG je n'affiche pas les info VG , pour plus de lisibilité
+if [ "$VG" = "$VGref" ]
+then printf "#%14s %7s %4s %8s %8s %8s %9s %7s %4s %20s \n" $VG    $LUN $MARQUE $Point      $GoPV $Point    $Point   $GoMaxPV $Point  "$PrimaryVG$SnapshotVG$LIBlun"
+else printf "#%14s %7s %4s %8s %8s %8s %9s %7s %4s %20s \n" $VG    $LUN $MARQUE $GoAlloueVG $GoPV $GoFreeVG $GoMaxVG $GoMaxPV $PPSize "$PrimaryVG$SnapshotVG$LIBlun $StaleVG"
+     VGref=$VG
+fi
+
+}
+
+Tiret_fct()
+{
+printf "#%14s %7s %4s%7s %8s %8s %9s %7s %4s\n" $Tiret $Tiret $Tiret $Tiret $Tiret $Tiret $Tiret $Tiret
+}
+
+Tiret_fct
+printf "#%14s %7s %4s %7s %8s %8s %9s %7s %4s\n" VG     LUN Type AllouéVG AllouéPV FreeVG MaxVG MaxPV PPSize
+printf "#%14s %7s %4s%7s %8s %8s %9s %7s %4s\n" $Tiret $Tiret $Tiret "Go" "Go" "Go" "Go" "Go" "Mo"
+
+
+# -----------------------------
+# Affiche en premier le rootvg
+# Ainsi que les LUN pas actif, ou None
+# -----------------------------
+LISTE=`lspv -L|grep active|grep rootvg|awk '{print $3,$1}' | egrep "$Filtre" | tr " " ";" |sort`
+if [ ! -z "$LISTE" ]
+then for LIGNE in $LISTE
+     do lsvg_fct
+     done
+     LISTE=`lspv -L|grep -v active|awk '{print $3,$1}'| tr " " ";" |sort`
+     for LIGNE in $LISTE
+     do lsvg_none
+     done
+     Tiret_fct
+fi
+
+
+# ---------------------------------
+# Affiche en second les VG de data
+# ---------------------------------
+LISTE=`lspv -L|grep active|grep -v rootvg|awk '{print $3,$1}' |egrep "$Filtre" | tr " " ";" |sort`
+if [ ! -z "$LISTE" ]
+then for LIGNE in $LISTE
+     do lsvg_fct
+     done
+     Tiret_fct
+fi

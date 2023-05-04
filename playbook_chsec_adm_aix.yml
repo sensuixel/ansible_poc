@@ -1,0 +1,33 @@
+---
+# playbook_update_sudo.yml
+- name: AIX update
+  gather_facts: false
+  hosts: ataai028.server.lan
+
+  tasks:
+   
+  - name: "Authorize user to login"  
+    ibm.power_aix.chsec:
+      path: /etc/security/user
+      stanza: adm_aix
+      attrs:
+        SYSTEM: compat
+        registry: files
+      state: present
+      
+  - name: "Change login  for user"
+    ibm.power_aix.chsec:
+      file: /etc/security/user
+      stanza: adm_aix
+      attrs:
+        login: true
+      state: present
+      
+  - name: "Remove registry attribute from stanza"
+    ibm.power_aix.chsec:
+      file: /etc/security/user
+      stanza: adm_aix
+      attrs:
+        SYSTEM: LDAP OR compat
+        registry: LDAP
+      state: present

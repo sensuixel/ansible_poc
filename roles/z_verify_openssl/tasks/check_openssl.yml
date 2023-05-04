@@ -1,0 +1,13 @@
+---
+# tasks file for check_openssl
+- name: "openssl version"
+  ansible.builtin.shell: openssl version || /bin/true
+  register: shell_out
+
+- debug:
+    msg: "{{ shell_out.stdout }}"
+  when: "'FSUM7351 not found' not in shell_out.stderr"
+ 
+- debug:
+    msg: " openssl not found on {{ inventory_hostname }}"
+  when: "'FSUM7351 not found' in shell_out.stderr"

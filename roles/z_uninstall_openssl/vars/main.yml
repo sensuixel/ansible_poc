@@ -1,0 +1,9 @@
+---
+# vars file for z_uninstall_openssl
+# vars file for z_install_openssl
+openssl_version: "1.1.1k"
+openssl_directory: "/usr/lpp/produit/ISV/openssl"
+openssl_tar_name : "openssl-1.1.1k-6.tar"
+openssl_local_path: "/home/pichard/ansible/roles/z_install_openssl/files"
+openssl_bin_path: "/usr/lpp/produit/ISV/bin/openssl"
+openssl_conf_path: "/etc/openssl/openssl.cnf"

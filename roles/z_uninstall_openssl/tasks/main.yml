@@ -1,0 +1,30 @@
+---
+# tasks file for z_uninstall_openssl
+- name: "Remove symlink openssl bin"
+  ansible.builtin.file:
+    path: "{{ openssl_bin_path }}"
+    state: absent
+
+- name: "Remove symlink openssl cnf"
+  ansible.builtin.file:
+    path: "{{ openssl_conf_path }}"
+    state: absent
+    
+- name: "Remove openssl directory"
+  ansible.builtin.file:
+    path: "{{ openssl_directory }}/v{{ openssl_version }}"
+    state: absent
+
+- name: "Validate openssl version"
+  ansible.builtin.shell: "openssl version || /bin/true" 
+  ignore_errors: true
+  register: openssl_status
+  
+- debug:
+    msg: "openssl version {{ openssl_version }} has been uninstalled on {{ inventory_hostname }} : {{openssl_status.stdout }} / {{openssl_status.stderr }}  "
+  when: openssl_version not in openssl_status.stdout  
+  
+- name: "openssl {{ openssl_version }} still installed on {{ inventory_hostname }}"
+  ansible.builtin.fail:
+    msg: " {{ openssl_status.stdout }}"
+  when: openssl_version in openssl_status.stdout 

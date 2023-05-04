@@ -1,0 +1,30 @@
+---
+# playbook_install_python3
+- name: AIX install python3
+  gather_facts: false
+  hosts: aix_test
+   
+  tasks:
+  
+  - name: "Install python3"
+    ansible.builtin.yum:
+      name: python3
+      state: latest
+  
+  - name: "Create symlink for python3"
+    ansible.builtin.file:
+      src: "/opt/freeware/bin/python3"
+      dest: "/usr/bin/python3"
+      force: true
+      state: link
+  
+  - name: "Verify python installation"
+    ansible.builtin.shell: |
+      python3 --version
+      which python3
+    register: cmd_result
+    
+  - name: 
+    debug:
+      msg: "{{ inventory_hostname_short}} ==> {{ cmd_result.stdout }}"
+    

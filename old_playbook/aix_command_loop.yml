@@ -1,0 +1,55 @@
+---
+- name: AIX Lpar facts
+  hosts: ataai028.server.lan
+  gather_facts: false
+
+  tasks:
+  - name: Get current date
+    ansible.builtin.set_fact:
+      custom_date: "{{ lookup( 'pipe',  'date +%Y-%m-%d') }}"
+      custom_timestamp: "{{ lookup( 'pipe',  'date +%Y-%m-%d-%Hh%Mm%Ss') }}"
+      
+  - name: Create output directory
+    ansible.builtin.file:
+      path: "{{ dir_name }}"
+      state: directory
+    delegate_to: localhost
+    loop:
+      - "/home/pichard/ansible/aix_output/{{ inventory_hostname_short }}/log_{{ custom_date }}"
+    loop_control:
+      loop_var: dir_name
+
+  - name: Gather information on lpar
+    ansible.builtin.shell: "{{ cmd_name }}"
+    register: cmd_output
+    loop:
+      - oslevel -s
+      - uname -a
+      - who
+      - netstat -rn
+      - netstat -in
+      - df -tg
+      - lspv
+      - lsvg
+      - bootlist -o -m normal
+      - lspath
+      - lsdev -Cc disk
+      - lsmpio
+      - emgr -l
+      - instfix -i | grep ML
+      - instfix -i | grep SP
+      - lppchk -vm3
+      - rpm -qa
+    loop_control:
+      loop_var: cmd_name
+      
+  - name: Store outut on local node
+    local_action:
+      module: lineinfile
+      line: "{{ item.cmd_name }} \n {{ item.stdout }} \n"
+      path: "/home/pichard/ansible/aix_output/{{ inventory_hostname_short }}/log_{{ custom_date }}/trace_before_{{ custom_timestamp}}.txt"
+      create: yes
+    changed_when: false
+    no_log: true
+    loop: "{{ cmd_output.results }}"
+       

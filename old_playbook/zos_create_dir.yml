@@ -1,0 +1,27 @@
+---
+- name: Gather zos facts
+  hosts: ZOS
+  gather_facts: false
+  environment: "{{ environment_vars }}"
+  tasks:
+
+  - name: "create dir if not exist"
+    ansible.builtin.shell: "[[ -d /etc/openssl ]] || sudo mkdir /etc/openssl" 
+    tags:
+      - never
+
+  - name: "chmod it"
+    ansible.builtin.shell: "[[ -d /etc/openssl ]]  && sudo chmod 0775 /etc/openssl"
+    tags:
+      - never
+
+  - name: "chmod openssl"
+    ansible.builtin.shell: "sudo chmod -R 775 /usr/lpp/produit/ISV/openssl"
+    tags:
+      - never
+
+  - name: "chmod link"
+    ansible.builtin.shell: "sudo chmod 775 /usr/lpp/produit/ISV/bin"
+    tags:
+      - always
+

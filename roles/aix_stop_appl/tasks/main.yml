@@ -1,0 +1,4 @@
+---
+# tasks file for aix_stop_appl
+- name: Execute control script
+  ansible.builtin.script: "STOP_{{ inventory_hostname_short }}.sh"

@@ -1,0 +1,13 @@
+---
+- name: Gather zos facts
+  hosts: mvssyst.server.lan
+  environment: "{{ environment_vars }}"
+  tasks:
+
+  - name: "Gather zos facts"
+    ibm.ibm_zos_core.zos_gather_facts:
+      gather_subset: ipl
+
+  - debug:
+      msg:
+        - "{{ ansible_facts.ieasym_card  | replace('(','') | replace(')','') | split(',') }}"

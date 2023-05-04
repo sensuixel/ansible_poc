@@ -1,0 +1,4 @@
+- hosts: mvssyst.server.lan
+  gather_facts: false
+  roles:
+    - zos_install_opensssl

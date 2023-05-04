@@ -1,0 +1,28 @@
+---
+# playbook_mksysb_restore.yml
+- name: AIX update
+  gather_facts: false
+  hosts: apaai001.server.lan
+  vars:
+    nim_client: ataai028-bck
+    nim_mksysb: mksysb_ataai028-bck_20230414
+   
+  tasks:
+
+  - name: Restore a mksysb backup on a LPAR
+    ibm.power_aix.nim_backup:
+      action: restore
+      targets: "{{ nim_client }}"
+      name: "{{ nim_mksysb }}"
+      spot_postfix: _spot
+      remove_backup: yes
+      remove_spot: yes
+      boot_target: no
+      accept_licenses: yes
+       
+  - name: Display
+    debug:
+      msg: "{{ mksysb_output.meta }}"
+
+  
+    

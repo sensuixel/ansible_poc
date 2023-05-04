@@ -1,0 +1,14 @@
+---
+- name: AIX suma preview
+  hosts: ataai028
+  gather_facts: false
+
+  tasks:
+  - name: Check Updates
+    ibm.power_aix.emgr:
+      action: list
+    register: cmd_out
+
+  - name: Print output
+    debug:
+      msg: "{{ cmd_out.stdout }}"

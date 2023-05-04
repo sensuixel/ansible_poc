@@ -1,0 +1,16 @@
+---
+- name: AIX suma preview
+  hosts: aix_nim
+  gather_facts: true
+
+  tasks:
+  - name: Check Updates
+    ibm.power_aix.nim_suma:
+      action: preview
+      oslevel: '7200-05-04'
+      targets: ataai028-bck
+    register: suma_out
+
+  - name: Print output
+    debug:
+      msg: "{{ suma_out.stdout }}"

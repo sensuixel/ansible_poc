@@ -1,0 +1,11 @@
+---
+# vars file for delete_user_8X
+user_id: apic
+user_file_name: "/home/pichard/ansible/roles/delete_user_8X/files/user_to_delete.txt"
+
+# Additionnal directory to remove
+dir_8x:
+  - /u01/universe/MOND01/E/users
+  - /u01/universe/MOND01/D/users
+  - /8X_GEN/travail/D/users
+  - /8X_GEN/travail/E/users

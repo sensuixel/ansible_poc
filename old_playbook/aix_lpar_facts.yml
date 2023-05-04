@@ -1,0 +1,11 @@
+---
+- name: AIX Lpar facts
+  hosts: ataai028
+
+  tasks:
+  - name: Gather facts
+    ibm.power_aix.lpar_facts:
+
+  - name: Print output
+    debug:
+      msg: "{{ ansible_facts.lpar.oslevel }}"

@@ -1,0 +1,29 @@
+---
+# tasks file for aix_update_sudo
+- name: Check if lpp installed
+  ansible.builtin.shell: "lslpp -l {{ sudo_fileset }} || /bin/true"
+  register: lpp_status
+                      
+- name: Remove lpp if needed
+  ansible.builtin.shell: "installp -u {{ sudo_fileset }}"
+  when: '"not installed" not in lpp_status.stderr'
+    
+- name: Install sudo
+  ansible.builtin.yum:
+    name: "{{ sudo_rpm }}-{{ sudo_version }}"
+    state: present
+  register: yum_output
+    
+- name:
+  debug:
+    msg: "{{ yum_output.results }}"
+      
+- name: Create/Update symlink
+  ansible.builtin.file:
+    src: "{{ sudo_path }}/sudo"
+    dest: "{{ dest_path_name }}/sudo"
+    force: true
+    state: link
+  loop: "{{ sudo_link }}"
+  loop_control:
+    loop_var: dest_path_name

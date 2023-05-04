@@ -1,0 +1,25 @@
+---
+- name: AIX alternate
+  hosts: ataai028
+  gather_facts: false
+
+  tasks:
+  - name: Cleanup any existing alt_disk_copy
+    ibm.power_aix.alt_disk:
+      action: clean
+
+  - name: Create an alt_disk_copy for backup
+    ibm.power_aix.alt_disk:
+      action: copy
+      disk_size_policy: nearest
+      bootlist: true
+
+  - name: Remove file for test
+    ansible.builtin.shell: rm -f /home/pichard/test_clean.txt
+
+  - name: Reboot on new alternate
+    ibm.power_aix.reboot:
+      pre_reboot_delay: 10
+      post_reboot_delay: 20
+      reboot_timeout: 180
+      test_command: uptime

@@ -1,0 +1,28 @@
+# Common variables
+ansible_connection: ssh
+ansible_user: sapich
+ansible_python_interpreter: /usr/lpp/produit/ISV/bin/python
+ansible_become_user: BPXROOT
+ansible_become_method: su
+ansible_become_flags: '-s '
+
+# the path to the root of IBM python installation
+PYZ: "/usr/lpp/produit/ISV/python_oe/v3r11"
+
+# the path to root of ZOAU installation
+ZOAU: "/usr/lpp/produit/ISV/zoau/v1.2.2"
+OPENSOURCE: "/usr/lpp/produit/ISV"
+
+# you should not need to change environment_vars
+environment_vars:
+  _BPXK_AUTOCVT: "ON"
+  ZOAU_HOME: "{{ ZOAU }}"
+  PYTHONPATH: "{{ ZOAU }}/lib"
+  LIBPATH: "/usr/lpp/hzc/lib:{{ ZOAU }}/lib:{{ PYZ }}/lib:/lib:/usr/lib:."
+  PATH: "{{ OPENSOURCE }}/bin:{{ ZOAU }}/bin:{{ PYZ }}/bin:/bin:/var/bin"
+  _CEE_RUNOPTS: "FILETAG(AUTOCVT,AUTOTAG) POSIX(ON)"
+  _TAG_REDIR_ERR: "txt"
+  _TAG_REDIR_IN: "txt"
+  _TAG_REDIR_OUT: "txt"
+  LANG: "C"
+

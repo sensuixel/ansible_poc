@@ -1,0 +1,26 @@
+---
+- name: AIX update
+  hosts: armmi022.server.lan
+  gather_facts: false
+   
+  tasks:
+    
+  - name: 'Test mise en maintenance'
+    ansible.builtin.uri:
+      url: "https://telerupteur/api/supervision_statut.php?serveur={{ inventory_hostname_short }}"
+      validate_certs: false
+    register: hpov_return
+    ignore_errors: yes
+
+  - name: 'Serveur inconnu / pas de supervision'
+    debug:
+      msg: " {{inventory_hostname_short }} {{ hpov_return.json.Erreur }} inconnu dans HPOV => Pas de mise en maintenance requise"
+    ignore_errors: yes
+    when: hpov_return.json.Erreur is defined and hpov_return.json.Erreur == "Serveur Inconnue"
+    
+  - name: 'Supervision'
+    ansible.builtin.uri:
+      url: "https://telerupteur/api/supervision.php?serveur={{ inventory_hostname_short }}&statut=on&user=ft_unix&justification=aix_reboot_test"
+      validate_certs: false
+    ignore_errors: yes
+    when: hpov_return.json.statut_maintenance is defined and hpov_return.json.statut_maintenance == "en maintenance"

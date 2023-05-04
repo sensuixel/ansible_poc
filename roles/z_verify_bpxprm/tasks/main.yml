@@ -1,0 +1,15 @@
+---
+# tasks file for z_verify_bpxprm
+- name: "Gather zos ipl facts"
+  ibm.ibm_zos_core.zos_gather_facts:
+    gather_subset: ipl
+      
+- name: "Get list of BPXPRM member for {{ inventory_hostname }}"
+  ansible.builtin.set_fact:
+    bpxprm_list: "{{ ansible_facts.ieasym_card  | replace('(','') | replace(')','') | split(',') }}"
+  
+- name: "Check BPXRMxx member)"
+  ansible.builtin.include_tasks:
+    file: omvs_syntax_check.yml
+  with_items: "{{ bpxprm_list | reject('search', 'L') }}"
+

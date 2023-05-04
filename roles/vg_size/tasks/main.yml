@@ -1,0 +1,9 @@
+---
+# tasks file for vg_size
+- name: "Copy and execute vgtaille on {{ inventory_hostname }}"
+  script: vgtaille
+  register: results
+
+- debug:
+    msg: " {{ item }} "
+  with_items: " {{ results.stdout.split('\r\n') }}"

@@ -1,0 +1,1900 @@
+oslevel -s 
+ 7200-05-04-2220  
+END_OF_BLOCK
+
+uname -a 
+ AIX ataai018 2 7 00CE6D274C00  
+END_OF_BLOCK
+
+uptime 
+   02:56PM   up 219 days,   5:12,  1 user,  load average: 3.11, 3.20, 3.51  
+END_OF_BLOCK
+
+bootinfo -b 
+ hdisk0  
+END_OF_BLOCK
+
+bootlist -o -m normal 
+ hdisk0 blv=hd5 pathid=0
+hdisk0 blv=hd5 pathid=1
+hdisk0 blv=hd5 pathid=2
+hdisk0 blv=hd5 pathid=3  
+END_OF_BLOCK
+
+lspv 
+ hdisk1          00ce6d27a3b34773                    old_rootvg                  
+hdisk0          00ce6d27a3b3484e                    rootvg          active        
+END_OF_BLOCK
+
+lsvg 
+ old_rootvg
+rootvg  
+END_OF_BLOCK
+
+lsvg rootvg 
+ VOLUME GROUP:       rootvg                   VG IDENTIFIER:  00ce6d2700004c0000000182f8fe0ef1
+VG STATE:           active                   PP SIZE:        64 megabyte(s)
+VG PERMISSION:      read/write               TOTAL PPs:      639 (40896 megabytes)
+MAX LVs:            256                      FREE PPs:       55 (3520 megabytes)
+LVs:                15                       USED PPs:       584 (37376 megabytes)
+OPEN LVs:           14                       QUORUM:         2 (Enabled)
+TOTAL PVs:          1                        VG DESCRIPTORS: 2
+STALE PVs:          0                        STALE PPs:      0
+ACTIVE PVs:         1                        AUTO ON:        yes
+MAX PPs per VG:     32512                                     
+MAX PPs per PV:     1016                     MAX PVs:        32
+LTG size (Dynamic): 2048 kilobyte(s)         AUTO SYNC:      no
+HOT SPARE:          no                       BB POLICY:      relocatable 
+PV RESTRICTION:     none                     INFINITE RETRY: yes
+DISK BLOCK SIZE:    512                      CRITICAL VG:    no
+FS SYNC OPTION:     no                       CRITICAL PVs:   no
+ENCRYPTION:         no                                          
+END_OF_BLOCK
+
+lsvg -l rootvg 
+ rootvg:
+LV NAME             TYPE       LPs     PPs     PVs  LV STATE      MOUNT POINT
+hd5                 boot       1       1       1    closed/syncd  N/A
+hd6                 paging     96      96      1    open/syncd    N/A
+hd8                 jfs2log    1       1       1    open/syncd    N/A
+hd4                 jfs2       24      24      1    open/syncd    /
+hd2                 jfs2       68      68      1    open/syncd    /usr
+hd9var              jfs2       32      32      1    open/syncd    /var
+hd3                 jfs2       240     240     1    open/syncd    /tmp
+hd1                 jfs2       16      16      1    open/syncd    /home
+hd10opt             jfs2       72      72      1    open/syncd    /opt
+hd11admin           jfs2       2       2       1    open/syncd    /admin
+lg_dumplv           sysdump    22      22      1    open/syncd    N/A
+livedump            jfs2       4       4       1    open/syncd    /var/adm/ras/livedump
+lv_envf             jfs2       2       2       1    open/syncd    /envf
+lv_envb             jfs2       2       2       1    open/syncd    /envb
+lv_ctmagent         jfs2       2       2       1    open/syncd    /opt/ctmagent  
+END_OF_BLOCK
+
+df -tg $(lsvgfs rootvg) 
+ Filesystem    GB blocks      Used      Free %Used Mounted on
+/dev/hd4           1.50      1.08      0.42   72% /
+/dev/hd2           4.25      3.91      0.34   92% /usr
+/dev/hd9var        2.00      0.91      1.09   46% /var
+/dev/hd3          15.00     10.35      4.65   69% /tmp
+/dev/hd1           1.00      0.60      0.40   61% /home
+/dev/hd10opt       4.50      4.44      0.06   99% /opt
+/dev/hd11admin      0.12      0.00      0.12    1% /admin
+/dev/livedump      0.25      0.00      0.25    1% /var/adm/ras/livedump
+/dev/lv_envf       0.12      0.01      0.12    8% /envf
+/dev/lv_envb       0.12      0.00      0.12    1% /envb
+/dev/lv_ctmagent      0.12      0.00      0.12    1% /opt/ctmagent  
+END_OF_BLOCK
+
+df -tg 
+ Filesystem    GB blocks      Used      Free %Used Mounted on
+/dev/hd4           1.50      1.08      0.42   72% /
+/dev/hd2           4.25      3.91      0.34   92% /usr
+/dev/hd9var        2.00      0.91      1.09   46% /var
+/dev/hd3          15.00     10.35      4.65   69% /tmp
+/dev/hd1           1.00      0.60      0.40   61% /home
+/dev/hd11admin      0.12      0.00      0.12    1% /admin
+/proc                 -         -         -    - /proc
+/dev/hd10opt       4.50      4.44      0.06   99% /opt
+/dev/livedump      0.25      0.00      0.25    1% /var/adm/ras/livedump
+/dev/lv_envf       0.12      0.01      0.12    8% /envf
+/dev/lv_envb       0.12      0.00      0.12    1% /envb
+/dev/lv_ctmagent      0.12      0.00      0.12    1% /opt/ctmagent  
+END_OF_BLOCK
+
+errpt | head 
+ IDENTIFIER TIMESTAMP  T C RESOURCE_NAME  DESCRIPTION
+D5676F6F   0228125323 T H fscsi3         ATTACHED SCSI TARGET DEVICE ERROR
+D5676F6F   0228125323 T H fscsi2         ATTACHED SCSI TARGET DEVICE ERROR
+D5676F6F   0228124523 T H fscsi2         ATTACHED SCSI TARGET DEVICE ERROR
+D5676F6F   0228124523 T H fscsi3         ATTACHED SCSI TARGET DEVICE ERROR
+D5676F6F   0228123923 T H fscsi1         ATTACHED SCSI TARGET DEVICE ERROR
+D5676F6F   0228123923 T H fscsi0         ATTACHED SCSI TARGET DEVICE ERROR
+D5676F6F   0228123423 T H fscsi0         ATTACHED SCSI TARGET DEVICE ERROR
+D5676F6F   0228123423 T H fscsi1         ATTACHED SCSI TARGET DEVICE ERROR  
+END_OF_BLOCK
+
+who 
+ root        pts/0       Apr 20 14:56     (10.55.39.211)    
+END_OF_BLOCK
+
+date 
+ Thu Apr 20 14:56:59 CEST 2023  
+END_OF_BLOCK
+
+netstat -rn 
+ Routing tables
+Destination        Gateway           Flags   Refs     Use  If   Exp  Groups
+
+Route Tree for Protocol Family 2 (Internet):
+default            10.55.36.1        UG     26601   5153534 en0      -      -   
+10.55.36.0         10.55.36.13       UHSb      0         0 en0      -      -   =>
+10.55.36/22        10.55.36.13       U      18504     18504 en0      -      -   
+10.55.36.13        127.0.0.1         UGHS    200       223 lo0      -      -   
+10.55.39.255       10.55.36.13       UHSb      0         4 en0      -      -   
+127/8              127.0.0.1         U       122    433356 lo0      -      -   
+172.16.48.0        172.16.51.70      UHSb      0         0 en1      -      -   =>
+172.16.48/22       172.16.51.70      U      19652  66537514 en1      -      -   
+172.16.51.70       127.0.0.1         UGHS      0         1 lo0      -      -   
+172.16.51.255      172.16.51.70      UHSb      0         4 en1      -      -   
+
+Route Tree for Protocol Family 24 (Internet v6):
+::1%1              ::1%1             UH        0     29207 lo0      -      -     
+END_OF_BLOCK
+
+netstat -in 
+ Name   Mtu   Network     Address                 Ipkts     Ierrs        Opkts     Oerrs  Coll
+en0    1500  link#2      4a.f9.1d.87.2b.20         50093335     0          5752144     0     0
+en0    1500  10.55.36    10.55.36.13              50093335     0          5752144     0     0
+en1    9000  link#3      4a.f9.1d.87.2b.21         58405453     0         67307247     0     0
+en1    9000  172.16.48   172.16.51.70             58405453     0         67307247     0     0
+lo0    16896 link#1                                 464576     0           464576     0     0
+lo0    16896 127         127.0.0.1                  464576     0           464576     0     0
+lo0    16896 ::1%1                                  464576     0           464576     0     0  
+END_OF_BLOCK
+
+lspath 
+ Enabled hdisk1 fscsi0
+Enabled hdisk0 fscsi0
+Enabled hdisk1 fscsi1
+Enabled hdisk0 fscsi1
+Enabled hdisk1 fscsi2
+Enabled hdisk0 fscsi2
+Enabled hdisk1 fscsi3
+Enabled hdisk0 fscsi3  
+END_OF_BLOCK
+
+lsdev -Cc disk 
+ hdisk0 Available 11-T1-01 PURE MPIO Drive (Fibre)
+hdisk1 Available 11-T1-01 PURE MPIO Drive (Fibre)  
+END_OF_BLOCK
+
+lsmpio 
+ name    path_id  status   path_status  parent  connection
+
+hdisk0  0        Enabled  Sel,Opt      fscsi0  524a9373422bf003,fe000000000000
+hdisk0  1        Enabled  Sel,Opt      fscsi1  524a9373422bf000,fe000000000000
+hdisk0  2        Enabled  Sel,Opt      fscsi2  524a9373422bf013,fe000000000000
+hdisk0  3        Enabled  Sel,Opt      fscsi3  524a9373422bf010,fe000000000000
+hdisk1  0        Enabled  Clo          fscsi0  524a9373422bf003,fd000000000000
+hdisk1  1        Enabled  Clo          fscsi1  524a9373422bf000,fd000000000000
+hdisk1  2        Enabled  Clo          fscsi2  524a9373422bf013,fd000000000000
+hdisk1  3        Enabled  Clo          fscsi3  524a9373422bf010,fd000000000000  
+END_OF_BLOCK
+
+emgr -l 
+ 
+ID  STATE LABEL      INSTALL TIME      UPDATED BY ABSTRACT
+=== ===== ========== ================= ========== ======================================
+1    S    1022104a   10/19/22 16:25:59            Ifix for CVE-2022-2068.               
+
+STATE codes:
+ S = STABLE
+ M = MOUNTED
+ U = UNMOUNTED
+ Q = REBOOT REQUIRED
+ B = BROKEN
+ I = INSTALLING
+ R = REMOVING
+ T = TESTED
+ P = PATCHED
+ N = NOT PATCHED
+ SP = STABLE + PATCHED
+ SN = STABLE + NOT PATCHED
+ QP = BOOT IMAGE MODIFIED + PATCHED
+ QN = BOOT IMAGE MODIFIED + NOT PATCHED
+ RQ = REMOVING + REBOOT REQUIRED  
+END_OF_BLOCK
+
+emgr -P 
+ 
+PACKAGE                                                  INSTALLER   LABEL
+======================================================== =========== ==========
+openssl.base                                             installp    1022104a  
+END_OF_BLOCK
+
+instfix -i | grep ML 
+     All filesets for 7.2.0.0_AIX_ML were found.
+    All filesets for 7200-00_AIX_ML were found.
+    All filesets for 7200-01_AIX_ML were found.
+    All filesets for 7200-02_AIX_ML were found.
+    All filesets for 7200-03_AIX_ML were found.
+    All filesets for 7200-04_AIX_ML were found.
+    All filesets for 7200-05_AIX_ML were found.  
+END_OF_BLOCK
+
+instfix -i | grep SP 
+     All filesets for 72-00-011543_SP were found.
+    All filesets for 72-00-021614_SP were found.
+    All filesets for 72-00-031642_SP were found.
+    All filesets for 72-01-011642_SP were found.
+    All filesets for 72-01-021717_SP were found.
+    All filesets for 72-00-041717_SP were found.
+    All filesets for 72-01-031720_SP were found.
+    All filesets for 72-00-051720_SP were found.
+    All filesets for 72-02-011731_SP were found.
+    All filesets for 72-02-011732_SP were found.
+    All filesets for 72-00-061806_SP were found.
+    All filesets for 72-02-021806_SP were found.
+    All filesets for 72-01-041806_SP were found.
+    All filesets for 72-02-021810_SP were found.
+    All filesets for 72-02-021831_SP were found.
+    All filesets for 72-02-021832_SP were found.
+    All filesets for 72-03-011838_SP were found.
+    All filesets for 72-02-031845_SP were found.
+    All filesets for 72-03-021845_SP were found.
+    All filesets for 72-01-051845_SP were found.
+    All filesets for 72-03-021846_SP were found.
+    All filesets for 72-02-041914_SP were found.
+    All filesets for 72-01-061914_SP were found.
+    All filesets for 72-03-031913_SP were found.
+    All filesets for 72-03-031914_SP were found.
+    All filesets for 72-03-041938_SP were found.
+    All filesets for 72-02-051938_SP were found.
+    All filesets for 72-04-011938_SP were found.
+    All filesets for 72-04-011939_SP were found.
+    All filesets for 72-02-062016_SP were found.
+    All filesets for 72-03-052016_SP were found.
+    All filesets for 72-04-022015_SP were found.
+    All filesets for 72-04-022016_SP were found.
+    All filesets for 72-04-022027_SP were found.
+    All filesets for 72-04-022028_SP were found.
+    All filesets for 72-04-032038_SP were found.
+    All filesets for 72-03-062038_SP were found.
+    All filesets for 72-05-012038_SP were found.
+    All filesets for 72-03-072114_SP were found.
+    All filesets for 72-04-042114_SP were found.
+    All filesets for 72-05-022113_SP were found.
+    All filesets for 72-05-022114_SP were found.
+    All filesets for 72-05-032135_SP were found.
+    All filesets for 72-05-032136_SP were found.
+    All filesets for 72-04-052148_SP were found.
+    All filesets for 72-05-032147_SP were found.
+    All filesets for 72-05-032148_SP were found.
+    All filesets for 72-04-062220_SP were found.
+    All filesets for 72-05-042219_SP were found.
+    All filesets for 72-05-042220_SP were found.  
+END_OF_BLOCK
+
+lppchk -v 
+   
+END_OF_BLOCK
+
+lppchk -vm3 
+   
+END_OF_BLOCK
+
+rpm -qa 
+ python-iniparse-0.4-1.noarch
+yum-metadata-parser-1.1.4-2.ppc
+fontconfig-2.11.95-4.ppc
+libXft-2.3.2-4waixX11.ppc
+libXcursor-devel-1.1.14-1.ppc
+pixman-0.34.0-1.ppc
+cairo-1.14.6-2waixX11.ppc
+pango-1.40.1-2waixX11.ppc
+shared-mime-info-1.6-2.ppc
+filebeat-7.5.2-1.ppc
+bzip2-1.0.8-2.ppc
+zlib-1.2.12-1.ppc
+libgcc8-8.3.0-6.ppc
+libffi-3.4.2-1.ppc
+db-5.3.28-1.ppc
+libjpeg-9d-1.ppc
+libpng-1.6.37-1.ppc
+cyrus-sasl-2.1.28-1.ppc
+tcl-8.6.11-1.ppc
+nspr-4.32-1.ppc
+libnghttp2-1.46.0-1.ppc
+libgomp-8-1.ppc
+libstdc++-8-1.ppc
+libgomp6-6.3.0-2.ppc
+libunistring-0.9.10-1.ppc
+glib2-2.56.1-3.ppc
+libiconv-1.17-1.ppc
+info-6.7-1.ppc
+sqlite-3.37.2-1.ppc
+apr-util-1.6.1-1.ppc
+p11-kit-0.23.22-1.ppc
+ca-certificates-2021.2.52-3.ppc
+python-2.7.18-3.ppc
+krb5-libs-1.18.5-1.ppc
+libXrender-0.9.8-3waixX11.ppc
+libtiff-4.3.0-1.ppc
+gtk2-2.24.30-3waixX11.ppc
+yum-3.4.3-8.noarch
+python-tools-2.7.18-3.ppc
+nss-3.74-1.ppc
+harfbuzz-4.3.0-1.ppc
+rsync-3.2.3-1.ppc
+perl-5.34.1-1.ppc
+git-core-2.35.1-1.ppc
+python3-3.7.12-1.ppc
+AIX-rpm-7.2.5.103-24.ppc
+python-urlgrabber-3.10.1-1.noarch
+libXcursor-1.1.14-1.ppc
+lzo-2.10-2.ppc
+atk-2.20.0-3.ppc
+test-dummy-1.1-5.ppc
+metricbeat-7.5.2-1.ppc
+libgcc6-6.3.0-2.ppc
+libstdc++6-6.3.0-2.ppc
+libgcc-8-1.ppc
+expat-2.4.6-1.ppc
+libtasn1-4.16.0-1.ppc
+xz-libs-5.2.5-1.ppc
+freetype2-2.12.1-1.ppc
+openldap-2.4.58-3.ppc
+libwebp-1.0.2-1.ppc
+libssh2-1.10.0-1.ppc
+libgomp8-8.3.0-6.ppc
+libstdc++8-8.3.0-6.ppc
+ncurses-6.3-1.ppc
+libxml2-2.9.14-1.ppc
+libtextstyle-0.21-1.ppc
+bash-5.1.4-2.ppc
+gettext-0.21-1.ppc
+readline-8.1-1.ppc
+apr-1.7.0-1.ppc
+pcre-8.44-2.ppc
+p11-kit-tools-0.23.22-1.ppc
+gdbm-1.23-1.ppc
+pysqlite-2.8.3-2.ppc
+curl-7.83.1-1.ppc
+jbigkit-libs-2.1-1.ppc
+gdk-pixbuf-2.35.1-3waixX11.ppc
+python-pycurl-7.43.0-1.ppc
+python-devel-2.7.18-3.ppc
+httpd-2.4.54-1.ppc
+wget-1.21.2-1.ppc
+tcl-devel-8.6.11-1.ppc
+lz4-1.9.3-1.ppc
+sudo_ids-1.9.5p2-1.ppc
+lpar2rrd-agent-7.50-0.ppc
+less-598-1.ppc
+git-core-doc-2.35.1-1.noarch
+git-2.35.1-1.ppc
+yum-utils-1.1.31-2.noarch  
+END_OF_BLOCK
+
+yum check 
+ check all  
+END_OF_BLOCK
+
+lslpp -lc 
+ #Fileset:Level:PTF Id:State:Type:Description:EFIX Locked
+/usr/lib/objrepos:Firefox.base.rte:3.6.25.2::COMMITTED:I:Firefox Web Browser:
+/usr/lib/objrepos:GSKit8.gskcrypt32.ppc.rte:8.0.50.88::COMMITTED:I:IBM GSKit Cryptography Runtime:
+/usr/lib/objrepos:GSKit8.gskcrypt64.ppc.rte:8.0.50.88::COMMITTED:I:IBM GSKit Cryptography Runtime:
+/usr/lib/objrepos:GSKit8.gskssl32.ppc.rte:8.0.50.88::COMMITTED:I:IBM GSKit SSL Runtime With Acme Toolkit:
+/usr/lib/objrepos:GSKit8.gskssl64.ppc.rte:8.0.50.88::COMMITTED:I:IBM GSKit SSL Runtime With Acme Toolkit:
+/usr/lib/objrepos:ICU4C.rte:7.2.5.0::COMMITTED:I:International Components for Unicode :
+/usr/lib/objrepos:Java6.sdk:6.0.0.655::COMMITTED:F:Java SDK 32-bit:
+/usr/lib/objrepos:Java7_64.jre:7.0.0.705::APPLIED:F:Java SDK 64-bit Java Runtime Environment:
+/usr/lib/objrepos:Java7_64.sdk:7.0.0.705::APPLIED:F:Java SDK 64-bit Development Kit:
+/usr/lib/objrepos:Java8_64.jre:8.0.0.635::COMMITTED:I:Java SDK 64-bit Java Runtime Environment :
+/usr/lib/objrepos:Java8_64.sdk:8.0.0.635::COMMITTED:I:Java SDK 64-bit Development Kit :
+/usr/lib/objrepos:Tivoli_Management_Agent.client.rte:3.7.1.0::COMMITTED:I:Management Framework Endpoint Runtime":
+/usr/lib/objrepos:X11.adt.bitmaps:7.2.0.0::COMMITTED:I:AIXwindows Application Development Toolkit Bitmap Files :
+/usr/lib/objrepos:X11.adt.imake:7.2.0.0::COMMITTED:I:AIXwindows Application Development Toolkit imake :
+/usr/lib/objrepos:X11.adt.include:7.2.5.0::COMMITTED:I:AIXwindows Application Development Toolkit Include Files :
+/usr/lib/objrepos:X11.adt.lib:7.2.5.0::COMMITTED:I:AIXwindows Application Development Toolkit Libraries :
+/usr/lib/objrepos:X11.apps.aixterm:7.2.5.0::COMMITTED:I:AIXwindows aixterm Application :
+/usr/lib/objrepos:X11.apps.clients:7.2.5.0::COMMITTED:I:AIXwindows Client Applications :
+/usr/lib/objrepos:X11.apps.config:7.2.5.0::COMMITTED:I:AIXwindows Configuration Applications :
+/usr/lib/objrepos:X11.apps.custom:7.2.5.0::COMMITTED:I:AIXwindows Customizing Tool :
+/usr/lib/objrepos:X11.apps.msmit:7.2.5.0::COMMITTED:I:AIXwindows msmit Application :
+/usr/lib/objrepos:X11.apps.rte:7.2.5.0::COMMITTED:I:AIXwindows Runtime Configuration Applications :
+/usr/lib/objrepos:X11.apps.util:7.2.5.0::COMMITTED:I:AIXwindows Utility Applications :
+/usr/lib/objrepos:X11.apps.xdm:7.2.5.0::COMMITTED:I:AIXwindows xdm Application :
+/usr/lib/objrepos:X11.apps.xterm:7.2.5.0::COMMITTED:I:AIXwindows xterm Application :
+/usr/lib/objrepos:X11.base.common:7.2.0.0::COMMITTED:I:AIXwindows Runtime Common Directories :
+/usr/lib/objrepos:X11.base.lib:7.2.5.100::COMMITTED:I:AIXwindows Runtime Libraries :
+/usr/lib/objrepos:X11.base.rte:7.2.5.100::COMMITTED:I:AIXwindows Runtime Environment :
+/usr/lib/objrepos:X11.base.smt:7.2.3.15::COMMITTED:I:AIXwindows Runtime Shared Memory Transport :
+/usr/lib/objrepos:X11.base.xpconfig:7.2.0.0::COMMITTED:I:Xprint Configuration Files :
+/usr/lib/objrepos:X11.compat.lib.X11R6:7.2.5.0::COMMITTED:I:AIXwindows X11R6 Compatibility Libraries :
+/usr/lib/objrepos:X11.compat.lib.X11R6_motif:7.2.3.15::COMMITTED:I:AIXwindows X11R6 Motif 1.2 & 2.1 Compatibility :
+/usr/lib/objrepos:X11.fnt.coreX:7.2.0.0::COMMITTED:I:AIXwindows X Consortium Fonts :
+/usr/lib/objrepos:X11.fnt.defaultFonts:7.2.0.0::COMMITTED:I:AIXwindows Default Fonts :
+/usr/lib/objrepos:X11.fnt.iso1:7.2.0.0::COMMITTED:I:AIXwindows Latin 1 Fonts :
+/usr/lib/objrepos:X11.fnt.iso_T1:7.2.0.0::COMMITTED:I:AIXwindows Latin Type1 Fonts :
+/usr/lib/objrepos:X11.loc.en_US.base.lib:7.2.4.0::COMMITTED:I:AIXwindows Client Locale Config - U.S. English :
+/usr/lib/objrepos:X11.loc.en_US.base.rte:7.2.4.0::COMMITTED:I:AIXwindows Locale Configuration - U.S. English :
+/usr/lib/objrepos:X11.motif.lib:7.2.5.0::COMMITTED:I:AIXwindows Motif Libraries :
+/usr/lib/objrepos:X11.motif.mwm:7.2.5.0::COMMITTED:I:AIXwindows Motif Window Manager :
+/usr/lib/objrepos:X11.msg.en_US.adt.imake:7.2.4.0::COMMITTED:I:AIXwindows imake Messages - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.apps.aixterm:7.2.4.0::COMMITTED:I:AIXwindows aixterm Messages - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.apps.clients:7.2.4.0::COMMITTED:I:AIXwindows Client Apps Msgs - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.apps.config:7.2.4.0::COMMITTED:I:AIXwindows Config Apps Msgs - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.apps.custom:7.2.4.0::COMMITTED:I:AIXwindows Custom Tool Msgs - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.apps.rte:7.2.4.0::COMMITTED:I:AIXwindows Runtime Config Msgs - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.apps.xdm:7.2.4.0::COMMITTED:I:AIXwindows xdm Messages - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.base.common:7.2.4.0::COMMITTED:I:AIXwindows Common Messages - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.base.rte:7.2.4.0::COMMITTED:I:AIXwindows Runtime Env. Msgs - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.motif.lib:7.2.4.0::COMMITTED:I:AIXwindows Motif Lib. Msgs - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.motif.mwm:7.2.4.0::COMMITTED:I:AIX Motif Window Mgr Msgs - U.S. English :
+/usr/lib/objrepos:X11.msg.en_US.vsm.rte:7.2.4.0::COMMITTED:I:Visual Sys Mgmt. Helps & Msgs - U.S. English :
+/usr/lib/objrepos:X11.samples.apps.clients:7.2.5.0::COMMITTED:I:AIXwindows Sample X Consortium Clients Binary/Source :
+/usr/lib/objrepos:X11.samples.common:7.2.0.0::COMMITTED:I:AIXwindows Imakefile Structure for Samples :
+/usr/lib/objrepos:X11.samples.lib.Core:7.2.0.0::COMMITTED:I:AIXwindows Sample X Consortium Core Libraries Binary/Source :
+/usr/lib/objrepos:X11.vsm.lib:7.2.5.0::COMMITTED:I:Visual System Managment Library :
+/usr/lib/objrepos:adde.v2.common.rte:7.2.0.0::COMMITTED:I:ADDE Common Device Runtime Environment :
+/usr/lib/objrepos:adde.v2.ethernet.rte:7.2.5.100::COMMITTED:I:ADDE Ethernet Device Runtime Environment :
+/usr/lib/objrepos:adde.v2.rdma.rte:7.2.2.0::COMMITTED:I:ADDE RDMA Device Runtime Environment :
+/usr/lib/objrepos:artex.base.rte:7.2.5.101::APPLIED:F:AIX Runtime Expert:
+/usr/lib/objrepos:artex.base.samples:7.2.5.100::COMMITTED:I:AIX Runtime Expert sample profiles :
+/usr/lib/objrepos:bos.64bit:7.2.5.101::APPLIED:F:Base Operating System 64 bit Runtime:
+/usr/lib/objrepos:bos.acct:7.2.5.102::APPLIED:F:Accounting Services:
+/usr/lib/objrepos:bos.adt.base:7.2.5.102::APPLIED:F:Base Application Development Toolkit:
+/usr/lib/objrepos:bos.adt.debug:7.2.5.102::APPLIED:F:Base Application Development Debuggers:
+/usr/lib/objrepos:bos.adt.include:7.2.5.104::APPLIED:F:Base Application Development Include Files:
+/usr/lib/objrepos:bos.adt.lib:7.2.5.101::APPLIED:F:Base Application Development Libraries:
+/usr/lib/objrepos:bos.adt.libm:7.2.5.0::COMMITTED:I:Base Application Development Math Library :
+/usr/lib/objrepos:bos.ae:7.2.5.0::COMMITTED:I:Activation Engine :
+/usr/lib/objrepos:bos.ahafs:7.2.5.100::COMMITTED:I:Aha File System :
+/usr/lib/objrepos:bos.aixpert.cmds:7.2.5.101::APPLIED:F:AIX Security Hardening:
+/usr/lib/objrepos:bos.alt_disk_install.boot_images:7.2.5.105::APPLIED:F:Alternate Disk Installation Disk Boot Images:
+/usr/lib/objrepos:bos.alt_disk_install.rte:7.2.5.103::APPLIED:F:Alternate Disk Installation Runtime:
+/usr/lib/objrepos:bos.aso:7.2.5.102::APPLIED:F:Active System Optimizer:
+/usr/lib/objrepos:bos.cdat:7.2.5.0::COMMITTED:I:Cluster Data Aggregation Tool :
+/usr/lib/objrepos:bos.cdmount:7.2.5.0::COMMITTED:I:CD/DVD Automount Facility :
+/usr/lib/objrepos:bos.cluster.rte:7.2.5.102::APPLIED:F:Cluster Aware AIX:
+/usr/lib/objrepos:bos.clvm.enh:7.2.5.0::COMMITTED:I:Enhanced Concurrent Logical Volume Manager :
+/usr/lib/objrepos:bos.diag.com:7.2.5.101::APPLIED:F:Common Hardware Diagnostics:
+/usr/lib/objrepos:bos.diag.ecc:7.2.3.15::COMMITTED:I:Inventory Scout ECC Client :
+/usr/lib/objrepos:bos.diag.rte:7.2.5.102::APPLIED:F:Hardware Diagnostics:
+/usr/lib/objrepos:bos.diag.util:7.2.5.101::APPLIED:F:Hardware Diagnostics Utilities:
+/usr/lib/objrepos:bos.dsc:7.2.5.105::APPLIED:F:Digital Signature Catalog:
+/usr/lib/objrepos:bos.ecc_client.rte:7.2.5.100::COMMITTED:I:Electronic Customer Care Runtime :
+/usr/lib/objrepos:bos.esagent:7.2.5.0::COMMITTED:I:Electronic Service Agent :
+/usr/lib/objrepos:bos.help.msg.en_US.com:7.2.5.0::COMMITTED:I:WebSM/SMIT Context Helps - U.S. English:
+/usr/lib/objrepos:bos.help.msg.en_US.smit:7.2.5.0::COMMITTED:I:SMIT Context Helps - U.S. English:
+/usr/lib/objrepos:bos.iconv.com:7.2.5.0::COMMITTED:I:Common Language to Language Converters :
+/usr/lib/objrepos:bos.iconv.ucs.com:7.2.4.0::COMMITTED:F:Unicode Base Converters for AIX Code Sets/Fonts:
+/usr/lib/objrepos:bos.iocp.rte:7.2.5.100::COMMITTED:I:I/O Completion Ports API :
+/usr/lib/objrepos:bos.loc.iso.en_US:7.2.5.0::COMMITTED:I:Base System Locale ISO Code Set - U.S. English :
+/usr/lib/objrepos:bos.mh:7.2.0.0::COMMITTED:I:Mail Handler :
+/usr/lib/objrepos:bos.mls.lib:7.2.0.0::COMMITTED:I:Trusted AIX Libraries :
+/usr/lib/objrepos:bos.mp64:7.2.5.105::APPLIED:F:Base Operating System 64-bit Multiprocessor Runtime:
+/usr/lib/objrepos:bos.msg.en_US.alt_disk_install.rte:7.2.5.0::COMMITTED:I:Alternate Disk Install Msgs - U.S. English :
+/usr/lib/objrepos:bos.msg.en_US.diag.rte:7.2.5.0::COMMITTED:I:Hardware Diagnostics Messages - U.S. English :
+/usr/lib/objrepos:bos.msg.en_US.net.ipsec:7.2.5.0::COMMITTED:I:IP Security Messages - U.S. English :
+/usr/lib/objrepos:bos.msg.en_US.net.tcp.client:7.2.5.0::COMMITTED:I:TCP/IP Messages - U.S. English :
+/usr/lib/objrepos:bos.msg.en_US.rte:7.2.5.0::COMMITTED:I:Base OS Runtime Messages - U.S. English :
+/usr/lib/objrepos:bos.msg.en_US.txt.tfs:7.2.5.0::COMMITTED:I:Text Formatting Services Msgs - U.S. English :
+/usr/lib/objrepos:bos.net.ipsec.keymgt:7.2.5.101::APPLIED:F:IP Security Key Management:
+/usr/lib/objrepos:bos.net.ipsec.rte:7.2.5.102::APPLIED:F:IP Security:
+/usr/lib/objrepos:bos.net.nfs.client:7.2.5.101::APPLIED:F:Network File System Client:
+/usr/lib/objrepos:bos.net.nis.client:7.2.4.0::COMMITTED:F:Network Information Service Client:
+/usr/lib/objrepos:bos.net.snapp:7.2.4.0::COMMITTED:F:System Networking Analysis and Performance Pilot:
+/usr/lib/objrepos:bos.net.tcp.adt:7.2.5.100::COMMITTED:I:TCP/IP Application Toolkit :
+/usr/lib/objrepos:bos.net.tcp.bind:7.2.5.101::APPLIED:F:TCP/IP BIND Server Applications:
+/usr/lib/objrepos:bos.net.tcp.bind_utils:7.2.5.101::APPLIED:F:TCP/IP BIND Utility Applications:
+/usr/lib/objrepos:bos.net.tcp.bootp:7.2.5.101::APPLIED:F:TCP/IP bootpd Application:
+/usr/lib/objrepos:bos.net.tcp.client:7.2.5.0::COMMITTED:I:TCP/IP Client Support :
+/usr/lib/objrepos:bos.net.tcp.client_core:7.2.5.104::APPLIED:F:TCP/IP Client Core Support:
+/usr/lib/objrepos:bos.net.tcp.dfpd:7.2.5.1::COMMITTED:I:TCP/IP Dynamic Feedback Protocol Application :
+/usr/lib/objrepos:bos.net.tcp.dhcp:7.2.5.1::COMMITTED:I:TCP/IP DHCP Client Application :
+/usr/lib/objrepos:bos.net.tcp.dhcpd:7.2.5.1::COMMITTED:I:TCP/IP DHCP Server Applications :
+/usr/lib/objrepos:bos.net.tcp.ftp:7.2.5.1::COMMITTED:I:TCP/IP ftp Client Application :
+/usr/lib/objrepos:bos.net.tcp.ftpd:7.2.5.101::APPLIED:F:TCP/IP ftp Server Application:
+/usr/lib/objrepos:bos.net.tcp.gated:7.2.5.102::APPLIED:F:TCP/IP gated Applications:
+/usr/lib/objrepos:bos.net.tcp.imapd:7.2.5.101::APPLIED:F:TCP/IP imapd Applications:
+/usr/lib/objrepos:bos.net.tcp.mail_utils:7.2.5.1::COMMITTED:I:TCP/IP Mail Utility Applications :
+/usr/lib/objrepos:bos.net.tcp.ntp:7.2.5.101::APPLIED:F:TCP/IP ntp Applications:
+/usr/lib/objrepos:bos.net.tcp.ntpd:7.2.5.100::COMMITTED:I:TCP/IP ntpd Applications :
+/usr/lib/objrepos:bos.net.tcp.pop3d:7.2.5.101::APPLIED:F:TCP/IP pop3d Applications:
+/usr/lib/objrepos:bos.net.tcp.pxed:7.2.5.1::COMMITTED:I:TCP/IP PXE Server Applications :
+/usr/lib/objrepos:bos.net.tcp.rcmd:7.2.5.1::COMMITTED:I:TCP/IP Remote Command Client Applications :
+/usr/lib/objrepos:bos.net.tcp.rcmd_server:7.2.5.101::APPLIED:F:TCP/IP Remote Command Server Applications:
+/usr/lib/objrepos:bos.net.tcp.sendmail:7.2.5.101::APPLIED:F:TCP/IP sendmail Applications:
+/usr/lib/objrepos:bos.net.tcp.server:7.2.5.0::COMMITTED:I:TCP/IP Server Support :
+/usr/lib/objrepos:bos.net.tcp.server_core:7.2.5.100::COMMITTED:I:TCP/IP Server Core :
+/usr/lib/objrepos:bos.net.tcp.slip:7.2.5.1::COMMITTED:I:TCP/IP SLIP Applications :
+/usr/lib/objrepos:bos.net.tcp.slp:7.2.5.1::COMMITTED:I:TCP/IP SLP Applications :
+/usr/lib/objrepos:bos.net.tcp.smit:7.2.5.1::COMMITTED:I:TCP/IP SMIT Support :
+/usr/lib/objrepos:bos.net.tcp.snmp:7.2.5.101::APPLIED:F:TCP/IP SNMP Client Application:
+/usr/lib/objrepos:bos.net.tcp.snmpd:7.2.5.102::APPLIED:F:TCP/IP SNMP Server Application:
+/usr/lib/objrepos:bos.net.tcp.syslogd:7.2.5.1::COMMITTED:I:TCP/IP syslogd Application :
+/usr/lib/objrepos:bos.net.tcp.tcpdump:7.2.5.100::COMMITTED:I:TCP/IP Trace Applications :
+/usr/lib/objrepos:bos.net.tcp.telnet:7.2.5.1::COMMITTED:I:TCP/IP telnet Application :
+/usr/lib/objrepos:bos.net.tcp.telnetd:7.2.5.101::APPLIED:F:TCP/IP telnetd Application:
+/usr/lib/objrepos:bos.net.tcp.tftp:7.2.5.1::COMMITTED:I:TCP/IP tftp Client Applications :
+/usr/lib/objrepos:bos.net.tcp.tftpd:7.2.5.1::COMMITTED:I:TCP/IP tftpd Server Application :
+/usr/lib/objrepos:bos.net.tcp.timed:7.2.5.1::COMMITTED:I:TCP/IP timed Application :
+/usr/lib/objrepos:bos.net.tcp.traceroute:7.2.5.1::COMMITTED:I:TCP/IP BIND traceroute Applications :
+/usr/lib/objrepos:bos.net.tcp.x500:7.2.5.1::COMMITTED:I:TCP/IP x500 Related Support :
+/usr/lib/objrepos:bos.net.uucode:7.2.5.0::COMMITTED:I:Unix to Unix Copy Utilities :
+/usr/lib/objrepos:bos.net.uucp:7.2.4.0::COMMITTED:F:Unix to Unix Copy Program:
+/usr/lib/objrepos:bos.perf.diag_tool:7.2.2.0::COMMITTED:I:Performance Diagnostic Tool :
+/usr/lib/objrepos:bos.perf.fdpr:7.2.5.0::COMMITTED:I:Feedback Directed Program Restructuring performance tool :
+/usr/lib/objrepos:bos.perf.libperfstat:7.2.5.101::APPLIED:F:Performance Statistics Library Interface:
+/usr/lib/objrepos:bos.perf.perfstat:7.2.5.101::APPLIED:F:Performance Statistics Interface:
+/usr/lib/objrepos:bos.perf.pmaix:7.2.3.15::COMMITTED:I:Performance Management :
+/usr/lib/objrepos:bos.perf.proctools:7.2.5.0::COMMITTED:I:Proc Filesystem Tools :
+/usr/lib/objrepos:bos.perf.tools:7.2.5.101::APPLIED:F:Base Performance Tools:
+/usr/lib/objrepos:bos.perf.tune:7.2.5.102::APPLIED:F:Performance Tuning Support:
+/usr/lib/objrepos:bos.pmapi.events:7.2.5.101::APPLIED:F:Performance Monitor API Event Codes:
+/usr/lib/objrepos:bos.pmapi.lib:7.2.5.100::COMMITTED:I:Performance Monitor API Library :
+/usr/lib/objrepos:bos.pmapi.pmsvcs:7.2.5.101::APPLIED:F:Performance Monitor API Kernel Extension:
+/usr/lib/objrepos:bos.pmapi.samples:7.2.3.0::COMMITTED:I:Performance Monitor API Samples :
+/usr/lib/objrepos:bos.pmapi.tools:7.2.5.100::COMMITTED:I:Performance Monitor API Tools :
+/usr/lib/objrepos:bos.rte:7.2.5.103::APPLIED:F:Base Operating System Runtime:
+/usr/lib/objrepos:bos.rte.Dt:7.2.5.0::APPLIED:F:Desktop Integrator:
+/usr/lib/objrepos:bos.rte.ILS:7.2.5.100::APPLIED:F:International Language Support:
+/usr/lib/objrepos:bos.rte.SRC:7.2.5.101::APPLIED:F:System Resource Controller:
+/usr/lib/objrepos:bos.rte.X11:7.2.0.0::COMMITTED:I:AIXwindows Device Support:
+/usr/lib/objrepos:bos.rte.aio:7.2.5.100::APPLIED:F:Asynchronous I/O Extension:
+/usr/lib/objrepos:bos.rte.archive:7.2.5.101::APPLIED:F:Archive Commands:
+/usr/lib/objrepos:bos.rte.bind_cmds:7.2.5.103::APPLIED:F:Binder and Loader Commands:
+/usr/lib/objrepos:bos.rte.boot:7.2.5.101::APPLIED:F:Boot Commands:
+/usr/lib/objrepos:bos.rte.bosinst:7.2.5.0::APPLIED:F:Base OS Install Commands:
+/usr/lib/objrepos:bos.rte.commands:7.2.5.101::APPLIED:F:Commands:
+/usr/lib/objrepos:bos.rte.compare:7.2.5.0::APPLIED:F:File Compare Commands:
+/usr/lib/objrepos:bos.rte.console:7.2.5.100::APPLIED:F:Console:
+/usr/lib/objrepos:bos.rte.control:7.2.5.101::APPLIED:F:System Control Commands:
+/usr/lib/objrepos:bos.rte.cron:7.2.5.0::APPLIED:F:Batch Operations:
+/usr/lib/objrepos:bos.rte.date:7.2.5.101::APPLIED:F:Date Control Commands:
+/usr/lib/objrepos:bos.rte.devices:7.2.5.0::APPLIED:F:Base Device Drivers:
+/usr/lib/objrepos:bos.rte.devices_msg:7.2.5.100::APPLIED:F:Device Driver Messages:
+/usr/lib/objrepos:bos.rte.diag:7.2.4.0::COMMITTED:F:Diagnostics:
+/usr/lib/objrepos:bos.rte.edit:7.2.5.101::APPLIED:F:Editors:
+/usr/lib/objrepos:bos.rte.filesystem:7.2.5.102::APPLIED:F:Filesystem Administration:
+/usr/lib/objrepos:bos.rte.iconv:7.2.4.0::COMMITTED:F:Language Converters:
+/usr/lib/objrepos:bos.rte.ifor_ls:7.2.5.0::APPLIED:F:iFOR/LS Libraries:
+/usr/lib/objrepos:bos.rte.im:7.2.5.0::APPLIED:F:Input Methods:
+/usr/lib/objrepos:bos.rte.install:7.2.5.105::APPLIED:F:LPP Install Commands:
+/usr/lib/objrepos:bos.rte.jfscomp:7.2.3.0::COMMITTED:I:JFS Compression:
+/usr/lib/objrepos:bos.rte.libc:7.2.5.101::APPLIED:F:libc Library:
+/usr/lib/objrepos:bos.rte.libcfg:7.2.5.0::APPLIED:F:libcfg Library:
+/usr/lib/objrepos:bos.rte.libcur:7.2.5.100::APPLIED:F:libcurses Library:
+/usr/lib/objrepos:bos.rte.libdbm:7.2.5.0::APPLIED:F:libdbm Library:
+/usr/lib/objrepos:bos.rte.libnetsvc:7.2.0.0::COMMITTED:I:Network Services Libraries:
+/usr/lib/objrepos:bos.rte.libpthreads:7.2.5.102::APPLIED:F:libpthreads Library:
+/usr/lib/objrepos:bos.rte.libqb:7.2.4.0::COMMITTED:F:libqb Library:
+/usr/lib/objrepos:bos.rte.libs:7.2.0.0::COMMITTED:I:libs Library:
+/usr/lib/objrepos:bos.rte.loc:7.2.1.0::COMMITTED:I:Base Locale Support:
+/usr/lib/objrepos:bos.rte.lvm:7.2.5.101::APPLIED:F:Logical Volume Manager:
+/usr/lib/objrepos:bos.rte.man:7.2.5.0::APPLIED:F:Man Commands:
+/usr/lib/objrepos:bos.rte.methods:7.2.5.100::APPLIED:F:Device Config Methods:
+/usr/lib/objrepos:bos.rte.misc_cmds:7.2.5.0::APPLIED:F:Miscellaneous Commands:
+/usr/lib/objrepos:bos.rte.mlslib:7.2.0.0::COMMITTED:I:Trusted AIX Libraries:
+/usr/lib/objrepos:bos.rte.net:7.2.5.0::APPLIED:F:Network:
+/usr/lib/objrepos:bos.rte.odm:7.2.4.0::COMMITTED:F:Object Data Manager:
+/usr/lib/objrepos:bos.rte.printers:7.2.5.100::APPLIED:F:Front End Printer Support:
+/usr/lib/objrepos:bos.rte.security:7.2.5.102::APPLIED:F:Base Security Function:
+/usr/lib/objrepos:bos.rte.serv_aid:7.2.5.101::APPLIED:F:Error Log Service Aids:
+/usr/lib/objrepos:bos.rte.shell:7.2.5.102::APPLIED:F:Shells (bsh, ksh, csh):
+/usr/lib/objrepos:bos.rte.streams:7.2.5.101::APPLIED:F:Streams Libraries:
+/usr/lib/objrepos:bos.rte.tty:7.2.5.101::APPLIED:F:Base TTY Support and Commands:
+/usr/lib/objrepos:bos.suma:7.2.5.102::APPLIED:F:Service Update Management Assistant (SUMA):
+/usr/lib/objrepos:bos.swma:7.2.0.0::COMMITTED:I:Software Maintenance Agreement :
+/usr/lib/objrepos:bos.sysmgt.loginlic:7.2.4.0::COMMITTED:F:License Management:
+/usr/lib/objrepos:bos.sysmgt.nim.client:7.2.5.101::APPLIED:F:Network Install Manager - Client Tools:
+/usr/lib/objrepos:bos.sysmgt.quota:7.2.5.0::COMMITTED:I:Filesystem Quota Commands :
+/usr/lib/objrepos:bos.sysmgt.serv_aid:7.2.5.102::APPLIED:F:Software Error Logging and Dump Service Aids:
+/usr/lib/objrepos:bos.sysmgt.smit:7.2.5.0::COMMITTED:I:System Management Interface Tool (SMIT) :
+/usr/lib/objrepos:bos.sysmgt.sysbr:7.2.5.102::APPLIED:F:System Backup and BOS Install Utilities:
+/usr/lib/objrepos:bos.sysmgt.trace:7.2.5.102::APPLIED:F:Software Trace Service Aids:
+/usr/lib/objrepos:bos.terminfo.rte:7.2.5.0::COMMITTED:I:Run-time Environment for AIX Terminals :
+/usr/lib/objrepos:bos.txt.spell:7.2.5.0::COMMITTED:I:Writer's Tools Commands :
+/usr/lib/objrepos:bos.txt.tfs:7.2.5.100::COMMITTED:I:Text Formatting Services Commands :
+/usr/lib/objrepos:bos.wpars:7.2.5.0::COMMITTED:I:AIX Workload Partitions :
+/usr/lib/objrepos:bos.xerces.lib:3.2.2.0::COMMITTED:I:APACHE Xerces-C++ XML parsing library:
+/usr/lib/objrepos:cdrtools.base:1.9.0.9::COMMITTED:I:CD/DVD recorder:
+/usr/lib/objrepos:cdrtools.man.en_US:1.9.0.9::COMMITTED:I:CD/DVD recorder man page documentation:
+/usr/lib/objrepos:clic.rte.kernext:4.10.0.2::COMMITTED:I:CryptoLite for C Kernel:
+/usr/lib/objrepos:clic.rte.lib:4.10.0.2::COMMITTED:I:CryptoLite for C Library:
+/usr/lib/objrepos:devices.artic960.diag:7.2.5.0::COMMITTED:I:IBM ARTIC960 Adapter Diagnostics :
+/usr/lib/objrepos:devices.artic960.rte:7.2.5.0::COMMITTED:I:IBM ARTIC960 Runtime Support :
+/usr/lib/objrepos:devices.artic960.ucode:7.2.5.0::COMMITTED:I:IBM ARTIC960 Adapter Software :
+/usr/lib/objrepos:devices.capi.14105043.rte:7.2.4.0::COMMITTED:F:CAPI Memory Copy Accelerator Software:
+/usr/lib/objrepos:devices.capi.1410f0041410f004.com:7.2.5.0::COMMITTED:I:Common CAPI Flash Adapter Device Software :
+/usr/lib/objrepos:devices.capi.1410f0041410f004.diag:7.2.4.0::COMMITTED:F:CAPI Flash Adapter Diagnostics:
+/usr/lib/objrepos:devices.capi.1410f0041410f004.rte:7.2.0.0::COMMITTED:I:CAPI Flash Adapter Device Software :
+/usr/lib/objrepos:devices.chrp.AT97SC3201_r.rte:7.2.0.0::COMMITTED:I:Trusted Platform Module Device Software :
+/usr/lib/objrepos:devices.chrp.IBM.lhca.rte:7.2.4.0::COMMITTED:F:Infiniband Logical HCA Runtime Environment:
+/usr/lib/objrepos:devices.chrp.IBM.lhea.diag:7.2.5.0::COMMITTED:I:Host Ethernet Adapter Diagnostics :
+/usr/lib/objrepos:devices.chrp.IBM.lhea.rte:7.2.4.0::COMMITTED:F:Host Ethernet Adapter (HEA) Runtime Environment:
+/usr/lib/objrepos:devices.chrp.base.ServiceRM:2.5.1.3::COMMITTED:F:RSCT Service Resource Manager:
+/usr/lib/objrepos:devices.chrp.base.diag:7.2.5.101::APPLIED:F:RISC CHRP Base System Device Diagnostics:
+/usr/lib/objrepos:devices.chrp.base.rte:7.2.5.102::APPLIED:F:RISC PC Base System Device Software (CHRP):
+/usr/lib/objrepos:devices.chrp.capi.rte:7.2.4.0::COMMITTED:F:CAPI Bus Software (CHRP):
+/usr/lib/objrepos:devices.chrp.pci.rte:7.2.5.103::APPLIED:F:PCI Bus Software (CHRP):
+/usr/lib/objrepos:devices.chrp.pciex.rte:7.2.0.0::COMMITTED:I:PCI Express Bus Software (CHRP) :
+/usr/lib/objrepos:devices.chrp.vdevice.rte:7.2.5.100::COMMITTED:I:Virtual I/O Bus Support :
+/usr/lib/objrepos:devices.chrp_lpar.base.ras:7.2.5.0::COMMITTED:I:CHRP LPAR RAS Support :
+/usr/lib/objrepos:devices.common.IBM.async.diag:7.2.5.0::COMMITTED:I:Common Serial Adapter Diagnostics :
+/usr/lib/objrepos:devices.common.IBM.cflash.rte:7.2.5.0::COMMITTED:I:Common CAPI Flash Device Software :
+/usr/lib/objrepos:devices.common.IBM.crypt.rte:7.2.5.101::APPLIED:F:Cryptographic Common Runtime Environment:
+/usr/lib/objrepos:devices.common.IBM.cx.rte:7.2.5.0::COMMITTED:I:CX Common Adapter Software :
+/usr/lib/objrepos:devices.common.IBM.disk.rte:7.2.5.0::COMMITTED:I:Common IBM Disk Software :
+/usr/lib/objrepos:devices.common.IBM.ethernet.rte:7.2.5.101::APPLIED:F:Common Ethernet Software:
+/usr/lib/objrepos:devices.common.IBM.fc.hba-api:7.2.5.0::COMMITTED:I:Common HBA API Library :
+/usr/lib/objrepos:devices.common.IBM.fc.rte:7.2.5.101::APPLIED:F:Common IBM FC Software:
+/usr/lib/objrepos:devices.common.IBM.fda.diag:7.2.5.0::COMMITTED:I:Common Diskette Adapter and Device Diagnostics :
+/usr/lib/objrepos:devices.common.IBM.fda.rte:7.2.5.0::COMMITTED:I:Common Diskette Device Software :
+/usr/lib/objrepos:devices.common.IBM.hdlc.rte:7.2.5.0::COMMITTED:I:Common HDLC Software :
+/usr/lib/objrepos:devices.common.IBM.hdlc.sdlc:7.2.5.0::COMMITTED:I:SDLC COMIO Device Driver Emulation :
+/usr/lib/objrepos:devices.common.IBM.ib.rte:7.2.5.100::COMMITTED:I:Infiniband Common Runtime Environment :
+/usr/lib/objrepos:devices.common.IBM.ide.rte:7.2.0.0::COMMITTED:I:Common IDE I/O Controller Software :
+/usr/lib/objrepos:devices.common.IBM.iscsi.rte:7.2.5.0::COMMITTED:I:Common iSCSI Files :
+/usr/lib/objrepos:devices.common.IBM.ktm_std.diag:7.2.0.0::COMMITTED:I:Common Keyboard, Mouse, and Tablet Device Diagnostics :
+/usr/lib/objrepos:devices.common.IBM.ktm_std.rte:7.2.5.0::COMMITTED:I:Common Keyboard, Tablet, and Mouse Software :
+/usr/lib/objrepos:devices.common.IBM.mpio.rte:7.2.5.101::APPLIED:F:MPIO Disk Path Control Module:
+/usr/lib/objrepos:devices.common.IBM.mpt2.diag:7.2.5.0::COMMITTED:I:MPT SAS Device Diagnostics :
+/usr/lib/objrepos:devices.common.IBM.mpt2.rte:7.2.4.0::COMMITTED:F:MPT SAS Device Software:
+/usr/lib/objrepos:devices.common.IBM.scsi.rte:7.2.5.0::COMMITTED:I:Common SCSI I/O Controller Software :
+/usr/lib/objrepos:devices.common.IBM.sissas.rte:7.2.5.0::COMMITTED:I:Common IBM SAS RAID Software :
+/usr/lib/objrepos:devices.common.IBM.soe.rte:7.2.5.100::COMMITTED:I:Serial over Ethernet client driver :
+/usr/lib/objrepos:devices.common.IBM.storfwork.rte:7.2.5.101::APPLIED:F:Storage Framework Module:
+/usr/lib/objrepos:devices.common.IBM.usb.diag:7.2.5.0::COMMITTED:I:Common USB Adapter Diagnostics :
+/usr/lib/objrepos:devices.common.IBM.usb.rte:7.2.5.0::COMMITTED:I:USB System Software :
+/usr/lib/objrepos:devices.common.IBM.xhci.rte:7.2.5.100::COMMITTED:I:Common xHCI Adapter Device Software :
+/usr/lib/objrepos:devices.common.base.diag:7.2.5.0::COMMITTED:I:Common Base System Diagnostics :
+/usr/lib/objrepos:devices.common.rspcbase.rte:7.2.4.0::COMMITTED:F:RISC PC Common Base System Device Software:
+/usr/lib/objrepos:devices.ethernet.ct3.cdli:7.2.5.0::COMMITTED:I:10 Gigabit Ethernet Adapter Software :
+/usr/lib/objrepos:devices.ethernet.ct3.rte:7.2.5.0::COMMITTED:I:10 Gigabit Ethernet PCI-Express Host Bus Adapter Software :
+/usr/lib/objrepos:devices.ethernet.lnc2.rte:7.2.5.102::APPLIED:F:10 Gigabit Ethernet PCI-Express Adapter Software (lnc2):
+/usr/lib/objrepos:devices.ethernet.mlx.diag:7.2.0.0::COMMITTED:I:RoCE Converged Network Adapter Diagnostics :
+/usr/lib/objrepos:devices.ethernet.mlx.rte:7.2.5.102::APPLIED:F:RoCE Converged Network Adapter:
+/usr/lib/objrepos:devices.ethernet.mlxc.rte:7.2.5.102::APPLIED:F:MLXC RoCE Adapter Software:
+/usr/lib/objrepos:devices.ethernet.shi.rte:7.2.5.102::APPLIED:F:10 Gigabit Ethernet PCI-Express Adapter Software (shi):
+/usr/lib/objrepos:devices.fcp.disk.Hitachi.array.mpio.rte:5.4.1.2::COMMITTED:F:AIX MPIO Support for Hitachi Disk Arrays(Update):
+/usr/lib/objrepos:devices.fcp.disk.ibm.mpio.rte:1.0.0.24::COMMITTED:I:IBM MPIO FCP Disk Device:
+/usr/lib/objrepos:devices.fcp.disk.pure.flasharray.mpio.rte:1.0.0.12::COMMITTED:I:AIX MPIO Support for PURE Flash Arrays(New Install):
+/usr/lib/objrepos:devices.fcp.disk.rte:7.2.5.101::APPLIED:F:FC SCSI CD-ROM, Disk, Read/Write Optical Device Software:
+/usr/lib/objrepos:devices.fcp.tape.rte:7.2.5.101::APPLIED:F:FC SCSI Tape Device Software:
+/usr/lib/objrepos:devices.graphics.com:7.2.3.0::COMMITTED:I:Graphics Adapter Common Software :
+/usr/lib/objrepos:devices.graphics.voo:7.2.5.0::COMMITTED:I:Graphics Adapter VOO and Stereo Software :
+/usr/lib/objrepos:devices.ide.cdrom.diag:7.2.5.0::COMMITTED:I:IDE CDROM, Cdrom Device Diagnostics :
+/usr/lib/objrepos:devices.ide.cdrom.rte:7.2.5.0::COMMITTED:I:IDE CDROM Device Software :
+/usr/lib/objrepos:devices.iscsi.disk.rte:7.2.5.0::COMMITTED:I:iSCSI Disk Software :
+/usr/lib/objrepos:devices.iscsi.tape.rte:7.2.0.0::COMMITTED:I:iSCSI Tape Software :
+/usr/lib/objrepos:devices.iscsi_sw.rte:7.2.5.101::APPLIED:F:iSCSI Software Device Driver:
+/usr/lib/objrepos:devices.loopback.rte:7.2.5.100::COMMITTED:I:Loopback Device Driver :
+/usr/lib/objrepos:devices.msg.CA_ES.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Catalan (UTF):
+/usr/lib/objrepos:devices.msg.CA_ES.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Catalan (UTF):
+/usr/lib/objrepos:devices.msg.CA_ES.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Catalan (UTF):
+/usr/lib/objrepos:devices.msg.CA_ES.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Catalan (UTF):
+/usr/lib/objrepos:devices.msg.CS_CZ.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Czech (UTF):
+/usr/lib/objrepos:devices.msg.CS_CZ.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Czech (UTF):
+/usr/lib/objrepos:devices.msg.CS_CZ.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Czech (UTF):
+/usr/lib/objrepos:devices.msg.CS_CZ.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Czech (UTF):
+/usr/lib/objrepos:devices.msg.DE_DE.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - German (UTF):
+/usr/lib/objrepos:devices.msg.DE_DE.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - German (UTF):
+/usr/lib/objrepos:devices.msg.DE_DE.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - German (UTF):
+/usr/lib/objrepos:devices.msg.DE_DE.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - German (UTF):
+/usr/lib/objrepos:devices.msg.EN_US.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - U.S. English (UTF):
+/usr/lib/objrepos:devices.msg.EN_US.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - U.S. English (UTF):
+/usr/lib/objrepos:devices.msg.EN_US.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - U.S. English (UTF):
+/usr/lib/objrepos:devices.msg.EN_US.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - U.S. English (UTF):
+/usr/lib/objrepos:devices.msg.ES_ES.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Spanish (UTF):
+/usr/lib/objrepos:devices.msg.ES_ES.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Spanish (UTF):
+/usr/lib/objrepos:devices.msg.ES_ES.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Spanish (UTF):
+/usr/lib/objrepos:devices.msg.ES_ES.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Spanish (UTF):
+/usr/lib/objrepos:devices.msg.FR_FR.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - French (UTF):
+/usr/lib/objrepos:devices.msg.FR_FR.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - French (UTF):
+/usr/lib/objrepos:devices.msg.FR_FR.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - French (UTF):
+/usr/lib/objrepos:devices.msg.FR_FR.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - French (UTF):
+/usr/lib/objrepos:devices.msg.HU_HU.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Hungarian (UTF):
+/usr/lib/objrepos:devices.msg.HU_HU.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Hungarian (UTF):
+/usr/lib/objrepos:devices.msg.HU_HU.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Hungarian (UTF):
+/usr/lib/objrepos:devices.msg.HU_HU.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Hungarian (UTF):
+/usr/lib/objrepos:devices.msg.IT_IT.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Italian (UTF):
+/usr/lib/objrepos:devices.msg.IT_IT.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Italian (UTF):
+/usr/lib/objrepos:devices.msg.IT_IT.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Italian (UTF):
+/usr/lib/objrepos:devices.msg.IT_IT.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Italian (UTF):
+/usr/lib/objrepos:devices.msg.JA_JP.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Japanese (UTF):
+/usr/lib/objrepos:devices.msg.JA_JP.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Japanese (UTF):
+/usr/lib/objrepos:devices.msg.JA_JP.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Japanese (UTF):
+/usr/lib/objrepos:devices.msg.JA_JP.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Japanese (UTF):
+/usr/lib/objrepos:devices.msg.Ja_JP.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Japanese:
+/usr/lib/objrepos:devices.msg.Ja_JP.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Japanese:
+/usr/lib/objrepos:devices.msg.Ja_JP.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Japanese:
+/usr/lib/objrepos:devices.msg.Ja_JP.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Japanese:
+/usr/lib/objrepos:devices.msg.KO_KR.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Korean (UTF):
+/usr/lib/objrepos:devices.msg.KO_KR.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Korean (UTF):
+/usr/lib/objrepos:devices.msg.KO_KR.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Korean (UTF):
+/usr/lib/objrepos:devices.msg.KO_KR.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Korean (UTF):
+/usr/lib/objrepos:devices.msg.PL_PL.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Polish (UTF):
+/usr/lib/objrepos:devices.msg.PL_PL.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Polish (UTF):
+/usr/lib/objrepos:devices.msg.PL_PL.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Polish (UTF):
+/usr/lib/objrepos:devices.msg.PL_PL.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Polish (UTF):
+/usr/lib/objrepos:devices.msg.PT_BR.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Brazilian Portuguese (UTF):
+/usr/lib/objrepos:devices.msg.PT_BR.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Brazilian Portuguese (UTF):
+/usr/lib/objrepos:devices.msg.PT_BR.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Brazilian Portuguese (UTF):
+/usr/lib/objrepos:devices.msg.PT_BR.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Brazilian Portuguese (UTF):
+/usr/lib/objrepos:devices.msg.RU_RU.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Russian (UTF):
+/usr/lib/objrepos:devices.msg.RU_RU.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Russian (UTF):
+/usr/lib/objrepos:devices.msg.RU_RU.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Russian (UTF):
+/usr/lib/objrepos:devices.msg.RU_RU.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Russian (UTF):
+/usr/lib/objrepos:devices.msg.SK_SK.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Slovak (UTF):
+/usr/lib/objrepos:devices.msg.SK_SK.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Slovak (UTF):
+/usr/lib/objrepos:devices.msg.SK_SK.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Slovak (UTF):
+/usr/lib/objrepos:devices.msg.SK_SK.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Slovak (UTF):
+/usr/lib/objrepos:devices.msg.ZH_CN.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Simplified Chinese (UTF):
+/usr/lib/objrepos:devices.msg.ZH_CN.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Simplified Chinese (UTF):
+/usr/lib/objrepos:devices.msg.ZH_CN.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Simplified Chinese (UTF):
+/usr/lib/objrepos:devices.msg.ZH_CN.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Simplified Chinese (UTF):
+/usr/lib/objrepos:devices.msg.ZH_TW.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Traditional Chinese (UTF):
+/usr/lib/objrepos:devices.msg.ZH_TW.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Traditional Chinese (UTF):
+/usr/lib/objrepos:devices.msg.ZH_TW.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Traditional Chinese (UTF):
+/usr/lib/objrepos:devices.msg.ZH_TW.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Traditional Chinese (UTF):
+/usr/lib/objrepos:devices.msg.Zh_CN.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Simplified Chinese (GBK):
+/usr/lib/objrepos:devices.msg.Zh_CN.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Simplified Chinese (GBK):
+/usr/lib/objrepos:devices.msg.Zh_CN.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Simplified Chinese (GBK):
+/usr/lib/objrepos:devices.msg.Zh_CN.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Simplified Chinese (GBK):
+/usr/lib/objrepos:devices.msg.Zh_TW.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Traditional Chinese (big5):
+/usr/lib/objrepos:devices.msg.Zh_TW.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Traditional Chinese (big5):
+/usr/lib/objrepos:devices.msg.Zh_TW.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Traditional Chinese (big5):
+/usr/lib/objrepos:devices.msg.Zh_TW.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Traditional Chinese (big5):
+/usr/lib/objrepos:devices.msg.ca_ES.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Catalan:
+/usr/lib/objrepos:devices.msg.ca_ES.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Catalan:
+/usr/lib/objrepos:devices.msg.ca_ES.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Catalan:
+/usr/lib/objrepos:devices.msg.ca_ES.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Catalan:
+/usr/lib/objrepos:devices.msg.cs_CZ.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Czech:
+/usr/lib/objrepos:devices.msg.cs_CZ.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Czech:
+/usr/lib/objrepos:devices.msg.cs_CZ.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Czech:
+/usr/lib/objrepos:devices.msg.cs_CZ.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Czech:
+/usr/lib/objrepos:devices.msg.de_DE.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - German:
+/usr/lib/objrepos:devices.msg.de_DE.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - German:
+/usr/lib/objrepos:devices.msg.de_DE.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - German:
+/usr/lib/objrepos:devices.msg.de_DE.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - German:
+/usr/lib/objrepos:devices.msg.en_US.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - U.S. English :
+/usr/lib/objrepos:devices.msg.en_US.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - U.S. English :
+/usr/lib/objrepos:devices.msg.en_US.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - U.S. English :
+/usr/lib/objrepos:devices.msg.en_US.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - U.S. English :
+/usr/lib/objrepos:devices.msg.es_ES.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Spanish:
+/usr/lib/objrepos:devices.msg.es_ES.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Spanish:
+/usr/lib/objrepos:devices.msg.es_ES.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Spanish:
+/usr/lib/objrepos:devices.msg.es_ES.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Spanish:
+/usr/lib/objrepos:devices.msg.fr_FR.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - French:
+/usr/lib/objrepos:devices.msg.fr_FR.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - French:
+/usr/lib/objrepos:devices.msg.fr_FR.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - French:
+/usr/lib/objrepos:devices.msg.fr_FR.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - French:
+/usr/lib/objrepos:devices.msg.hu_HU.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Hungarian:
+/usr/lib/objrepos:devices.msg.hu_HU.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Hungarian:
+/usr/lib/objrepos:devices.msg.hu_HU.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Hungarian:
+/usr/lib/objrepos:devices.msg.hu_HU.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Hungarian:
+/usr/lib/objrepos:devices.msg.it_IT.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Italian:
+/usr/lib/objrepos:devices.msg.it_IT.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Italian:
+/usr/lib/objrepos:devices.msg.it_IT.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Italian:
+/usr/lib/objrepos:devices.msg.it_IT.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Italian:
+/usr/lib/objrepos:devices.msg.ja_JP.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Japanese IBM-eucJP:
+/usr/lib/objrepos:devices.msg.ja_JP.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Japanese IBM-eucJP:
+/usr/lib/objrepos:devices.msg.ja_JP.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Japanese IBM-eucJP:
+/usr/lib/objrepos:devices.msg.ja_JP.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Japanese IBM-eucJP:
+/usr/lib/objrepos:devices.msg.ko_KR.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Korean:
+/usr/lib/objrepos:devices.msg.ko_KR.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Korean:
+/usr/lib/objrepos:devices.msg.ko_KR.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Korean:
+/usr/lib/objrepos:devices.msg.ko_KR.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Korean:
+/usr/lib/objrepos:devices.msg.pl_PL.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Polish:
+/usr/lib/objrepos:devices.msg.pl_PL.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Polish:
+/usr/lib/objrepos:devices.msg.pl_PL.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Polish:
+/usr/lib/objrepos:devices.msg.pl_PL.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Polish:
+/usr/lib/objrepos:devices.msg.pt_BR.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Brazilian Portuguese:
+/usr/lib/objrepos:devices.msg.pt_BR.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Brazilian Portuguese:
+/usr/lib/objrepos:devices.msg.pt_BR.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Brazilian Portuguese:
+/usr/lib/objrepos:devices.msg.pt_BR.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Brazilian Portuguese:
+/usr/lib/objrepos:devices.msg.ru_RU.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Russian:
+/usr/lib/objrepos:devices.msg.ru_RU.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Russian:
+/usr/lib/objrepos:devices.msg.ru_RU.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Russian:
+/usr/lib/objrepos:devices.msg.ru_RU.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Russian:
+/usr/lib/objrepos:devices.msg.sk_SK.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Slovak:
+/usr/lib/objrepos:devices.msg.sk_SK.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Slovak:
+/usr/lib/objrepos:devices.msg.sk_SK.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Slovak:
+/usr/lib/objrepos:devices.msg.sk_SK.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Slovak:
+/usr/lib/objrepos:devices.msg.zh_CN.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Simplified Chinese:
+/usr/lib/objrepos:devices.msg.zh_CN.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Simplified Chinese:
+/usr/lib/objrepos:devices.msg.zh_CN.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Simplified Chinese:
+/usr/lib/objrepos:devices.msg.zh_CN.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Simplified Chinese:
+/usr/lib/objrepos:devices.msg.zh_TW.base.com:7.2.5.0::COMMITTED:I:Base Sys Device Software Msg - Traditional Chinese:
+/usr/lib/objrepos:devices.msg.zh_TW.diag.rte:7.2.5.0::COMMITTED:I:Device Diagnostics Messages - Traditional Chinese:
+/usr/lib/objrepos:devices.msg.zh_TW.rspc.base.com:7.2.5.0::COMMITTED:I:RISC PC Software Messages - Traditional Chinese:
+/usr/lib/objrepos:devices.msg.zh_TW.sys.mca.rte:7.2.5.0::COMMITTED:I:Micro Channel Bus Software Msg - Traditional Chinese:
+/usr/lib/objrepos:devices.pci.00100b00.diag:7.2.0.0::COMMITTED:I:SYM53C896 Dual Channel PCI-2 Ultra2 SCSI Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.00100b00.rte:7.2.0.0::COMMITTED:I:SYM53C896 Dual Channel PCI SCSI I/O Controller :
+/usr/lib/objrepos:devices.pci.00100c00.diag:7.2.0.0::COMMITTED:I:SYM53C895 LVD PCI SCSI I/O Controller Diagnostics :
+/usr/lib/objrepos:devices.pci.00100c00.rte:7.2.0.0::COMMITTED:I:SYM53C895 PCI SCSI I/O Controller Software :
+/usr/lib/objrepos:devices.pci.00100f00.diag:7.2.3.0::COMMITTED:I:SYM53C8xxA PCI SCSI I/O Controller Diagnostics :
+/usr/lib/objrepos:devices.pci.00100f00.rte:7.2.4.0::COMMITTED:F:SYM53C8xxA PCI SCSI I/O Controller Software:
+/usr/lib/objrepos:devices.pci.00102100.diag:7.2.0.0::COMMITTED:I:SYM53C1010 Dual Channel PCI Ultra3 SCSI Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.00102100.rte:7.2.0.0::COMMITTED:I:SYM53C1010 PCI Ultra-3 SCSI I/O Controller Software :
+/usr/lib/objrepos:devices.pci.00105000.com:7.2.4.0::COMMITTED:F:Common SAS Expansion Card Device Software:
+/usr/lib/objrepos:devices.pci.00105000.diag:7.2.4.0::COMMITTED:F:LSI SAS Adapter Diagnostics:
+/usr/lib/objrepos:devices.pci.00105000.rte:7.2.0.0::COMMITTED:I:SAS Expansion Card Device Software (00105000) :
+/usr/lib/objrepos:devices.pci.02105e51.X11:7.2.5.0::COMMITTED:I:AIXwindows Native Display Adapter Software :
+/usr/lib/objrepos:devices.pci.02105e51.diag:7.2.0.0::COMMITTED:I:Native Display Graphics Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.02105e51.rte:7.2.5.0::COMMITTED:I:Native Display Adapter Software :
+/usr/lib/objrepos:devices.pci.14100c03.diag:7.2.0.0::COMMITTED:I:PCI-XDDR Auxiliary Cache Adapter Diagnostics (14100c03) :
+/usr/lib/objrepos:devices.pci.14100c03.rte:7.2.0.0::COMMITTED:I:PCI-XDDR Auxiliary Cache Adapter Software (14100c03) :
+/usr/lib/objrepos:devices.pci.14100d03.diag:7.2.0.0::COMMITTED:I:PCI-XDDR Auxiliary Cache Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.14100d03.rte:7.2.0.0::COMMITTED:I:PCI-XDDR Auxiliary Cache Adapter Software :
+/usr/lib/objrepos:devices.pci.14101103.diag:7.2.0.0::COMMITTED:I:4-Port 10/100/1000 Base-TX PCI-X Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.14101103.rte:7.2.0.0::COMMITTED:I:4-Port 10/100/1000 Base-TX PCI-X Adapter Software :
+/usr/lib/objrepos:devices.pci.14102203.diag:7.2.0.0::COMMITTED:I:IBM 1 Gigabit-TX iSCSI TOE PCI-X Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.14102203.rte:7.2.0.0::COMMITTED:I:IBM 1 Gigabit-TX iSCSI TOE PCI-X Adapter :
+/usr/lib/objrepos:devices.pci.14102e00.diag:7.2.4.0::COMMITTED:F:IBM PCI SCSI RAID Adapter Diagnostics Support:
+/usr/lib/objrepos:devices.pci.14102e00.rte:7.2.5.0::COMMITTED:I:IBM PCI SCSI RAID Adapter Device Software Support :
+/usr/lib/objrepos:devices.pci.14103302.X11:7.2.0.0::COMMITTED:I:AIXwindows GXT135P Graphics Adapter Software :
+/usr/lib/objrepos:devices.pci.14103302.diag:7.2.0.0::COMMITTED:I:GXT135P Graphics Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.14103302.rte:7.2.5.0::COMMITTED:I:GXT135P Graphics Adapter Software :
+/usr/lib/objrepos:devices.pci.14106402.diag:7.2.0.0::COMMITTED:I:PCI-X Quad Channel U320 SCSI RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.14106402.rte:7.2.0.0::COMMITTED:I:PCI-X Quad Channel U320 SCSI RAID Adapter Software :
+/usr/lib/objrepos:devices.pci.14106402.ucode:7.2.0.0::COMMITTED:I:PCI-X Quad Channel U320 SCSI RAID Adapter Microcode :
+/usr/lib/objrepos:devices.pci.14106602.diag:7.2.4.0::COMMITTED:F:PCI-X Dual Channel SCSI Adapter Diagnostics:
+/usr/lib/objrepos:devices.pci.14106602.rte:7.2.5.0::COMMITTED:I:PCI-X Dual Channel SCSI Adapter Device Software :
+/usr/lib/objrepos:devices.pci.14106602.ucode:7.2.0.0::COMMITTED:I:PCI-X Dual Channel SCSI Adapter Microcode :
+/usr/lib/objrepos:devices.pci.14106802.diag:7.2.0.0::COMMITTED:I:Gigabit Ethernet-SX PCI-X Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.14106802.rte:7.2.0.0::COMMITTED:I:Gigabit Ethernet-SX PCI-X Adapter Software :
+/usr/lib/objrepos:devices.pci.14106902.diag:7.2.3.15::COMMITTED:I:10/100/1000 Base-TX PCI-X Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.14106902.rte:7.2.4.0::COMMITTED:F:10/100/1000 Base-TX PCI-X Adapter Software:
+/usr/lib/objrepos:devices.pci.14107802.diag:7.2.0.0::COMMITTED:I:PCI-X Dual Channel Ultra320 SCSI RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.14107802.rte:7.2.5.0::COMMITTED:I:PCI-X Dual Channel Ultra320 SCSI RAID Adapter Software :
+/usr/lib/objrepos:devices.pci.14107802.ucode:7.2.0.0::COMMITTED:I:PCI-X Dual Channel Ultra320 SCSI RAID Adapter Microcode :
+/usr/lib/objrepos:devices.pci.14108902.diag:7.2.0.0::COMMITTED:I:10/100/1000 Base-TX PCI-X Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.14108902.rte:7.2.0.0::COMMITTED:I:2-Port 10/100/1000 Base-TX PCI-X Adapter Software :
+/usr/lib/objrepos:devices.pci.14108c00.rte:7.2.3.0::COMMITTED:I:ARTIC960Hx 4-Port Selectable PCI Adapter Runtime Software :
+/usr/lib/objrepos:devices.pci.14108d02.diag:7.2.0.0::COMMITTED:I:PCI-X DDR Dual Channel SAS RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.14108d02.rte:7.2.0.0::COMMITTED:I:PCI-XDDR Dual Channel SAS RAID Adapter Software :
+/usr/lib/objrepos:devices.pci.1410a803.diag:7.2.0.0::COMMITTED:I:4-port Asynchronous EIA-232 PCI-E Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410a803.rte:7.2.0.0::COMMITTED:I:4 Port Async EIA-232 PCIe Adapter Software :
+/usr/lib/objrepos:devices.pci.1410bd02.diag:7.2.3.15::COMMITTED:I:PCI-X266 3GB SAS RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410bd02.rte:7.2.0.0::COMMITTED:I:PCI-X266 Dual-x4 3Gb SAS RAID Adapter Software :
+/usr/lib/objrepos:devices.pci.1410be02.diag:7.2.0.0::COMMITTED:I:PCI-X DDR Dual Channel U320 SCSI RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410be02.rte:7.2.0.0::COMMITTED:I:PCI-XDDR Dual Channel U320 SCSI RAID Adapter Software :
+/usr/lib/objrepos:devices.pci.1410bf02.diag:7.2.0.0::COMMITTED:I:PCI-X DDR Quad Channel U320 SCSI RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410bf02.rte:7.2.0.0::COMMITTED:I:PCI-XDDR Quad Channel U320 SCSI RAID Adapter Software :
+/usr/lib/objrepos:devices.pci.1410c002.diag:7.2.0.0::COMMITTED:I:PCI-X DDR Dual Channel U320 SCSI Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410c002.rte:7.2.0.0::COMMITTED:I:PCI-XDDR Dual Channel U320 SCSI Adapter Software :
+/usr/lib/objrepos:devices.pci.1410c302.diag:7.2.0.0::COMMITTED:I:PCI-X266 Ext Tri-x4 3Gb SAS RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410c302.rte:7.2.0.0::COMMITTED:I:PCI-X266 Ext Tri-x4 3Gb SAS RAID Adapter Software :
+/usr/lib/objrepos:devices.pci.1410cf02.diag:7.2.0.0::COMMITTED:I:1000 Base-SX PCI-X iSCSI TOE Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pci.1410cf02.rte:7.2.0.0::COMMITTED:I:1000 Base-SX PCI-X iSCSI TOE Adapter Device Software :
+/usr/lib/objrepos:devices.pci.1410d002.com:7.2.4.0::COMMITTED:F:Common PCI iSCSI TOE Adapter Device Software:
+/usr/lib/objrepos:devices.pci.1410d002.diag:7.2.4.0::COMMITTED:F:1000 Base-TX PCI-X iSCSI TOE Adapter Device Diagnostics:
+/usr/lib/objrepos:devices.pci.1410d002.rte:7.2.0.0::COMMITTED:I:1000 Base-TX PCI-X iSCSI TOE Adapter Device Software :
+/usr/lib/objrepos:devices.pci.1410d302.diag:7.2.0.0::COMMITTED:I:PCI-X Dual Channel Ultra320 SCSI Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410d302.rte:7.2.0.0::COMMITTED:I:PCI-X Dual Channel U320 SCSI Adapter Software :
+/usr/lib/objrepos:devices.pci.1410d402.diag:7.2.0.0::COMMITTED:I:PCI-X Dual Channel U320 SCSI RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410d402.rte:7.2.0.0::COMMITTED:I:PCI-X Dual Channel U320 SCSI RAID Adapter Software :
+/usr/lib/objrepos:devices.pci.1410d403.rte:7.2.0.0::COMMITTED:I:Native 1-Port Asynchronous EIA-232 PCI Adapter Software :
+/usr/lib/objrepos:devices.pci.1410d502.diag:7.2.0.0::COMMITTED:I:PCI-X DDR Quad Channel U320 SCSI RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410d502.rte:7.2.0.0::COMMITTED:I:PCI-XDDR Quad Channel U320 SCSI RAID Adapter Software :
+/usr/lib/objrepos:devices.pci.1410e202.diag:7.2.0.0::COMMITTED:I:IBM 1 Gigabit-SX iSCSI TOE PCI-X Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410e202.rte:7.2.0.0::COMMITTED:I:IBM 1 Gigabit-SX iSCSI TOE PCI-X Adapter :
+/usr/lib/objrepos:devices.pci.1410e601.diag:7.2.0.0::COMMITTED:I:IBM Cryptographic Accelerator Diagnostics :
+/usr/lib/objrepos:devices.pci.1410e601.rte:7.2.3.0::COMMITTED:I:IBM Crypto Accelerator Adapter Software :
+/usr/lib/objrepos:devices.pci.1410eb02.diag:7.2.3.15::COMMITTED:I:10 Gigabit Ethernet-SR PCI-X 2.0 DDR Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410eb02.rte:7.2.0.0::COMMITTED:I:10 Gigabit Ethernet-SR PCI-X 2.0 DDR Adapter Software :
+/usr/lib/objrepos:devices.pci.1410ec02.diag:7.2.0.0::COMMITTED:I:10 Gigabit Ethernet-LR PCI-X 2.0 DDR Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.1410ec02.rte:7.2.3.0::COMMITTED:I:10 Gigabit Ethernet-LR PCI-X 2.0 DDR Adapter Software :
+/usr/lib/objrepos:devices.pci.22106474.diag:7.2.0.0::COMMITTED:I:USB Host Controller (22106474) Diagnostics :
+/usr/lib/objrepos:devices.pci.22106474.rte:7.2.5.0::COMMITTED:I:USB Host Controller (22106474) Software :
+/usr/lib/objrepos:devices.pci.2b102725.X11:7.2.0.0::COMMITTED:I:AIXwindows GXT145 Graphics Adapter Software :
+/usr/lib/objrepos:devices.pci.2b102725.diag:7.2.0.0::COMMITTED:I:GXT145 2D Graphics Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.2b102725.rte:7.2.5.0::COMMITTED:I:GXT145 Graphics Adapter Software :
+/usr/lib/objrepos:devices.pci.33103500.diag:7.2.0.0::COMMITTED:I:USB Host Controller (33103500) Diagnostics :
+/usr/lib/objrepos:devices.pci.33103500.rte:7.2.5.0::COMMITTED:I:USB Host Controller (33103500) Software :
+/usr/lib/objrepos:devices.pci.3310e000.diag:7.2.0.0::COMMITTED:I:USB Enhanced Host Controller (3310e000) Diagnostics :
+/usr/lib/objrepos:devices.pci.3310e000.rte:7.2.4.0::COMMITTED:F:USB Enhanced Host Controller Adapter (3310e000) Software:
+/usr/lib/objrepos:devices.pci.331121b9.com:7.2.0.0::COMMITTED:I:IBM PCI 2-Port Multiprotocol Common Software :
+/usr/lib/objrepos:devices.pci.331121b9.diag:7.2.3.0::COMMITTED:I:PCI 2-Port Multiprotocol Adapter (331121b9) Diagnostics :
+/usr/lib/objrepos:devices.pci.331121b9.rte:7.2.3.0::COMMITTED:I:IBM PCI 2-Port Multiprotocol Device Driver :
+/usr/lib/objrepos:devices.pci.4f111100.asw:7.2.0.0::COMMITTED:I:PCI 8-Port Asynchronous Adapter Software :
+/usr/lib/objrepos:devices.pci.4f111100.com:7.2.3.0::COMMITTED:I:Common PCI Asynchronous Adapter Software :
+/usr/lib/objrepos:devices.pci.4f111100.diag:7.2.3.0::COMMITTED:I:RISC PC PCI Async 8 Port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.4f111100.rte:7.2.0.0::COMMITTED:I:PCI 8-Port Asynchronous Adapter Software :
+/usr/lib/objrepos:devices.pci.4f111b00.asw:7.2.0.0::COMMITTED:I:PCI 128-Port Asynchronous Adapter Software :
+/usr/lib/objrepos:devices.pci.4f111b00.diag:7.2.0.0::COMMITTED:I:RISC PC PCI Async 128 Port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.4f111b00.rte:7.2.0.0::COMMITTED:I:PCI 128-Port Asynchronous Adapter Software :
+/usr/lib/objrepos:devices.pci.4f11c800.diag:7.2.3.0::COMMITTED:I:2-port Asynchronous EIA-232 PCI Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.4f11c800.rte:7.2.5.100::COMMITTED:I:2-Port Asynchronous EIA-232 PCI Adapter Software :
+/usr/lib/objrepos:devices.pci.77101223.com:7.2.4.0::COMMITTED:F:PCI FC Adapter (77101223) Common Software:
+/usr/lib/objrepos:devices.pci.77101223.diag:7.2.5.100::COMMITTED:I:PCI FC Adapter (77101223) Diagnostics :
+/usr/lib/objrepos:devices.pci.77101223.rte:7.2.0.0::COMMITTED:I:PCI FC Adapter (77101223) Runtime Software :
+/usr/lib/objrepos:devices.pci.77102224.com:7.2.5.100::COMMITTED:I:PCI-X FC Adapter (77102224) Common Software :
+/usr/lib/objrepos:devices.pci.77102224.diag:7.2.0.0::COMMITTED:I:PCI-X FC Adapter (77102224) Diagnostics :
+/usr/lib/objrepos:devices.pci.77102224.rte:7.2.0.0::COMMITTED:I:PCI-X FC Adapter (77102224) Runtime Software :
+/usr/lib/objrepos:devices.pci.77102e01.diag:7.2.0.0::COMMITTED:I:1000 Base-TX PCI-X iSCSI TOE Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pci.77102e01.rte:7.2.0.0::COMMITTED:I:PCI-X 1000 Base-TX iSCSI TOE Adapter Device Software :
+/usr/lib/objrepos:devices.pci.99172604.diag:7.2.0.0::COMMITTED:I:USB Enhanced Host Controller (99172604) Diagnostics :
+/usr/lib/objrepos:devices.pci.99172604.rte:7.2.3.0::COMMITTED:I:USB Enhanced Host Controller Adapter (99172604) Software :
+/usr/lib/objrepos:devices.pci.99172704.diag:7.2.0.0::COMMITTED:I:USB Host Controller (99172704) Diagnostics :
+/usr/lib/objrepos:devices.pci.99172704.rte:7.2.5.0::COMMITTED:I:USB Host Controller (99172704) Software :
+/usr/lib/objrepos:devices.pci.a8135201.diag:7.2.0.0::COMMITTED:I:2-port Asynchronous EIA-232 PCI Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.a8135201.rte:7.2.0.0::COMMITTED:I:Native 2-Port Asynchronous EIA-232 PCI Adapter Software :
+/usr/lib/objrepos:devices.pci.c1110358.diag:7.2.0.0::COMMITTED:I:USB Open Host Controller Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.c1110358.rte:7.2.5.0::COMMITTED:I:USB Host Controller (c1110358) Software :
+/usr/lib/objrepos:devices.pci.df1000f7.com:7.2.5.100::COMMITTED:I:Common PCI FC Adapter Device Software :
+/usr/lib/objrepos:devices.pci.df1000f7.diag:7.2.5.0::COMMITTED:I:PCI FC Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pci.df1000f7.rte:7.2.0.0::COMMITTED:I:PCI FC Adapter Device Software :
+/usr/lib/objrepos:devices.pci.df1000f9.diag:7.2.0.0::COMMITTED:I:64-bit PCI FC Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pci.df1000f9.rte:7.2.0.0::COMMITTED:I:64-bit PCI FC Adapter Device Software :
+/usr/lib/objrepos:devices.pci.df1000fa.diag:7.2.0.0::COMMITTED:I:FC PCI-X Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pci.df1000fa.rte:7.2.0.0::COMMITTED:I:FC PCI-X Adapter Device Software :
+/usr/lib/objrepos:devices.pci.df1000fd.diag:7.2.0.0::COMMITTED:I:FC PCI-X Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pci.df1000fd.rte:7.2.0.0::COMMITTED:I:4Gb PCI-X FC Adapter Device Software :
+/usr/lib/objrepos:devices.pci.df1023fd.diag:7.2.0.0::COMMITTED:I:4Gb PCI-X FC Adapter (df1023fd) Device Diagnostics :
+/usr/lib/objrepos:devices.pci.df1023fd.rte:7.2.0.0::COMMITTED:I:4Gb PCI-X FC Adapter (df1023fd) Device Software :
+/usr/lib/objrepos:devices.pci.df1080f9.diag:7.2.0.0::COMMITTED:I:PCI-X FC Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pci.df1080f9.rte:7.2.0.0::COMMITTED:I:PCI-X FC Adapter Device Software :
+/usr/lib/objrepos:devices.pci.e414a816.diag:7.2.3.15::COMMITTED:I:Gigabit Ethernet Adapter Diagnostics :
+/usr/lib/objrepos:devices.pci.e414a816.rte:7.2.3.0::COMMITTED:I:Gigabit Ethernet-SX Adapter Software :
+/usr/lib/objrepos:devices.pci.f41a0100.rte:7.2.4.0::COMMITTED:F:Virtio NIC Adapter (f41a0100):
+/usr/lib/objrepos:devices.pci.f41a0800.rte:7.2.2.15::COMMITTED:I:Virtio SCSI Adapter (f41a0800) :
+/usr/lib/objrepos:devices.pci.pci.rte:7.2.0.0::COMMITTED:I:PCI Bus Bridge Software (CHRP) :
+/usr/lib/objrepos:devices.pciex.001072001410ea03.diag:7.2.0.0::COMMITTED:I:PCIe2 SAS Adapter Dual-port 6Gb Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.001072001410ea03.rte:7.2.0.0::COMMITTED:I:PCIe2 SAS Adapter Dual-port 6Gb Device Software :
+/usr/lib/objrepos:devices.pciex.001072001410f603.diag:7.2.0.0::COMMITTED:I:PCIe2 SAS Adapter Quad-port 6Gb Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.001072001410f603.rte:7.2.0.0::COMMITTED:I:PCIe2 SAS Adapter Quad-port 6Gb Device Software :
+/usr/lib/objrepos:devices.pciex.1410110614101106.diag:7.2.5.100::COMMITTED:I:IBM 4769 PCIe3 Cryptographic Coprocessor (1410110614101106) Diagnostics Software :
+/usr/lib/objrepos:devices.pciex.1410110614101106.rte:7.2.5.100::COMMITTED:I:IBM 4769 PCIe3 Cryptographic Coprocessor (1410110614101106) Device Software :
+/usr/lib/objrepos:devices.pciex.14103903.diag:7.2.0.0::COMMITTED:I:PCI Express 3Gb SAS RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.14103903.rte:7.2.0.0::COMMITTED:I:PCI Express 3GB SAS RAID Adapter Software :
+/usr/lib/objrepos:devices.pciex.14103d03.diag:7.2.3.15::COMMITTED:I:PCI Express 6GB SAS RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.14103d03.rte:7.2.0.0::COMMITTED:I:PCI Express 6GB SAS RAID Adapter Software :
+/usr/lib/objrepos:devices.pciex.14103f03.diag:7.2.3.15::COMMITTED:I:2-Port Gigabit Ethernet-SX PCI-Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.14103f03.rte:7.2.0.0::COMMITTED:I:2-Port Gigabit Ethernet-SX PCI-Express Adapter Software :
+/usr/lib/objrepos:devices.pciex.14104003.diag:7.2.0.0::COMMITTED:I:2-Port 10/100/1000 Base-TX PCI-Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.14104003.rte:7.2.0.0::COMMITTED:I:2-Port 10/100/1000 Base-TX PCI-Express Adapter Software :
+/usr/lib/objrepos:devices.pciex.14104a03.diag:7.2.0.0::COMMITTED:I:PCIe3 6GB SAS RAID Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.14104a03.rte:7.2.0.0::COMMITTED:I:PCIe3 6GB SAS RAID Adapter Software :
+/usr/lib/objrepos:devices.pciex.14104b0414104b04.com:7.2.4.0::COMMITTED:F:Common PCIe FPGA Accelerator Adapter Device Software:
+/usr/lib/objrepos:devices.pciex.14104b0414104b04.diag:7.2.3.15::COMMITTED:I:PCIe FPGA Accelrator Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.14104b0414104b04.rte:7.2.0.0::COMMITTED:I:PCIe FPGA Accelrator Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.1410660414100000.diag:7.2.5.100::COMMITTED:I:IBM 4767 PCIe3 Cryptographic Coprocessor (1410660414100000) Diagnostics Software :
+/usr/lib/objrepos:devices.pciex.1410660414100000.rte:7.2.5.100::COMMITTED:I:IBM 4767 PCIe3 Cryptographic Coprocessor (1410660414100000) Device Software :
+/usr/lib/objrepos:devices.pciex.14106803.diag:7.2.0.0::COMMITTED:I:4-Port 10/100/1000 Base-TX PCI Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.14106803.rte:7.2.0.0::COMMITTED:I:4-Port 10/100/1000 Base-TX PCI-Express Adapter Software :
+/usr/lib/objrepos:devices.pciex.14107a0314107b03.diag:7.2.5.100::COMMITTED:I:IBM Y4 PCI-E Cryptographic CoProcessor Model 4765 (14107a0314107b03) Diagnostics :
+/usr/lib/objrepos:devices.pciex.14107a0314107b03.rte:7.2.5.100::COMMITTED:I:IBM Y4 PCI-E Cryptographic Coprocessor (14107a0314107b03) Device Software :
+/usr/lib/objrepos:devices.pciex.151438c1.diag:7.2.3.0::COMMITTED:I:PCIe Async EIA-232 Controller Diagnostics :
+/usr/lib/objrepos:devices.pciex.151438c1.rte:7.2.0.0::COMMITTED:I:PCIe Async EIA-232 Controller :
+/usr/lib/objrepos:devices.pciex.2514300014108c03.diag:7.2.3.15::COMMITTED:I:10 Gigabit Ethernet-SR PCI Express Adapter Diagnostics Software (2514300014108c03) :
+/usr/lib/objrepos:devices.pciex.2514300014108c03.rte:7.2.0.0::COMMITTED:I:10 Gigabit Ethernet-SR PCI-Express Host Bus Adapter :
+/usr/lib/objrepos:devices.pciex.251430001410a303.diag:7.2.0.0::COMMITTED:I:10 Gigabit Ethernet-CX4 PCI Express Adapter Diagnostics Software (251430001410a303) :
+/usr/lib/objrepos:devices.pciex.251430001410a303.rte:7.2.0.0::COMMITTED:I:10 Gigabit Ethernet-CX4 PCI-Express Host Bus Adapter :
+/usr/lib/objrepos:devices.pciex.2514310025140100.diag:7.2.0.0::COMMITTED:I:10 Gigabit Ethernet PCI-Express Host Bus Adapter Diagnostics Software (2514310025140100) :
+/usr/lib/objrepos:devices.pciex.2514310025140100.rte:7.2.0.0::COMMITTED:I:10 Gigabit Ethernet PCI-Express Host Bus Adapter :
+/usr/lib/objrepos:devices.pciex.4c10418214109006.diag:7.2.5.0::COMMITTED:I:PCIe2 USB 3.0 xHCI 2-Port Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.4c10418214109006.rte:7.2.5.0::COMMITTED:I:PCIe2 USB 3.0 xHCI 2-Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.4c10418214109e04.diag:7.2.5.0::COMMITTED:I:PCIe2 USB 3.0 xHCI 4-Port Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.4c10418214109e04.rte:7.2.0.0::COMMITTED:I:PCIe2 USB 3.0 xHCI 4-Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.4c1041821410b204.diag:7.2.0.0::COMMITTED:I:Integrated PCIe2 USB 3.0 xHCI Controller Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.4c1041821410b204.rte:7.2.0.0::COMMITTED:I:Integrated PCIe2 USB 3.0 xHCI Controller Device Software :
+/usr/lib/objrepos:devices.pciex.4f11f60014102204.diag:7.2.0.0::COMMITTED:I:PCIe 2-port Async EIA-232 Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.4f11f60014102204.rte:7.2.0.0::COMMITTED:I:PCIe 2-port Async EIA-232 Adapter :
+/usr/lib/objrepos:devices.pciex.771000801410b003.diag:7.2.0.0::COMMITTED:I:10 Gb FCoE PCI Express Dual Port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.771000801410b003.rte:7.2.4.0::COMMITTED:F:10 Gb Ethernet-SR PCI Express Dual Port Adapter Software:
+/usr/lib/objrepos:devices.pciex.7710008077108001.diag:7.2.0.0::COMMITTED:I:10 Gb FCoE PCI Express Dual Port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.7710008077108001.rte:7.2.0.0::COMMITTED:I:10 Gb Ethernet PCI Express Dual Port Adapter Software :
+/usr/lib/objrepos:devices.pciex.771001801410af03.diag:7.2.5.100::COMMITTED:I:10 Gb FCoE PCI Express Dual Port Adapter (771001801410af03) Diagnostics :
+/usr/lib/objrepos:devices.pciex.771001801410af03.rte:7.2.4.0::COMMITTED:F:10 Gb FCoE PCI Express Dual Port Adapter (771001801410af03) Device Software:
+/usr/lib/objrepos:devices.pciex.7710018077107f01.diag:7.2.0.0::COMMITTED:I:10 Gb FCoE PCIe Blade Expansion Card (7710018077107f01) Diagnostics :
+/usr/lib/objrepos:devices.pciex.7710018077107f01.rte:7.2.0.0::COMMITTED:I:10 Gb FCoE PCIe Blade Expansion Card (7710018077107f01) Device Software :
+/usr/lib/objrepos:devices.pciex.77103224.diag:7.2.0.0::COMMITTED:I:PCI Express FC Adapter Diagnostics (77103224) :
+/usr/lib/objrepos:devices.pciex.77103224.rte:7.2.0.0::COMMITTED:I:PCI Express 4Gb FC Adapter (77103224) Device Software :
+/usr/lib/objrepos:devices.pciex.77103225141004f3.diag:7.2.0.0::COMMITTED:I:8Gb 2-Port PCIe2 FC (77103225141004f3) Diagnostics Software :
+/usr/lib/objrepos:devices.pciex.77103225141004f3.rte:7.2.0.0::COMMITTED:I:8Gb 2-Port PCIe2 FC (77103225141004f3) Runtime Software :
+/usr/lib/objrepos:devices.pciex.7710322514101e04.diag:7.2.0.0::COMMITTED:I:Low Profile 8Gb 4-Port PCIe2 FC (7710322514101e04) Diagnostic Software :
+/usr/lib/objrepos:devices.pciex.7710322514101e04.rte:7.2.4.0::COMMITTED:F:Low Profile 8Gb 4-Port PCIe2 FC (7710322514101e04) Device Software:
+/usr/lib/objrepos:devices.pciex.7710322577106501.diag:7.2.0.0::COMMITTED:I:4Gb PCIe FC Blade Expansion Card (7710322577106501) Diagnostics :
+/usr/lib/objrepos:devices.pciex.7710322577106501.rte:7.2.0.0::COMMITTED:I:4Gb PCIe FC Blade Expansion Card (7710322577106501) Device Software :
+/usr/lib/objrepos:devices.pciex.7710322577106601.diag:7.2.0.0::COMMITTED:I:8Gb PCIe FC Blade Expansion Card (7710322577106601) Diagnostic Software :
+/usr/lib/objrepos:devices.pciex.7710322577106601.rte:7.2.0.0::COMMITTED:I:8Gb PCIe FC Blade Expansion Card (7710322577106601) Device Software :
+/usr/lib/objrepos:devices.pciex.7710322577106801.diag:7.2.0.0::COMMITTED:I:8Gb PCIe FC Blade Expansion Card (7710322577106801) Diagnostics :
+/usr/lib/objrepos:devices.pciex.7710322577106801.rte:7.2.0.0::COMMITTED:I:8Gb PCIe FC Blade Expansion Card (7710322577106801) Device Software :
+/usr/lib/objrepos:devices.pciex.7710322577107501.diag:7.2.0.0::COMMITTED:I:Dual Port 8Gb FC Mezzanine Card (7710322577107501) Diagnostic Software :
+/usr/lib/objrepos:devices.pciex.7710322577107501.rte:7.2.0.0::COMMITTED:I:Dual Port 8Gb FC Mezzanine Card (7710322577107501) Device Software :
+/usr/lib/objrepos:devices.pciex.7710322577107601.diag:7.2.0.0::COMMITTED:I:8Gb PCIe FC Blade Expansion Card (7710322577107601) Diagnostics :
+/usr/lib/objrepos:devices.pciex.7710322577107601.rte:7.2.0.0::COMMITTED:I:8Gb PCIe FC Blade Expansion Card (7710322577107601) Device Software :
+/usr/lib/objrepos:devices.pciex.7710612214105006.com:7.2.5.102::APPLIED:F:Common PCIe3 FC Adapter Device Software:
+/usr/lib/objrepos:devices.pciex.7710612214105006.diag:7.2.5.100::COMMITTED:I:16Gb FC PCIe3 2 Ports (7710612214105006) Diagnostic Software :
+/usr/lib/objrepos:devices.pciex.7710612214105006.rte:7.2.5.100::COMMITTED:I:16Gb FC PCIe3 2 Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.7710712014109e06.diag:7.2.5.100::COMMITTED:I:16Gb FC PCIe4 4 Port (7710712014109e06) Diagnostic Software :
+/usr/lib/objrepos:devices.pciex.7710712014109e06.rte:7.2.5.100::COMMITTED:I:16Gb FC PCIe3 4 Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.7710812214105106.diag:7.2.5.100::COMMITTED:I:32Gb FC PCIe4 2 Port (7710812214105106) Diagnostic Software :
+/usr/lib/objrepos:devices.pciex.7710812214105106.rte:7.2.5.100::COMMITTED:I:32Gb FC PCIe4 2 Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.8680c71014108003.diag:7.2.3.15::COMMITTED:I:10 Gigabit Ethernet-LR PCI-Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.8680c71014108003.rte:7.2.3.16::COMMITTED:I:10 Gigabit Ethernet-LR PCI-Express Adapter Software :
+/usr/lib/objrepos:devices.pciex.a219100714100904.diag:7.2.0.0::COMMITTED:I:Int Multifunction Card w/ SR Optical 10GbE Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.a219100714100904.rte:7.2.0.0::COMMITTED:I:Int Multifunction Card w/ SR Optical 10GbE Adapter Software :
+/usr/lib/objrepos:devices.pciex.a219100714100a04.diag:7.2.0.0::COMMITTED:I:Int Multifunction Card w/ Copper SFP+ 10GbE Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.a219100714100a04.rte:7.2.0.0::COMMITTED:I:Int Multifunction Card w/ Copper SFP+ 10GbE Adapter Software :
+/usr/lib/objrepos:devices.pciex.a21910071410d003.diag:7.2.3.15::COMMITTED:I:PCIe2 2-port 10GbE SR Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.a21910071410d003.rte:7.2.5.0::COMMITTED:I:PCIe2 2-port 10GbE SR Adapter Software :
+/usr/lib/objrepos:devices.pciex.a21910071410d103.diag:7.2.0.0::COMMITTED:I:PCIe2 2-port 10GbE SFP Copper Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.a21910071410d103.rte:7.2.0.0::COMMITTED:I:PCIe2 2-port 10GbE SFP+Copper Adapter Software :
+/usr/lib/objrepos:devices.pciex.a21910071410d203.diag:7.2.0.0::COMMITTED:I:Int Multifunction Card w/ Base-TX Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.a21910071410d203.rte:7.2.0.0::COMMITTED:I:Int Multifunction Card w/ Base-TX 10/100/1000 1GbE Adapter Software :
+/usr/lib/objrepos:devices.pciex.a2191007df1033e7.diag:7.2.0.0::COMMITTED:I:10GbE 4 port PCIe2 Mezz Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.a2191007df1033e7.rte:7.2.0.0::COMMITTED:I:10GbE 4-port PCIe2 Mezz Adapter Software :
+/usr/lib/objrepos:devices.pciex.b31503101410b504.diag:7.2.0.0::COMMITTED:I:RoCE Host Bus Adapter Diagnostics (b31503101410b504) :
+/usr/lib/objrepos:devices.pciex.b31503101410b504.rte:7.2.1.0::COMMITTED:I:RoCE Host Bus Adapter (b31503101410b504) :
+/usr/lib/objrepos:devices.pciex.b31507101410e704.diag:7.2.0.0::COMMITTED:I:RoCE Host Bus Adapter Diagnostics (b31507101410e704) :
+/usr/lib/objrepos:devices.pciex.b31507101410e704.rte:7.2.3.0::COMMITTED:I:RoCE Host Bus Adapter (b31507101410e704) :
+/usr/lib/objrepos:devices.pciex.b31507101410eb04.diag:7.2.0.0::COMMITTED:I:RoCE Host Bus Adapter Diagnostics (b31507101410eb04) :
+/usr/lib/objrepos:devices.pciex.b31507101410eb04.rte:7.2.3.0::COMMITTED:I:RoCE Host Bus Adapter (b31507101410eb04) :
+/usr/lib/objrepos:devices.pciex.b31513101410f704.diag:7.2.4.0::COMMITTED:F:100Gbit RoCE PCIe3 Adapter Diagnostics (b31513101410f704):
+/usr/lib/objrepos:devices.pciex.b31513101410f704.rte:7.2.5.101::APPLIED:F:PCIe3 100Gbit 2-port RoCE Adapter Software:
+/usr/lib/objrepos:devices.pciex.b31514101410f704.diag:7.2.2.15::COMMITTED:I:PCIe3 100Gbit 2-port RoCE Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.b31514101410f704.rte:7.2.5.100::COMMITTED:I:PCIe3 100Gbit 2-port RoCE Adapter Software :
+/usr/lib/objrepos:devices.pciex.b315151014101e06.diag:7.2.4.0::COMMITTED:F:PCIe3 25Gbit 2-port RoCE Adapter Diagnostics:
+/usr/lib/objrepos:devices.pciex.b315151014101e06.rte:7.2.5.101::APPLIED:F:PCIe3 25Gbit 2-port RoCE Adapter Software:
+/usr/lib/objrepos:devices.pciex.b315151014101f06.diag:7.2.4.0::COMMITTED:F:PCIe3 10Gbit 2-port RoCE Adapter Diagnostics:
+/usr/lib/objrepos:devices.pciex.b315151014101f06.rte:7.2.5.101::APPLIED:F:PCIe3 10Gbit 2-port RoCE Adapter Software:
+/usr/lib/objrepos:devices.pciex.b315161014101e06.diag:7.2.2.15::COMMITTED:I:PCIe3 25Gbit 2-port RoCE Adapter VF Diagnostics :
+/usr/lib/objrepos:devices.pciex.b315161014101e06.rte:7.2.5.100::COMMITTED:I:PCIe3 25Gbit 2-port RoCE Adapter VF Software :
+/usr/lib/objrepos:devices.pciex.b315161014101f06.diag:7.2.2.15::COMMITTED:I:PCIe3 10Gbit 2-port RoCE Adapter VF Diagnostics :
+/usr/lib/objrepos:devices.pciex.b315161014101f06.rte:7.2.5.100::COMMITTED:I:PCIe3 10Gbit 2-port RoCE Adapter VF Software :
+/usr/lib/objrepos:devices.pciex.b315191014103506.diag:7.2.4.0::COMMITTED:F:2-port 100Gbit RoCE PCIe4 Adapter Diagnostics Software:
+/usr/lib/objrepos:devices.pciex.b315191014103506.rte:7.2.5.101::APPLIED:F:PCIe4 100Gbit 2-port RoCE Adapter Software:
+/usr/lib/objrepos:devices.pciex.b3151a1014103506.diag:7.2.3.15::COMMITTED:I:2-port 100Gbit RoCE PCIe4 Adapter Diagnostics Software :
+/usr/lib/objrepos:devices.pciex.b3151a1014103506.rte:7.2.5.100::COMMITTED:I:PCIe4 100Gbit 2-port RoCE Adapter Software :
+/usr/lib/objrepos:devices.pciex.b3151d101410a606.diag:7.2.5.100::COMMITTED:I:PCIe4 100Gbit 2-port RoCE Adapter Diagnostics Software :
+/usr/lib/objrepos:devices.pciex.b3151d101410a606.rte:7.2.5.101::APPLIED:F:PCIe4 100Gbit 2-port RoCE Adapter Software:
+/usr/lib/objrepos:devices.pciex.b3151e101410a606.diag:7.2.5.100::COMMITTED:I:PCIe4 100Gbit 2-port RoCE VF Adapter Diagnostics Software :
+/usr/lib/objrepos:devices.pciex.b3151e101410a606.rte:7.2.5.100::COMMITTED:I:PCIe4 100Gbit 2-port RoCE VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.b3153c67.diag:7.2.0.0::COMMITTED:I:PCIe Dual Port HCA QDR Infiniband Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.b3153c67.rte:7.2.0.0::COMMITTED:I:4X PCI-E QDR Infiniband Device Driver :
+/usr/lib/objrepos:devices.pciex.b3154a63.diag:7.2.5.101::APPLIED:F:PCI-E 4X DDR Infiniband Device Diagnostics:
+/usr/lib/objrepos:devices.pciex.b3154a63.rte:7.2.4.0::COMMITTED:F:4X PCI-E DDR Infiniband Device Driver:
+/usr/lib/objrepos:devices.pciex.b315506714101604.diag:7.2.0.0::COMMITTED:I:RoCE Host Bus Adapter Diagnostics (b315506714101604) :
+/usr/lib/objrepos:devices.pciex.b315506714101604.rte:7.2.1.0::COMMITTED:I:RoCE Host Bus Adapter (b315506714101604) :
+/usr/lib/objrepos:devices.pciex.b315506714106104.diag:7.2.0.0::COMMITTED:I:RoCE Host Bus Adapter Diagnostics (b315506714106104) :
+/usr/lib/objrepos:devices.pciex.b315506714106104.rte:7.2.1.0::COMMITTED:I:RoCE Host Bus Adapter (b315506714106104) :
+/usr/lib/objrepos:devices.pciex.b3155067b3157265.diag:7.2.0.0::COMMITTED:I:RoCE Host Bus Adapter Diagnostics (b3155067b3157265) :
+/usr/lib/objrepos:devices.pciex.b3155067b3157265.rte:7.2.1.0::COMMITTED:I:RoCE Host Bus Adapter (b3155067b3157265) :
+/usr/lib/objrepos:devices.pciex.b3155067b3157365.diag:7.2.0.0::COMMITTED:I:RoCE Host Bus Adapter Diagnostics (b3155067b3157365) :
+/usr/lib/objrepos:devices.pciex.b3155067b3157365.rte:7.2.1.0::COMMITTED:I:RoCE Host Bus Adapter (b3155067b3157365) :
+/usr/lib/objrepos:devices.pciex.df1000e214105e04.diag:7.2.0.0::COMMITTED:I:GX++ 16Gb FC 2 Port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000e214105e04.rte:7.2.5.0::COMMITTED:I:GX++ 16Gb FC 2 Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1000e21410f103.diag:7.2.0.0::COMMITTED:I:16Gb FC PCIe2 2 Port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000e21410f103.rte:7.2.5.0::COMMITTED:I:16Gb FC PCIe2 2 Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1000e2df1002e2.diag:7.2.0.0::COMMITTED:I:PCIe2 2-Port 16Gb FC Mezzanine Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000e2df1002e2.rte:7.2.0.0::COMMITTED:I:PCIe2 2-Port 16Gb FC Mezzanine Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1000e2df1082e2.diag:7.2.0.0::COMMITTED:I:4-Port 16Gb FC Mezzanine Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000e2df1082e2.rte:7.2.0.0::COMMITTED:I:4-Port 16Gb FC Mezzanine Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1000e314101406.diag:7.2.3.15::COMMITTED:I:16Gb FC PCIe3 4 Port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000e314101406.rte:7.2.5.0::COMMITTED:I:16Gb FC PCIe3 4 Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1000e314101506.diag:7.2.3.15::COMMITTED:I:32Gb FC PCIe3 2 Port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000e314101506.rte:7.2.5.0::COMMITTED:I:32Gb FC PCIe3 2 Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1000e31410a006.diag:7.2.5.0::COMMITTED:I:16Gb FC PCIe3 2 Port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000e31410a006.rte:7.2.5.0::COMMITTED:I:16Gb FC PCIe3 2 Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1000f114100104.diag:7.2.0.0::COMMITTED:I:8Gb FC PCI Express Quad Port Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000f114100104.rte:7.2.4.0::COMMITTED:F:8Gb FC PCI Express Quad Port Adapter Device Software:
+/usr/lib/objrepos:devices.pciex.df1000f114108a03.diag:7.2.0.0::COMMITTED:I:8Gb PCI-E FC Adapter (df1000f114108a03) Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000f114108a03.rte:7.2.4.0::COMMITTED:F:8Gb FC PCI Express Dual Port Adapter Device Software:
+/usr/lib/objrepos:devices.pciex.df1000f1df1024f1.diag:7.2.0.0::COMMITTED:I:8Gb PCI-E FC Adapter (df1000f1df1024f1) Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000f1df1024f1.rte:7.2.0.0::COMMITTED:I:8Gb PCIe FC Blade Expansion Card (df1000f1df1024f1) Device Software :
+/usr/lib/objrepos:devices.pciex.df1000fe.diag:7.2.0.0::COMMITTED:I:4Gb FC PCI Express Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1000fe.rte:7.2.0.0::COMMITTED:I:4Gb FC PCI Express Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1020e214100f04.diag:7.2.5.0::COMMITTED:I:PCIe2 10GbE SFP+ SR Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214100f04.rte:7.2.5.100::COMMITTED:I:PCIe3 10GbE SFP+ SR Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214103604.diag:7.2.5.0::COMMITTED:I:PCIe2 10GbE SFP+ SR 4-port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214103604.rte:7.2.5.100::COMMITTED:I:PCIe2 10GbE SFP+ SR 4-port Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214103804.diag:7.2.0.0::COMMITTED:I:PCIe2 10GBaseT 4-port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214103804.rte:7.2.5.100::COMMITTED:I:PCIe2 10GBaseT 4-port Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214103904.diag:7.2.0.0::COMMITTED:I:PCIe2 10GbE SFP+ Cu 4-port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214103904.rte:7.2.5.100::COMMITTED:I:PCIe2 10GbE SFP+ Cu 4-port Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214103b04.diag:7.2.0.0::COMMITTED:I:PCIe2 10GBaseT 4-port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214103b04.rte:7.2.5.100::COMMITTED:I:PCIe2 10GBaseT 4-port Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214103c04.diag:7.2.5.0::COMMITTED:I:PCIe2 10/100/1000 Base-TX Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214103c04.rte:7.2.5.100::COMMITTED:I:PCIe3 10/100/1000 Base-TX Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214103d04.diag:7.2.5.0::COMMITTED:I:PCIe2 10GbE SFP+ Cu 4-port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214103d04.rte:7.2.5.100::COMMITTED:I:PCIe3 10GbE SFP+ Cu Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214103f04.diag:7.2.5.0::COMMITTED:I:PCIe2 1GbaseT SFP+ Cu 4-port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214103f04.rte:7.2.5.100::COMMITTED:I:PCIe3 100/1000 Base-TX Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214104004.diag:7.2.5.0::COMMITTED:I:PCIe2 10GbE SFP+ LR 4-port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214104004.rte:7.2.5.100::COMMITTED:I:PCIe3 10GbE SFP+ LR Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214104204.diag:7.2.5.0::COMMITTED:I:PCIe2 100/1000 Base-TX Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214104204.rte:7.2.5.100::COMMITTED:I:PCIe3 100/1000 Base-TX Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214105104.diag:7.2.0.0::COMMITTED:I:PCIe2 10GbE Mezz Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214105104.rte:7.2.5.100::COMMITTED:I:PCIe2 10GbE Mezz Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e214105d04.diag:7.2.0.0::COMMITTED:I:PCIe2 10GbE 2-port GX++ Gen2 Converged Network Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e214105d04.rte:7.2.5.100::COMMITTED:I:PCIe2 10GbE 2-port GX++ Gen2 Converged Network Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1020e21410e304.diag:7.2.5.0::COMMITTED:I:PCIe3 4-Port 10GbE SR Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e21410e304.rte:7.2.3.15::COMMITTED:I:PCIe3 4-Port 10GbE SR Adapter :
+/usr/lib/objrepos:devices.pciex.df1020e21410e404.diag:7.2.5.0::COMMITTED:I:PCIe3 4-Port 10GbE CU Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1020e21410e404.rte:7.2.3.15::COMMITTED:I:PCIe3 4-Port 10GbE CU Adapter :
+/usr/lib/objrepos:devices.pciex.df1028e214100f04.diag:7.2.0.0::COMMITTED:I:PCIe2 10GbE SFP+ SR VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e214100f04.rte:7.2.5.100::COMMITTED:I:PCIe2 10GbE SFP+ SR VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e214103604.diag:7.2.0.0::COMMITTED:I:PCIe2 10GbE SFP+ SR 4-port VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e214103604.rte:7.2.5.100::COMMITTED:I:PCIe2 10GbE SFP+ SR 4-port VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e214103804.diag:7.2.0.0::COMMITTED:I:PCIe2 10GBaseT 4-port VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e214103804.rte:7.2.5.100::COMMITTED:I:PCIe2 10GBaseT 4-port VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e214103904.diag:7.2.0.0::COMMITTED:I:PCIe2 10GbE SFP+ Cu 4-port VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e214103904.rte:7.2.5.100::COMMITTED:I:PCIe2 10GbE SFP+ Cu 4-port VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e214103b04.diag:7.2.0.0::COMMITTED:I:PCIe2 10GBaseT 4-port VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e214103b04.rte:7.2.5.100::COMMITTED:I:PCIe2 10GBaseT 4-port VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e214103c04.diag:7.2.0.0::COMMITTED:I:PCIe2 10/100/1000 Base-TX VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e214103c04.rte:7.2.5.100::COMMITTED:I:PCIe2 10/100/1000 Base-TX VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e214103d04.diag:7.2.5.0::COMMITTED:I:PCIe2 10GbE SFP+ Cu 4-port VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e214103d04.rte:7.2.5.100::COMMITTED:I:PCIe2 10GbE SFP+ Cu VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e214103f04.diag:7.2.0.0::COMMITTED:I:PCIe2 1GbaseT SFP+ Cu 4-port VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e214103f04.rte:7.2.5.100::COMMITTED:I:PCIe2 100/1000 Base-TX VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e214104004.diag:7.2.5.0::COMMITTED:I:PCIe2 10GbE SFP+ LR VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e214104004.rte:7.2.5.100::COMMITTED:I:PCIe2 10GbE SFP+ LR VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e214104204.diag:7.2.0.0::COMMITTED:I:PCIe2 100/1000 Base-TX VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e214104204.rte:7.2.5.100::COMMITTED:I:PCIe2 100/1000 Base-TX VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e21410e304.diag:7.2.5.0::COMMITTED:I:PCIe3 4-Port 10GbE SR VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e21410e304.rte:7.2.3.15::COMMITTED:I:PCIe3 4-Port 10GbE SR VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1028e21410e404.diag:7.2.5.0::COMMITTED:I:PCIe3 4-Port 10GbE CU VF Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1028e21410e404.rte:7.2.3.15::COMMITTED:I:PCIe3 4-Port 10GbE CU VF Adapter Software :
+/usr/lib/objrepos:devices.pciex.df1060e214101004.diag:7.2.0.0::COMMITTED:I:PCIe2 10GbE FCoE 4 Port Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1060e214101004.rte:7.2.5.0::COMMITTED:I:10Gb FCoE PCIe2 4 Port Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1060e214103404.com:7.2.5.102::APPLIED:F:Common PCIe3 FC Adapter Device Software:
+/usr/lib/objrepos:devices.pciex.df1060e214103404.diag:7.2.5.101::APPLIED:F:PCIe2 10Gb 4-Port FCoE Mezzanine Adapter Device Diagnostics:
+/usr/lib/objrepos:devices.pciex.df1060e214103404.rte:7.2.0.0::COMMITTED:I:PCIe3 10Gb 4-Port FCoE Mezzanine Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1060e214103704.diag:7.2.0.0::COMMITTED:I:Integrated 10Gb 4-Port FCoE Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1060e214103704.rte:7.2.5.0::COMMITTED:I:Integrated 10Gb 4-Port FCoE Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1060e214103a04.diag:7.2.0.0::COMMITTED:I:Integrated 10Gb Cu 4-Port FCoE Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1060e214103a04.rte:7.2.5.0::COMMITTED:I:Integrated 10Gb Cu 4-Port FCoE Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1060e214103e04.diag:7.2.0.0::COMMITTED:I:PCIe2 10GbE Cu 4-port FCoE Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1060e214103e04.rte:7.2.5.0::COMMITTED:I:PCIe2 10Gb Cu 4-Port FCoE Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1060e214104104.diag:7.2.0.0::COMMITTED:I:PCIe2 10Gb LR 4-Port FCoE Adapter Device Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1060e214104104.rte:7.2.5.0::COMMITTED:I:PCIe2 10Gb LR 4-Port FCoE Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1060e214105204.diag:7.2.0.0::COMMITTED:I:PCIe2 10GbE FCoE Mezz Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1060e214105204.rte:7.2.0.0::COMMITTED:I:PCIe2 10Gb FCoE Mezzanine Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.df1060e214105f04.diag:7.2.0.0::COMMITTED:I:GX++ 10Gb FCoE Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.df1060e214105f04.rte:7.2.5.0::COMMITTED:I:GX++ 10Gb FCoE Adapter Device Software :
+/usr/lib/objrepos:devices.pciex.e4143a161410a003.diag:7.2.0.0::COMMITTED:I:2-Port Gigabit Ethernet Combo PCI-Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.e4143a161410a003.rte:7.2.0.0::COMMITTED:I:2-Port Gigabit Ethernet Combo PCI-Express Adapter Software :
+/usr/lib/objrepos:devices.pciex.e4143a161410ed03.diag:7.2.0.0::COMMITTED:I:2-Port Integrated Gigabit Ethernet PCI-Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.e4143a161410ed03.rte:7.2.0.0::COMMITTED:I:2-Port Integrated Gigabit Ethernet PCI-Express Adapter Software :
+/usr/lib/objrepos:devices.pciex.e4143a16e4140909.diag:7.2.0.0::COMMITTED:I:2-Port Gigabit Ethernet PCI-Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.e4143a16e4140909.rte:7.2.0.0::COMMITTED:I:2-Port Gigabit Ethernet PCI-Express Adapter Software :
+/usr/lib/objrepos:devices.pciex.e4143a16e4143009.diag:7.2.3.15::COMMITTED:I:4-Port Gigabit Ethernet PCI-Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.e4143a16e4143009.rte:7.2.3.0::COMMITTED:I:4-Port Gigabit Ethernet PCI-Express Adapter Software :
+/usr/lib/objrepos:devices.pciex.e4145616e4140518.diag:7.2.3.15::COMMITTED:I:2-Port Gigabit Ethernet PCI-Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.e4145616e4140518.rte:7.2.5.101::APPLIED:F:2-Port Gigabit Ethernet PCI-Express Adapter Software:
+/usr/lib/objrepos:devices.pciex.e4145616e4140528.diag:7.2.0.0::COMMITTED:I:2-Port Gigabit Ethernet PCI-Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.e4145616e4140528.rte:7.2.3.15::COMMITTED:I:2-Port Gigabit Ethernet PCI-Express Adapter Software :
+/usr/lib/objrepos:devices.pciex.e414571614102004.diag:7.2.0.0::COMMITTED:I:4-Port Gigabit Ethernet PCI-Express Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.e414571614102004.rte:7.2.5.0::COMMITTED:I:4-Port Gigabit Ethernet PCI-Express Adapter Software :
+/usr/lib/objrepos:devices.pciex.e4148a1614109304.diag:7.2.5.0::COMMITTED:I:PCIe2 4-Port (10GbE SFP+ & 1GbE RJ45) Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.e4148a1614109304.rte:7.2.5.0::COMMITTED:I:PCIe2 4-Port (10GbE SFP+ & 1GbE RJ45) Adapter :
+/usr/lib/objrepos:devices.pciex.e4148a1614109404.diag:7.2.5.0::COMMITTED:I:PCIe2 4-Port (10GbE SFP+ & 1GbE RJ45) Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.e4148a1614109404.rte:7.2.5.0::COMMITTED:I:PCIe2 4-Port (10GbE SFP+ & 1GbE RJ45) Adapter :
+/usr/lib/objrepos:devices.pciex.e4148e1614109204.diag:7.2.5.100::COMMITTED:I:PCIe2 2-Port 10GbE Base-T Adapter Diagnostics :
+/usr/lib/objrepos:devices.pciex.e4148e1614109204.rte:7.2.5.0::COMMITTED:I:PCIe2 2-Port 10GbE Base-T Adapter :
+/usr/lib/objrepos:devices.pciex.pciexclass.010802.diag:7.2.5.101::APPLIED:F:PCIe NVMe Adapter Diagnostics:
+/usr/lib/objrepos:devices.pciex.pciexclass.010802.rte:7.2.5.101::APPLIED:F:PCIe NVMe Adapter Software:
+/usr/lib/objrepos:devices.sas.diag:7.2.5.101::APPLIED:F:Serial Attached SCSI Device Diagnostics:
+/usr/lib/objrepos:devices.sas.disk.ibm.mpio.rte:1.0.0.0::COMMITTED:I:IBM MPIO SAS Disk Device:
+/usr/lib/objrepos:devices.sas.rte:7.2.5.0::COMMITTED:I:Serial Attached SCSI Device Software :
+/usr/lib/objrepos:devices.sata.diag:7.2.0.0::COMMITTED:I:Serial ATA Device Diagnostics :
+/usr/lib/objrepos:devices.sata.rte:7.2.0.0::COMMITTED:I:Serial ATA Device Software :
+/usr/lib/objrepos:devices.scsi.disk.diag.com:7.2.5.101::APPLIED:F:Common Disk Diagnostic Service Aid:
+/usr/lib/objrepos:devices.scsi.disk.diag.rte:7.2.5.0::COMMITTED:I:SCSI CD_ROM, Disk Device Diagnostics :
+/usr/lib/objrepos:devices.scsi.disk.rspc:7.2.0.0::COMMITTED:I:RISC PC SCSI CD-ROM, Disk, Read/Write Optical Software :
+/usr/lib/objrepos:devices.scsi.disk.rte:7.2.5.101::APPLIED:F:SCSI CD-ROM, Disk, Read/Write Optical Device Software:
+/usr/lib/objrepos:devices.scsi.ses.diag:7.2.5.0::COMMITTED:I:SCSI Enclosure Services Device Diagnostics :
+/usr/lib/objrepos:devices.scsi.ses.rte:7.2.5.0::COMMITTED:I:SCSI Enclosure Device Software :
+/usr/lib/objrepos:devices.scsi.tape.diag:7.2.5.0::COMMITTED:I:SCSI Tape Device Diagnostics :
+/usr/lib/objrepos:devices.scsi.tape.rspc:7.2.0.0::COMMITTED:I:RISC PC SCSI Tape Device Software :
+/usr/lib/objrepos:devices.scsi.tape.rte:7.2.5.0::COMMITTED:I:SCSI Tape Device Software :
+/usr/lib/objrepos:devices.scsi.tm.rte:7.2.5.0::COMMITTED:I:SCSI Target Mode Software :
+/usr/lib/objrepos:devices.serial.sb1.X11:7.2.5.0::COMMITTED:I:AIXwindows 6094-030 Spaceball 3-D Input Device Software :
+/usr/lib/objrepos:devices.serial.tablet1.X11:7.2.5.0::COMMITTED:I:AIXwindows Serial Tablet Input Device Software :
+/usr/lib/objrepos:devices.tty.rte:7.2.5.0::COMMITTED:I:TTY Device Driver Support Software :
+/usr/lib/objrepos:devices.usbif.010100.rte:7.2.4.0::COMMITTED:F:USB Audio Device Driver:
+/usr/lib/objrepos:devices.usbif.03000008.rte:7.2.4.0::COMMITTED:F:USB 3D Mouse Client Driver:
+/usr/lib/objrepos:devices.usbif.030101.rte:7.2.4.0::COMMITTED:F:USB Keyboard Client Driver:
+/usr/lib/objrepos:devices.usbif.030102.rte:7.2.4.0::COMMITTED:F:USB Mouse Client Driver:
+/usr/lib/objrepos:devices.usbif.08025002.diag:7.2.5.0::COMMITTED:I:USB Mass Storage Diagnostics :
+/usr/lib/objrepos:devices.usbif.08025002.rte:7.2.5.101::APPLIED:F:USB Mass Storage Device Software:
+/usr/lib/objrepos:devices.usbif.080400.diag:7.2.0.0::COMMITTED:I:USB Diskette Diagnostics :
+/usr/lib/objrepos:devices.usbif.080400.rte:7.2.4.0::COMMITTED:F:USB Diskette Client Driver:
+/usr/lib/objrepos:devices.usbif.usblibke.rte:7.2.4.0::COMMITTED:F:LIBUSB Device Support Software:
+/usr/lib/objrepos:devices.vdevice.IBM.l-lan.rte:7.2.5.101::APPLIED:F:Virtual I/O Ethernet Software:
+/usr/lib/objrepos:devices.vdevice.IBM.v-scsi.rte:7.2.5.101::APPLIED:F:Virtual SCSI Client Support:
+/usr/lib/objrepos:devices.vdevice.IBM.vfc-client.rte:7.2.5.103::APPLIED:F:Virtual Fibre Channel Client Support:
+/usr/lib/objrepos:devices.vdevice.IBM.vnic.rte:7.2.5.101::APPLIED:F:Virtual NIC Client Software:
+/usr/lib/objrepos:devices.vdevice.hvterm-protocol.rte:7.2.0.0::COMMITTED:I:Virtual Terminal Physical Support :
+/usr/lib/objrepos:devices.vdevice.hvterm1.rte:7.2.3.0::COMMITTED:I:Virtual Terminal Devices :
+/usr/lib/objrepos:devices.vdevice.vty-server.rte:7.2.4.0::COMMITTED:F:Virtual Terminal Devices:
+/usr/lib/objrepos:devices.virtio.core.rte:7.2.4.0::COMMITTED:F:Virtio Core Device Software:
+/usr/lib/objrepos:devices.virtio.ethernet.rte:7.2.4.0::COMMITTED:F:Virtio Ethernet Device Software:
+/usr/lib/objrepos:devices.virtio.scsi.rte:7.2.5.0::COMMITTED:I:virtio SCSI Adapter Device Software :
+/usr/lib/objrepos:expect.base:5.45.4.0::COMMITTED:I:Binary executable files of Expect:
+/usr/lib/objrepos:expect.man.en_US:5.45.4.0::COMMITTED:I:Expect man page documentation:
+/usr/lib/objrepos:gsksa.rte:7.0.3.18::COMMITTED:I:AIX Certificate and SSL Base Runtime ACME Toolkit:
+/usr/lib/objrepos:gskta.rte:7.0.3.20::COMMITTED:I:AIX Certificate and SSL Base Runtime ACME Toolkit:
+/usr/lib/objrepos:httpd.license:2.2.14.0::COMMITTED:I:Apache Http Server license files:
+/usr/lib/objrepos:httpd.man.en_US:2.2.14.0::COMMITTED:I:Apache Http Server man page documentation:
+/usr/lib/objrepos:idsldap.clt32bit64.rte:6.4.0.23::COMMITTED:I:Directory Server - 32 bit Client:
+/usr/lib/objrepos:idsldap.clt64bit64.rte:6.4.0.23::COMMITTED:I:Directory Server - 64 bit Client:
+/usr/lib/objrepos:idsldap.clt_max_crypto32bit64.rte:6.4.0.23::COMMITTED:I:Directory Server - 32 bit Client (SSL):
+/usr/lib/objrepos:idsldap.clt_max_crypto64bit64.rte:6.4.0.23::COMMITTED:I:Directory Server - 64 bit Client (SSL):
+/usr/lib/objrepos:idsldap.cltbase64.adt:6.4.0.23::COMMITTED:I:Directory Server - Base Client:
+/usr/lib/objrepos:idsldap.cltbase64.rte:6.4.0.23::COMMITTED:I:Directory Server - Base Client:
+/usr/lib/objrepos:idsldap.cltjava64.rte:6.4.0.23::COMMITTED:I:Directory Server - Java Client:
+/usr/lib/objrepos:idsldap.license64.rte:6.4.0.23::COMMITTED:I:Directory Server - License:
+/usr/lib/objrepos:infocenter.man.EN_US.commands:7.2.5.0::COMMITTED:I:AIX manual commands - U.S. English:
+/usr/lib/objrepos:infocenter.man.EN_US.files:7.2.5.0::COMMITTED:I:AIX manual files - U.S. English:
+/usr/lib/objrepos:infocenter.man.EN_US.libs:7.2.5.0::COMMITTED:I:AIX manual libs - U.S. English:
+/usr/lib/objrepos:invscout.com:2.2.0.1::COMMITTED:I:Inventory Scout Microcode Catalog:
+/usr/lib/objrepos:invscout.ldb:2.2.0.2::COMMITTED:I:Inventory Scout Logic Database:
+/usr/lib/objrepos:invscout.rte:2.2.0.20::COMMITTED:I:Inventory Scout Runtime:
+/usr/lib/objrepos:lsof.base:6.1.0.4820::COMMITTED:I:List Of Open Files:
+/usr/lib/objrepos:lsof.license:6.1.0.4820::COMMITTED:I:List Of Open Files:
+/usr/lib/objrepos:lsof.man.en_US:6.1.0.4820::COMMITTED:I:List Of Open Files Documentation - U.S. English:
+/usr/lib/objrepos:mcr.rte:7.2.5.102::APPLIED:F:Metacluster Checkpoint and Restart:
+/usr/lib/objrepos:openssh.base.client:8.1.102.2105::COMMITTED:I:Open Secure Shell Commands:
+/usr/lib/objrepos:openssh.base.server:8.1.102.2105::COMMITTED:I:Open Secure Shell Server:
+/usr/lib/objrepos:openssh.license:8.1.102.2105::COMMITTED:I:Open Secure Shell License:
+/usr/lib/objrepos:openssh.man.en_US:8.1.102.2105::COMMITTED:I:Open Secure Shell Documentation - U.S. English:
+/usr/lib/objrepos:openssh.msg.FR_FR:8.1.102.2105::COMMITTED:I:Open Secure Shell Messages - French (UTF):
+/usr/lib/objrepos:openssh.msg.en_US:8.1.102.2105::COMMITTED:I:Open Secure Shell Messages - U.S. English:
+/usr/lib/objrepos:openssh.msg.fr_FR:8.1.102.2105::COMMITTED:I:Open Secure Shell Messages - French:
+/usr/lib/objrepos:openssl.base:1.0.2.2104::COMMITTED:I:Open Secure Socket Layer:EFIXLOCKED
+/usr/lib/objrepos:openssl.license:1.0.2.2104::COMMITTED:I:Open Secure Socket License:
+/usr/lib/objrepos:openssl.man.en_US:1.0.2.2104::COMMITTED:I:Open Secure Socket Layer:
+/usr/lib/objrepos:perfagent.server:7.2.4.0::COMMITTED:F:Performance Agent Daemons & Utilities:
+/usr/lib/objrepos:perfagent.tools:7.2.5.101::APPLIED:F:Local Performance Analysis & Control Commands:
+/usr/lib/objrepos:perl.libext:2.4.5.0::COMMITTED:I:Perl Library Extensions :
+/usr/lib/objrepos:perl.rte:5.28.1.4::COMMITTED:I:Perl Version 5 Runtime Environment:
+/usr/lib/objrepos:printers.msg.en_US.rte:7.2.0.0::COMMITTED:I:Printer Backend Messages - U.S. English :
+/usr/lib/objrepos:printers.rte:7.2.4.0::COMMITTED:F:Printer Backend:
+/usr/lib/objrepos:rpm.rte:4.15.1.3::COMMITTED:I:RPM Package Manager:
+/usr/lib/objrepos:rsct.basic.hacmp:3.2.6.0::COMMITTED:I:RSCT Basic Function (HACMP/ES Support):
+/usr/lib/objrepos:rsct.basic.rte:3.2.6.4::APPLIED:F:RSCT Basic Function:
+/usr/lib/objrepos:rsct.basic.sp:3.2.6.0::COMMITTED:I:RSCT Basic Function (PSSP Support):
+/usr/lib/objrepos:rsct.compat.basic.hacmp:3.2.6.0::COMMITTED:I:RSCT Event Management Basic Function (HACMP/ES Support):
+/usr/lib/objrepos:rsct.compat.basic.rte:3.2.6.0::COMMITTED:I:RSCT Event Management Basic Function:
+/usr/lib/objrepos:rsct.compat.basic.sp:3.2.6.0::COMMITTED:I:RSCT Event Management Basic Function (PSSP Support):
+/usr/lib/objrepos:rsct.compat.clients.hacmp:3.2.6.0::COMMITTED:I:RSCT Event Management Client Function (HACMP/ES Support):
+/usr/lib/objrepos:rsct.compat.clients.rte:3.2.6.0::COMMITTED:I:RSCT Event Management Client Function:
+/usr/lib/objrepos:rsct.compat.clients.sp:3.2.6.0::COMMITTED:I:RSCT Event Management Client Function (PSSP Support):
+/usr/lib/objrepos:rsct.core.auditrm:3.2.6.0::COMMITTED:I:RSCT Audit Log Resource Manager:
+/usr/lib/objrepos:rsct.core.errm:3.2.6.2::APPLIED:F:RSCT Event Response Resource Manager:
+/usr/lib/objrepos:rsct.core.fsrm:3.2.6.0::COMMITTED:I:RSCT File System Resource Manager:
+/usr/lib/objrepos:rsct.core.gui:3.2.6.0::COMMITTED:I:RSCT Graphical User Interface:
+/usr/lib/objrepos:rsct.core.hostrm:3.2.6.3::APPLIED:F:RSCT Host Resource Manager:
+/usr/lib/objrepos:rsct.core.lprm:3.2.6.0::COMMITTED:I:RSCT Least Privilege Resource Manager:
+/usr/lib/objrepos:rsct.core.microsensor:3.2.6.0::COMMITTED:I:RSCT MicroSensor Resource Manager:
+/usr/lib/objrepos:rsct.core.rmc:3.2.6.4::APPLIED:F:RSCT Resource Monitoring and Control:
+/usr/lib/objrepos:rsct.core.sec:3.2.6.1::APPLIED:F:RSCT Security:
+/usr/lib/objrepos:rsct.core.sensorrm:3.2.6.0::COMMITTED:I:RSCT Sensor Resource Manager:
+/usr/lib/objrepos:rsct.core.sr:3.2.6.4::APPLIED:F:RSCT Registry:
+/usr/lib/objrepos:rsct.core.utils:3.2.6.4::APPLIED:F:RSCT Utilities:
+/usr/lib/objrepos:rsct.msg.EN_US.core.auditrm:3.2.6.0::COMMITTED:I:RSCT Audit Log RM Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.errm:3.2.6.0::COMMITTED:I:RSCT Event Response RM Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.fsrm:3.2.6.0::COMMITTED:I:RSCT File System RM Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.gui:3.2.6.0::COMMITTED:I:RSCT GUI Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.hostrm:3.2.6.0::COMMITTED:I:RSCT Host RM Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.lprm:3.2.6.0::COMMITTED:I:RSCT LPRM Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.microsensorrm:3.2.6.0::COMMITTED:I:RSCT MicorSensor RM Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.rmc:3.2.6.0::COMMITTED:I:RSCT RMC Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.sec:3.2.6.0::COMMITTED:I:RSCT Security Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.sensorrm:3.2.6.0::COMMITTED:I:RSCT Sensor RM Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.sr:3.2.6.0::COMMITTED:I:RSCT Registry Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.core.utils:3.2.6.0::COMMITTED:I:RSCT Utilities Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.EN_US.opt.storagerm:3.2.6.0::COMMITTED:I:RSCT Storage RM Msgs - U.S. English (UTF):
+/usr/lib/objrepos:rsct.msg.en_US.basic.rte:3.2.6.0::COMMITTED:I:RSCT Basic Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.auditrm:3.2.6.0::COMMITTED:I:RSCT Audit Log RM Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.errm:3.2.6.0::COMMITTED:I:RSCT Event Response RM Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.fsrm:3.2.6.0::COMMITTED:I:RSCT File System RM Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.gui:3.2.6.0::COMMITTED:I:RSCT GUI Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.gui.com:3.2.6.0::COMMITTED:I:RSCT GUI JAVA Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.hostrm:3.2.6.0::COMMITTED:I:RSCT Host RM Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.lprm:3.2.6.0::COMMITTED:I:RSCT LPRM Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.microsensorrm:3.2.6.0::COMMITTED:I:RSCT MicorSensor RM Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.rmc:3.2.6.0::COMMITTED:I:RSCT RMC Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.rmc.com:3.2.6.0::COMMITTED:I:RSCT RMC JAVA Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.sec:3.2.6.0::COMMITTED:I:RSCT Security Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.sensorrm:3.2.6.0::COMMITTED:I:RSCT Sensor RM Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.sr:3.2.6.0::COMMITTED:I:RSCT Registry Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.core.utils:3.2.6.0::COMMITTED:I:RSCT Utilities Msgs - U.S. English:
+/usr/lib/objrepos:rsct.msg.en_US.opt.storagerm:3.2.6.0::COMMITTED:I:RSCT Storage RM Msgs - U.S. English:
+/usr/lib/objrepos:rsct.opt.stackdump:3.2.6.0::COMMITTED:I:RSCT Stackdump module:
+/usr/lib/objrepos:rsct.opt.storagerm:3.2.6.3::APPLIED:F:RSCT Storage Resource Manager:
+/usr/lib/objrepos:sam.adapter:4.1.0.4::COMMITTED:I:IBM Tivoli System Automation for Multiplatforms - End-to-End Adapter:
+/usr/lib/objrepos:sam.core.rte:4.1.0.4::COMMITTED:I:IBM Tivoli System Automation for Multiplatforms:
+/usr/lib/objrepos:sam.msg.DE_DE.core:4.1.0.4::COMMITTED:I:SAM Msgs - German (UTF):
+/usr/lib/objrepos:sam.msg.ES_ES.core:4.1.0.4::COMMITTED:I:SAM Msgs - Spanish (UTF):
+/usr/lib/objrepos:sam.msg.FR_FR.core:4.1.0.4::COMMITTED:I:SAM Msgs - French (UTF):
+/usr/lib/objrepos:sam.msg.IT_IT.core:4.1.0.4::COMMITTED:I:SAM Msgs - Italian (UTF):
+/usr/lib/objrepos:sam.msg.JA_JP.core:4.1.0.4::COMMITTED:I:SAM Msgs - Japanese (UTF):
+/usr/lib/objrepos:sam.msg.Ja_JP.core:4.1.0.4::COMMITTED:I:SAM Msgs - Japanese (IBM-943 SJIS):
+/usr/lib/objrepos:sam.msg.KO_KR.core:4.1.0.4::COMMITTED:I:SAM Msgs - Korean (UTF):
+/usr/lib/objrepos:sam.msg.PT_BR.core:4.1.0.4::COMMITTED:I:SAM Msgs - Brazilian Portuguese (UTF):
+/usr/lib/objrepos:sam.msg.ZH_CN.core:4.1.0.4::COMMITTED:I:SAM Msgs - Simplified Chinese (UTF):
+/usr/lib/objrepos:sam.msg.ZH_TW.core:4.1.0.4::COMMITTED:I:SAM Msgs - Traditional Chinese (UTF):
+/usr/lib/objrepos:sam.msg.Zh_CN.core:4.1.0.4::COMMITTED:I:SAM Msgs - Simplified Chinese (GB18030):
+/usr/lib/objrepos:sam.msg.Zh_TW.core:4.1.0.4::COMMITTED:I:SAM Msgs - Traditional Chinese (big5):
+/usr/lib/objrepos:sam.msg.de_DE.core:4.1.0.4::COMMITTED:I:SAM Msgs - German (ISO8859-1):
+/usr/lib/objrepos:sam.msg.es_ES.core:4.1.0.4::COMMITTED:I:SAM Msgs - Spanish (ISO8859-1):
+/usr/lib/objrepos:sam.msg.fr_FR.core:4.1.0.4::COMMITTED:I:SAM Msgs - French (ISO8859-1):
+/usr/lib/objrepos:sam.msg.it_IT.core:4.1.0.4::COMMITTED:I:SAM Msgs - Italian (ISO8859-1):
+/usr/lib/objrepos:sam.msg.ja_JP.core:4.1.0.4::COMMITTED:I:SAM Msgs - Japanese (IBM-eucJP):
+/usr/lib/objrepos:sam.msg.ko_KR.core:4.1.0.4::COMMITTED:I:SAM Msgs - Korean (IBM-eucKR):
+/usr/lib/objrepos:sam.msg.pt_BR.core:4.1.0.4::COMMITTED:I:SAM Msgs - Brazilian Portuguese (ISO8859-1):
+/usr/lib/objrepos:sam.msg.zh_CN.core:4.1.0.4::COMMITTED:I:SAM Msgs - Simplified Chinese (IBM-eucCN):
+/usr/lib/objrepos:sam.msg.zh_TW.core:4.1.0.4::COMMITTED:I:SAM Msgs - Traditional Chinese (IBM-eucTW):
+/usr/lib/objrepos:sam.policies.one:4.1.0.4::COMMITTED:I:IBM Tivoli System Automation for Multiplatforms - Policies:
+/usr/lib/objrepos:sam.policies.two:4.1.0.4::COMMITTED:I:IBM Tivoli System Automation for Multiplatforms - Policies:
+/usr/lib/objrepos:sam.sappolicy:4.1.0.4::COMMITTED:I:IBM Tivoli System Automation for Multiplatforms - SAP HA Policy:
+/usr/lib/objrepos:security.acf:7.2.5.103::APPLIED:F:ACF/PKCS11 Device Driver:
+/usr/lib/objrepos:sysmgt.cfgassist:7.2.5.0::COMMITTED:I:Configuration Assistant :
+/usr/lib/objrepos:sysmgtlib.framework.core:7.2.0.0::COMMITTED:I:System Management Service Libraries Common Code :
+/usr/lib/objrepos:sysmgtlib.libraries.apps:7.2.0.0::COMMITTED:I:System Management Service Libraries Application Code :
+/usr/lib/objrepos:tcl.base:8.6.10.0::COMMITTED:I:Binary executable files of Tcl:
+/usr/lib/objrepos:tcl.man.en_US:8.6.10.0::COMMITTED:I:Tcl man page documentation:
+/usr/lib/objrepos:tivoli.tivguid:1.3.4.1::COMMITTED:I:IBM Tivoli GUID on AIX:
+/usr/lib/objrepos:tk.base:8.6.10.0::COMMITTED:I:Binary executable files of Tk:
+/usr/lib/objrepos:tk.man.en_US:8.6.10.0::COMMITTED:I:Tk man page documentation:
+/usr/lib/objrepos:wio.common:7.2.5.0::COMMITTED:I:Common I/O Support for Workload Partitions :
+/usr/lib/objrepos:wio.fcp:7.2.4.0::COMMITTED:F:FC I/O Support for Workload Partitions:
+/usr/lib/objrepos:wio.vscsi:7.2.5.0::COMMITTED:I:VSCSI I/O Support for Workload Partitions :
+/usr/lib/objrepos:xlC.aix61.rte:16.1.0.8::COMMITTED:I:IBM XL C++ Runtime for AIX 6.1 and later :
+/usr/lib/objrepos:xlC.cpp:9.0.0.0::COMMITTED:I:C for AIX Preprocessor:
+/usr/lib/objrepos:xlC.msg.en_US.cpp:9.0.0.0::COMMITTED:I:C for AIX Preprocessor Messages--U.S. English:
+/usr/lib/objrepos:xlC.msg.en_US.rte:16.1.0.8::COMMITTED:I:IBM XL C++ Runtime Messages--U.S. English :
+/usr/lib/objrepos:xlC.rte:16.1.0.8::COMMITTED:I:IBM XL C++ Runtime for AIX :
+/usr/lib/objrepos:xlC.sup.aix50.rte:9.0.0.1::COMMITTED:I:XL C/C++ Runtime for AIX 5.2:
+/etc/objrepos:Firefox.base.rte:3.6.25.2::COMMITTED:I:Firefox Web Browser:
+/etc/objrepos:ICU4C.rte:7.2.5.0::COMMITTED:I:International Components for Unicode :
+/etc/objrepos:Java6.sdk:6.0.0.655::COMMITTED:F:Java SDK 32-bit:
+/etc/objrepos:Java7_64.jre:7.0.0.705::APPLIED:F:Java SDK 64-bit Java Runtime Environment:
+/etc/objrepos:Java8_64.jre:8.0.0.635::COMMITTED:I:Java SDK 64-bit Java Runtime Environment :
+/etc/objrepos:Tivoli_Management_Agent.client.rte:3.7.1.0::COMMITTED:I:Management Framework Endpoint Runtime":
+/etc/objrepos:X11.adt.lib:7.2.5.0::COMMITTED:I:AIXwindows Application Development Toolkit Libraries :
+/etc/objrepos:X11.apps.aixterm:7.2.5.0::COMMITTED:I:AIXwindows aixterm Application :
+/etc/objrepos:X11.apps.clients:7.2.5.0::COMMITTED:I:AIXwindows Client Applications :
+/etc/objrepos:X11.apps.config:7.2.5.0::COMMITTED:I:AIXwindows Configuration Applications :
+/etc/objrepos:X11.apps.custom:7.2.5.0::COMMITTED:I:AIXwindows Customizing Tool :
+/etc/objrepos:X11.apps.msmit:7.2.5.0::COMMITTED:I:AIXwindows msmit Application :
+/etc/objrepos:X11.apps.rte:7.2.5.0::COMMITTED:I:AIXwindows Runtime Configuration Applications :
+/etc/objrepos:X11.apps.util:7.2.5.0::COMMITTED:I:AIXwindows Utility Applications :
+/etc/objrepos:X11.apps.xdm:7.2.5.0::COMMITTED:I:AIXwindows xdm Application :
+/etc/objrepos:X11.apps.xterm:7.2.5.0::COMMITTED:I:AIXwindows xterm Application :
+/etc/objrepos:X11.base.lib:7.2.5.100::COMMITTED:I:AIXwindows Runtime Libraries :
+/etc/objrepos:X11.base.rte:7.2.5.100::COMMITTED:I:AIXwindows Runtime Environment :
+/etc/objrepos:X11.base.smt:7.2.3.15::COMMITTED:I:AIXwindows Runtime Shared Memory Transport :
+/etc/objrepos:X11.motif.lib:7.2.5.0::COMMITTED:I:AIXwindows Motif Libraries :
+/etc/objrepos:X11.motif.mwm:7.2.5.0::COMMITTED:I:AIXwindows Motif Window Manager :
+/etc/objrepos:X11.samples.apps.clients:7.2.5.0::COMMITTED:I:AIXwindows Sample X Consortium Clients Binary/Source :
+/etc/objrepos:X11.vsm.lib:7.2.5.0::COMMITTED:I:Visual System Managment Library :
+/etc/objrepos:adde.v2.ethernet.rte:7.2.5.100::COMMITTED:I:ADDE Ethernet Device Runtime Environment :
+/etc/objrepos:adde.v2.rdma.rte:7.2.2.0::COMMITTED:I:ADDE RDMA Device Runtime Environment :
+/etc/objrepos:artex.base.rte:7.2.5.101::APPLIED:F:AIX Runtime Expert:
+/etc/objrepos:artex.base.samples:7.2.5.100::COMMITTED:I:AIX Runtime Expert sample profiles :
+/etc/objrepos:bos.64bit:7.2.5.101::APPLIED:F:Base Operating System 64 bit Runtime:
+/etc/objrepos:bos.acct:7.2.5.102::APPLIED:F:Accounting Services:
+/etc/objrepos:bos.adt.base:7.2.5.102::APPLIED:F:Base Application Development Toolkit:
+/etc/objrepos:bos.adt.debug:7.2.5.102::APPLIED:F:Base Application Development Debuggers:
+/etc/objrepos:bos.adt.lib:7.2.5.101::APPLIED:F:Base Application Development Libraries:
+/etc/objrepos:bos.adt.libm:7.2.5.0::COMMITTED:I:Base Application Development Math Library :
+/etc/objrepos:bos.ae:7.2.5.0::COMMITTED:I:Activation Engine :
+/etc/objrepos:bos.ahafs:7.2.5.100::COMMITTED:I:Aha File System :
+/etc/objrepos:bos.aixpert.cmds:7.2.5.101::APPLIED:F:AIX Security Hardening:
+/etc/objrepos:bos.alt_disk_install.rte:7.2.5.103::APPLIED:F:Alternate Disk Installation Runtime:
+/etc/objrepos:bos.aso:7.2.5.102::APPLIED:F:Active System Optimizer:
+/etc/objrepos:bos.cdat:7.2.5.0::COMMITTED:I:Cluster Data Aggregation Tool :
+/etc/objrepos:bos.cdmount:7.2.5.0::COMMITTED:I:CD/DVD Automount Facility :
+/etc/objrepos:bos.cluster.rte:7.2.5.102::APPLIED:F:Cluster Aware AIX:
+/etc/objrepos:bos.clvm.enh:7.2.5.0::COMMITTED:I:Enhanced Concurrent Logical Volume Manager :
+/etc/objrepos:bos.diag.com:7.2.5.101::APPLIED:F:Common Hardware Diagnostics:
+/etc/objrepos:bos.diag.ecc:7.2.3.15::COMMITTED:I:Inventory Scout ECC Client :
+/etc/objrepos:bos.diag.rte:7.2.5.102::APPLIED:F:Hardware Diagnostics:
+/etc/objrepos:bos.diag.util:7.2.5.101::APPLIED:F:Hardware Diagnostics Utilities:
+/etc/objrepos:bos.ecc_client.rte:7.2.5.100::COMMITTED:I:Electronic Customer Care Runtime :
+/etc/objrepos:bos.esagent:7.2.5.0::COMMITTED:I:Electronic Service Agent :
+/etc/objrepos:bos.iconv.com:7.2.5.0::COMMITTED:I:Common Language to Language Converters :
+/etc/objrepos:bos.iocp.rte:7.2.5.100::COMMITTED:I:I/O Completion Ports API :
+/etc/objrepos:bos.loc.iso.en_US:7.2.5.0::COMMITTED:I:Base System Locale ISO Code Set - U.S. English :
+/etc/objrepos:bos.mh:7.2.0.0::COMMITTED:I:Mail Handler :
+/etc/objrepos:bos.mp64:7.2.5.105::APPLIED:F:Base Operating System 64-bit Multiprocessor Runtime:
+/etc/objrepos:bos.net.ipsec.keymgt:7.2.5.101::APPLIED:F:IP Security Key Management:
+/etc/objrepos:bos.net.ipsec.rte:7.2.5.102::APPLIED:F:IP Security:
+/etc/objrepos:bos.net.nfs.client:7.2.5.101::APPLIED:F:Network File System Client:
+/etc/objrepos:bos.net.nis.client:7.2.4.0::COMMITTED:F:Network Information Service Client:
+/etc/objrepos:bos.net.snapp:7.2.4.0::COMMITTED:F:System Networking Analysis and Performance Pilot:
+/etc/objrepos:bos.net.tcp.bind:7.2.5.101::APPLIED:F:TCP/IP BIND Server Applications:
+/etc/objrepos:bos.net.tcp.bind_utils:7.2.5.101::APPLIED:F:TCP/IP BIND Utility Applications:
+/etc/objrepos:bos.net.tcp.bootp:7.2.5.101::APPLIED:F:TCP/IP bootpd Application:
+/etc/objrepos:bos.net.tcp.client:7.2.5.0::COMMITTED:I:TCP/IP Client Support :
+/etc/objrepos:bos.net.tcp.client_core:7.2.5.104::APPLIED:F:TCP/IP Client Core Support:
+/etc/objrepos:bos.net.tcp.dfpd:7.2.5.1::COMMITTED:I:TCP/IP Dynamic Feedback Protocol Application :
+/etc/objrepos:bos.net.tcp.dhcp:7.2.5.1::COMMITTED:I:TCP/IP DHCP Client Application :
+/etc/objrepos:bos.net.tcp.dhcpd:7.2.5.1::COMMITTED:I:TCP/IP DHCP Server Applications :
+/etc/objrepos:bos.net.tcp.ftp:7.2.5.1::COMMITTED:I:TCP/IP ftp Client Application :
+/etc/objrepos:bos.net.tcp.ftpd:7.2.5.101::APPLIED:F:TCP/IP ftp Server Application:
+/etc/objrepos:bos.net.tcp.gated:7.2.5.102::APPLIED:F:TCP/IP gated Applications:
+/etc/objrepos:bos.net.tcp.imapd:7.2.5.101::APPLIED:F:TCP/IP imapd Applications:
+/etc/objrepos:bos.net.tcp.mail_utils:7.2.5.1::COMMITTED:I:TCP/IP Mail Utility Applications :
+/etc/objrepos:bos.net.tcp.ntp:7.2.5.101::APPLIED:F:TCP/IP ntp Applications:
+/etc/objrepos:bos.net.tcp.ntpd:7.2.5.100::COMMITTED:I:TCP/IP ntpd Applications :
+/etc/objrepos:bos.net.tcp.pop3d:7.2.5.101::APPLIED:F:TCP/IP pop3d Applications:
+/etc/objrepos:bos.net.tcp.pxed:7.2.5.1::COMMITTED:I:TCP/IP PXE Server Applications :
+/etc/objrepos:bos.net.tcp.rcmd:7.2.5.1::COMMITTED:I:TCP/IP Remote Command Client Applications :
+/etc/objrepos:bos.net.tcp.rcmd_server:7.2.5.101::APPLIED:F:TCP/IP Remote Command Server Applications:
+/etc/objrepos:bos.net.tcp.sendmail:7.2.5.101::APPLIED:F:TCP/IP sendmail Applications:
+/etc/objrepos:bos.net.tcp.server:7.2.5.0::COMMITTED:I:TCP/IP Server Support :
+/etc/objrepos:bos.net.tcp.server_core:7.2.5.100::COMMITTED:I:TCP/IP Server Core :
+/etc/objrepos:bos.net.tcp.slip:7.2.5.1::COMMITTED:I:TCP/IP SLIP Applications :
+/etc/objrepos:bos.net.tcp.slp:7.2.5.1::COMMITTED:I:TCP/IP SLP Applications :
+/etc/objrepos:bos.net.tcp.smit:7.2.5.1::COMMITTED:I:TCP/IP SMIT Support :
+/etc/objrepos:bos.net.tcp.snmp:7.2.5.101::APPLIED:F:TCP/IP SNMP Client Application:
+/etc/objrepos:bos.net.tcp.snmpd:7.2.5.102::APPLIED:F:TCP/IP SNMP Server Application:
+/etc/objrepos:bos.net.tcp.syslogd:7.2.5.1::COMMITTED:I:TCP/IP syslogd Application :
+/etc/objrepos:bos.net.tcp.tcpdump:7.2.5.100::COMMITTED:I:TCP/IP Trace Applications :
+/etc/objrepos:bos.net.tcp.telnet:7.2.5.1::COMMITTED:I:TCP/IP telnet Application :
+/etc/objrepos:bos.net.tcp.telnetd:7.2.5.101::APPLIED:F:TCP/IP telnetd Application:
+/etc/objrepos:bos.net.tcp.tftp:7.2.5.1::COMMITTED:I:TCP/IP tftp Client Applications :
+/etc/objrepos:bos.net.tcp.tftpd:7.2.5.1::COMMITTED:I:TCP/IP tftpd Server Application :
+/etc/objrepos:bos.net.tcp.timed:7.2.5.1::COMMITTED:I:TCP/IP timed Application :
+/etc/objrepos:bos.net.tcp.traceroute:7.2.5.1::COMMITTED:I:TCP/IP BIND traceroute Applications :
+/etc/objrepos:bos.net.tcp.x500:7.2.5.1::COMMITTED:I:TCP/IP x500 Related Support :
+/etc/objrepos:bos.net.uucode:7.2.5.0::COMMITTED:I:Unix to Unix Copy Utilities :
+/etc/objrepos:bos.net.uucp:7.2.4.0::COMMITTED:F:Unix to Unix Copy Program:
+/etc/objrepos:bos.perf.diag_tool:7.2.2.0::COMMITTED:I:Performance Diagnostic Tool :
+/etc/objrepos:bos.perf.fdpr:7.2.5.0::COMMITTED:I:Feedback Directed Program Restructuring performance tool :
+/etc/objrepos:bos.perf.libperfstat:7.2.5.101::APPLIED:F:Performance Statistics Library Interface:
+/etc/objrepos:bos.perf.perfstat:7.2.5.101::APPLIED:F:Performance Statistics Interface:
+/etc/objrepos:bos.perf.pmaix:7.2.3.15::COMMITTED:I:Performance Management :
+/etc/objrepos:bos.perf.proctools:7.2.5.0::COMMITTED:I:Proc Filesystem Tools :
+/etc/objrepos:bos.perf.tools:7.2.5.101::APPLIED:F:Base Performance Tools:
+/etc/objrepos:bos.perf.tune:7.2.5.102::APPLIED:F:Performance Tuning Support:
+/etc/objrepos:bos.pmapi.lib:7.2.5.100::COMMITTED:I:Performance Monitor API Library :
+/etc/objrepos:bos.pmapi.pmsvcs:7.2.5.101::APPLIED:F:Performance Monitor API Kernel Extension:
+/etc/objrepos:bos.pmapi.tools:7.2.5.100::COMMITTED:I:Performance Monitor API Tools :
+/etc/objrepos:bos.rte:7.2.3.15::COMMITTED:I:Base Operating System Runtime:
+/etc/objrepos:bos.rte.Dt:7.2.0.0::COMMITTED:I:Desktop Integrator:
+/etc/objrepos:bos.rte.ILS:7.2.5.100::APPLIED:F:International Language Support:
+/etc/objrepos:bos.rte.SRC:7.2.5.101::APPLIED:F:System Resource Controller:
+/etc/objrepos:bos.rte.aio:7.2.5.100::APPLIED:F:Asynchronous I/O Extension:
+/etc/objrepos:bos.rte.archive:7.2.5.101::APPLIED:F:Archive Commands:
+/etc/objrepos:bos.rte.bind_cmds:7.2.5.103::APPLIED:F:Binder and Loader Commands:
+/etc/objrepos:bos.rte.boot:7.2.5.101::APPLIED:F:Boot Commands:
+/etc/objrepos:bos.rte.bosinst:7.2.5.0::APPLIED:F:Base OS Install Commands:
+/etc/objrepos:bos.rte.commands:7.2.5.101::APPLIED:F:Commands:
+/etc/objrepos:bos.rte.compare:7.2.5.0::APPLIED:F:File Compare Commands:
+/etc/objrepos:bos.rte.console:7.2.5.100::APPLIED:F:Console:
+/etc/objrepos:bos.rte.control:7.2.5.101::APPLIED:F:System Control Commands:
+/etc/objrepos:bos.rte.cron:7.2.5.0::APPLIED:F:Batch Operations:
+/etc/objrepos:bos.rte.date:7.2.5.101::APPLIED:F:Date Control Commands:
+/etc/objrepos:bos.rte.devices:7.2.5.0::APPLIED:F:Base Device Drivers:
+/etc/objrepos:bos.rte.diag:7.2.4.0::COMMITTED:F:Diagnostics:
+/etc/objrepos:bos.rte.edit:7.2.5.101::APPLIED:F:Editors:
+/etc/objrepos:bos.rte.filesystem:7.2.5.102::APPLIED:F:Filesystem Administration:
+/etc/objrepos:bos.rte.iconv:7.2.4.0::COMMITTED:F:Language Converters:
+/etc/objrepos:bos.rte.install:7.2.5.105::APPLIED:F:LPP Install Commands:
+/etc/objrepos:bos.rte.jfscomp:7.2.3.0::COMMITTED:I:JFS Compression:
+/etc/objrepos:bos.rte.libc:7.2.5.101::APPLIED:F:libc Library:
+/etc/objrepos:bos.rte.libcfg:7.2.5.0::APPLIED:F:libcfg Library:
+/etc/objrepos:bos.rte.libcur:7.2.5.100::APPLIED:F:libcurses Library:
+/etc/objrepos:bos.rte.libpthreads:7.2.5.102::APPLIED:F:libpthreads Library:
+/etc/objrepos:bos.rte.libqb:7.2.4.0::COMMITTED:F:libqb Library:
+/etc/objrepos:bos.rte.loc:7.2.1.0::COMMITTED:I:Base Locale Support:
+/etc/objrepos:bos.rte.lvm:7.2.5.101::APPLIED:F:Logical Volume Manager:
+/etc/objrepos:bos.rte.methods:7.2.5.100::APPLIED:F:Device Config Methods:
+/etc/objrepos:bos.rte.misc_cmds:7.2.5.0::APPLIED:F:Miscellaneous Commands:
+/etc/objrepos:bos.rte.mlslib:7.2.0.0::COMMITTED:I:Trusted AIX Libraries:
+/etc/objrepos:bos.rte.net:7.2.5.0::APPLIED:F:Network:
+/etc/objrepos:bos.rte.odm:7.2.4.0::COMMITTED:F:Object Data Manager:
+/etc/objrepos:bos.rte.printers:7.2.5.100::APPLIED:F:Front End Printer Support:
+/etc/objrepos:bos.rte.security:7.2.5.102::APPLIED:F:Base Security Function:
+/etc/objrepos:bos.rte.serv_aid:7.2.5.101::APPLIED:F:Error Log Service Aids:
+/etc/objrepos:bos.rte.shell:7.2.5.102::APPLIED:F:Shells (bsh, ksh, csh):
+/etc/objrepos:bos.rte.streams:7.2.5.101::APPLIED:F:Streams Libraries:
+/etc/objrepos:bos.rte.tty:7.2.5.101::APPLIED:F:Base TTY Support and Commands:
+/etc/objrepos:bos.suma:7.2.5.102::APPLIED:F:Service Update Management Assistant (SUMA):
+/etc/objrepos:bos.sysmgt.loginlic:7.2.4.0::COMMITTED:F:License Management:
+/etc/objrepos:bos.sysmgt.nim.client:7.2.5.101::APPLIED:F:Network Install Manager - Client Tools:
+/etc/objrepos:bos.sysmgt.quota:7.2.5.0::COMMITTED:I:Filesystem Quota Commands :
+/etc/objrepos:bos.sysmgt.serv_aid:7.2.5.102::APPLIED:F:Software Error Logging and Dump Service Aids:
+/etc/objrepos:bos.sysmgt.smit:7.2.5.0::COMMITTED:I:System Management Interface Tool (SMIT) :
+/etc/objrepos:bos.sysmgt.sysbr:7.2.5.102::APPLIED:F:System Backup and BOS Install Utilities:
+/etc/objrepos:bos.sysmgt.trace:7.2.5.102::APPLIED:F:Software Trace Service Aids:
+/etc/objrepos:bos.terminfo.rte:7.2.5.0::COMMITTED:I:Run-time Environment for AIX Terminals :
+/etc/objrepos:bos.txt.spell:7.2.5.0::COMMITTED:I:Writer's Tools Commands :
+/etc/objrepos:bos.txt.tfs:7.2.5.100::COMMITTED:I:Text Formatting Services Commands :
+/etc/objrepos:bos.wpars:7.2.5.0::COMMITTED:I:AIX Workload Partitions :
+/etc/objrepos:bos.xerces.lib:3.2.2.0::COMMITTED:I:APACHE Xerces-C++ XML parsing library:
+/etc/objrepos:cdrtools.base:1.9.0.9::COMMITTED:I:CD/DVD recorder:
+/etc/objrepos:clic.rte.kernext:4.10.0.2::COMMITTED:I:CryptoLite for C Kernel:
+/etc/objrepos:clic.rte.lib:4.10.0.2::COMMITTED:I:CryptoLite for C Library:
+/etc/objrepos:devices.artic960.diag:7.2.5.0::COMMITTED:I:IBM ARTIC960 Adapter Diagnostics :
+/etc/objrepos:devices.artic960.rte:7.2.5.0::COMMITTED:I:IBM ARTIC960 Runtime Support :
+/etc/objrepos:devices.artic960.ucode:7.2.5.0::COMMITTED:I:IBM ARTIC960 Adapter Software :
+/etc/objrepos:devices.capi.14105043.rte:7.2.4.0::COMMITTED:F:CAPI Memory Copy Accelerator Software:
+/etc/objrepos:devices.capi.1410f0041410f004.com:7.2.5.0::COMMITTED:I:Common CAPI Flash Adapter Device Software :
+/etc/objrepos:devices.capi.1410f0041410f004.diag:7.2.4.0::COMMITTED:F:CAPI Flash Adapter Diagnostics:
+/etc/objrepos:devices.chrp.IBM.lhca.rte:7.2.4.0::COMMITTED:F:Infiniband Logical HCA Runtime Environment:
+/etc/objrepos:devices.chrp.IBM.lhea.diag:7.2.5.0::COMMITTED:I:Host Ethernet Adapter Diagnostics :
+/etc/objrepos:devices.chrp.IBM.lhea.rte:7.2.4.0::COMMITTED:F:Host Ethernet Adapter (HEA) Runtime Environment:
+/etc/objrepos:devices.chrp.base.ServiceRM:2.5.1.3::COMMITTED:F:RSCT Service Resource Manager:
+/etc/objrepos:devices.chrp.base.diag:7.2.5.101::APPLIED:F:RISC CHRP Base System Device Diagnostics:
+/etc/objrepos:devices.chrp.base.rte:7.2.5.102::APPLIED:F:RISC PC Base System Device Software (CHRP):
+/etc/objrepos:devices.chrp.capi.rte:7.2.4.0::COMMITTED:F:CAPI Bus Software (CHRP):
+/etc/objrepos:devices.chrp.pci.rte:7.2.5.103::APPLIED:F:PCI Bus Software (CHRP):
+/etc/objrepos:devices.chrp.vdevice.rte:7.2.5.100::COMMITTED:I:Virtual I/O Bus Support :
+/etc/objrepos:devices.chrp_lpar.base.ras:7.2.5.0::COMMITTED:I:CHRP LPAR RAS Support :
+/etc/objrepos:devices.common.IBM.async.diag:7.2.5.0::COMMITTED:I:Common Serial Adapter Diagnostics :
+/etc/objrepos:devices.common.IBM.cflash.rte:7.2.5.0::COMMITTED:I:Common CAPI Flash Device Software :
+/etc/objrepos:devices.common.IBM.crypt.rte:7.2.5.101::APPLIED:F:Cryptographic Common Runtime Environment:
+/etc/objrepos:devices.common.IBM.cx.rte:7.2.5.0::COMMITTED:I:CX Common Adapter Software :
+/etc/objrepos:devices.common.IBM.disk.rte:7.2.5.0::COMMITTED:I:Common IBM Disk Software :
+/etc/objrepos:devices.common.IBM.ethernet.rte:7.2.5.101::APPLIED:F:Common Ethernet Software:
+/etc/objrepos:devices.common.IBM.fc.hba-api:7.2.5.0::COMMITTED:I:Common HBA API Library :
+/etc/objrepos:devices.common.IBM.fc.rte:7.2.5.101::APPLIED:F:Common IBM FC Software:
+/etc/objrepos:devices.common.IBM.fda.diag:7.2.5.0::COMMITTED:I:Common Diskette Adapter and Device Diagnostics :
+/etc/objrepos:devices.common.IBM.fda.rte:7.2.5.0::COMMITTED:I:Common Diskette Device Software :
+/etc/objrepos:devices.common.IBM.hdlc.rte:7.2.5.0::COMMITTED:I:Common HDLC Software :
+/etc/objrepos:devices.common.IBM.hdlc.sdlc:7.2.5.0::COMMITTED:I:SDLC COMIO Device Driver Emulation :
+/etc/objrepos:devices.common.IBM.ib.rte:7.2.5.100::COMMITTED:I:Infiniband Common Runtime Environment :
+/etc/objrepos:devices.common.IBM.ide.rte:7.2.0.0::COMMITTED:I:Common IDE I/O Controller Software :
+/etc/objrepos:devices.common.IBM.iscsi.rte:7.2.5.0::COMMITTED:I:Common iSCSI Files :
+/etc/objrepos:devices.common.IBM.ktm_std.rte:7.2.5.0::COMMITTED:I:Common Keyboard, Tablet, and Mouse Software :
+/etc/objrepos:devices.common.IBM.mpio.rte:7.2.5.101::APPLIED:F:MPIO Disk Path Control Module:
+/etc/objrepos:devices.common.IBM.mpt2.diag:7.2.5.0::COMMITTED:I:MPT SAS Device Diagnostics :
+/etc/objrepos:devices.common.IBM.mpt2.rte:7.2.4.0::COMMITTED:F:MPT SAS Device Software:
+/etc/objrepos:devices.common.IBM.scsi.rte:7.2.5.0::COMMITTED:I:Common SCSI I/O Controller Software :
+/etc/objrepos:devices.common.IBM.sissas.rte:7.2.5.0::COMMITTED:I:Common IBM SAS RAID Software :
+/etc/objrepos:devices.common.IBM.soe.rte:7.2.5.100::COMMITTED:I:Serial over Ethernet client driver :
+/etc/objrepos:devices.common.IBM.storfwork.rte:7.2.5.101::APPLIED:F:Storage Framework Module:
+/etc/objrepos:devices.common.IBM.usb.diag:7.2.5.0::COMMITTED:I:Common USB Adapter Diagnostics :
+/etc/objrepos:devices.common.IBM.usb.rte:7.2.5.0::COMMITTED:I:USB System Software :
+/etc/objrepos:devices.common.IBM.xhci.rte:7.2.5.100::COMMITTED:I:Common xHCI Adapter Device Software :
+/etc/objrepos:devices.common.base.diag:7.2.5.0::COMMITTED:I:Common Base System Diagnostics :
+/etc/objrepos:devices.common.rspcbase.rte:7.2.4.0::COMMITTED:F:RISC PC Common Base System Device Software:
+/etc/objrepos:devices.ethernet.ct3.cdli:7.2.5.0::COMMITTED:I:10 Gigabit Ethernet Adapter Software :
+/etc/objrepos:devices.ethernet.ct3.rte:7.2.5.0::COMMITTED:I:10 Gigabit Ethernet PCI-Express Host Bus Adapter Software :
+/etc/objrepos:devices.ethernet.lnc2.rte:7.2.5.102::APPLIED:F:10 Gigabit Ethernet PCI-Express Adapter Software (lnc2):
+/etc/objrepos:devices.ethernet.mlx.rte:7.2.5.102::APPLIED:F:RoCE Converged Network Adapter:
+/etc/objrepos:devices.ethernet.mlxc.rte:7.2.5.102::APPLIED:F:MLXC RoCE Adapter Software:
+/etc/objrepos:devices.ethernet.shi.rte:7.2.5.102::APPLIED:F:10 Gigabit Ethernet PCI-Express Adapter Software (shi):
+/etc/objrepos:devices.fcp.disk.rte:7.2.5.101::APPLIED:F:FC SCSI CD-ROM, Disk, Read/Write Optical Device Software:
+/etc/objrepos:devices.fcp.tape.rte:7.2.5.101::APPLIED:F:FC SCSI Tape Device Software:
+/etc/objrepos:devices.graphics.com:7.2.3.0::COMMITTED:I:Graphics Adapter Common Software :
+/etc/objrepos:devices.graphics.voo:7.2.5.0::COMMITTED:I:Graphics Adapter VOO and Stereo Software :
+/etc/objrepos:devices.ide.cdrom.diag:7.2.5.0::COMMITTED:I:IDE CDROM, Cdrom Device Diagnostics :
+/etc/objrepos:devices.ide.cdrom.rte:7.2.5.0::COMMITTED:I:IDE CDROM Device Software :
+/etc/objrepos:devices.iscsi_sw.rte:7.2.5.101::APPLIED:F:iSCSI Software Device Driver:
+/etc/objrepos:devices.loopback.rte:7.2.5.100::COMMITTED:I:Loopback Device Driver :
+/etc/objrepos:devices.pci.00100f00.rte:7.2.4.0::COMMITTED:F:SYM53C8xxA PCI SCSI I/O Controller Software:
+/etc/objrepos:devices.pci.00105000.com:7.2.4.0::COMMITTED:F:Common SAS Expansion Card Device Software:
+/etc/objrepos:devices.pci.02105e51.rte:7.2.5.0::COMMITTED:I:Native Display Adapter Software :
+/etc/objrepos:devices.pci.14102e00.diag:7.2.3.15::COMMITTED:I:IBM PCI SCSI RAID Adapter Diagnostics Support :
+/etc/objrepos:devices.pci.14102e00.rte:7.2.5.0::COMMITTED:I:IBM PCI SCSI RAID Adapter Device Software Support :
+/etc/objrepos:devices.pci.14103302.rte:7.2.5.0::COMMITTED:I:GXT135P Graphics Adapter Software :
+/etc/objrepos:devices.pci.14106602.diag:7.2.3.15::COMMITTED:I:PCI-X Dual Channel SCSI Adapter Diagnostics :
+/etc/objrepos:devices.pci.14106602.rte:7.2.5.0::COMMITTED:I:PCI-X Dual Channel SCSI Adapter Device Software :
+/etc/objrepos:devices.pci.14106802.rte:7.2.0.0::COMMITTED:I:Gigabit Ethernet-SX PCI-X Adapter Software :
+/etc/objrepos:devices.pci.14106902.rte:7.2.4.0::COMMITTED:F:10/100/1000 Base-TX PCI-X Adapter Software:
+/etc/objrepos:devices.pci.14107802.diag:7.2.0.0::COMMITTED:I:PCI-X Dual Channel Ultra320 SCSI RAID Adapter Diagnostics :
+/etc/objrepos:devices.pci.14107802.rte:7.2.5.0::COMMITTED:I:PCI-X Dual Channel Ultra320 SCSI RAID Adapter Software :
+/etc/objrepos:devices.pci.14108902.rte:7.2.0.0::COMMITTED:I:2-Port 10/100/1000 Base-TX PCI-X Adapter Software :
+/etc/objrepos:devices.pci.14108c00.rte:7.2.3.0::COMMITTED:I:ARTIC960Hx 4-Port Selectable PCI Adapter Runtime Software :
+/etc/objrepos:devices.pci.1410d002.com:7.2.4.0::COMMITTED:F:Common PCI iSCSI TOE Adapter Device Software:
+/etc/objrepos:devices.pci.1410d002.rte:7.2.0.0::COMMITTED:I:1000 Base-TX PCI-X iSCSI TOE Adapter Device Software :
+/etc/objrepos:devices.pci.1410e601.rte:7.2.3.0::COMMITTED:I:IBM Crypto Accelerator Adapter Software :
+/etc/objrepos:devices.pci.1410ec02.rte:7.2.3.0::COMMITTED:I:10 Gigabit Ethernet-LR PCI-X 2.0 DDR Adapter Software :
+/etc/objrepos:devices.pci.22106474.rte:7.2.5.0::COMMITTED:I:USB Host Controller (22106474) Software :
+/etc/objrepos:devices.pci.2b102725.rte:7.2.5.0::COMMITTED:I:GXT145 Graphics Adapter Software :
+/etc/objrepos:devices.pci.33103500.rte:7.2.5.0::COMMITTED:I:USB Host Controller (33103500) Software :
+/etc/objrepos:devices.pci.3310e000.rte:7.2.4.0::COMMITTED:F:USB Enhanced Host Controller Adapter (3310e000) Software:
+/etc/objrepos:devices.pci.331121b9.com:7.2.0.0::COMMITTED:I:IBM PCI 2-Port Multiprotocol Common Software :
+/etc/objrepos:devices.pci.331121b9.rte:7.2.3.0::COMMITTED:I:IBM PCI 2-Port Multiprotocol Device Driver :
+/etc/objrepos:devices.pci.4f111100.rte:7.2.0.0::COMMITTED:I:PCI 8-Port Asynchronous Adapter Software :
+/etc/objrepos:devices.pci.4f111b00.rte:7.2.0.0::COMMITTED:I:PCI 128-Port Asynchronous Adapter Software :
+/etc/objrepos:devices.pci.4f11c800.rte:7.2.5.100::COMMITTED:I:2-Port Asynchronous EIA-232 PCI Adapter Software :
+/etc/objrepos:devices.pci.77101223.com:7.2.4.0::COMMITTED:F:PCI FC Adapter (77101223) Common Software:
+/etc/objrepos:devices.pci.77102224.com:7.2.5.100::COMMITTED:I:PCI-X FC Adapter (77102224) Common Software :
+/etc/objrepos:devices.pci.99172604.rte:7.2.3.0::COMMITTED:I:USB Enhanced Host Controller Adapter (99172604) Software :
+/etc/objrepos:devices.pci.99172704.rte:7.2.5.0::COMMITTED:I:USB Host Controller (99172704) Software :
+/etc/objrepos:devices.pci.c1110358.rte:7.2.5.0::COMMITTED:I:USB Host Controller (c1110358) Software :
+/etc/objrepos:devices.pci.df1000f7.com:7.2.5.100::COMMITTED:I:Common PCI FC Adapter Device Software :
+/etc/objrepos:devices.pci.df1000f7.diag:7.2.5.0::COMMITTED:I:PCI FC Adapter Device Diagnostics :
+/etc/objrepos:devices.pci.df1000f7.rte:7.2.0.0::COMMITTED:I:PCI FC Adapter Device Software :
+/etc/objrepos:devices.pci.e414a816.rte:7.2.3.0::COMMITTED:I:Gigabit Ethernet-SX Adapter Software :
+/etc/objrepos:devices.pci.f41a0800.rte:7.2.2.15::COMMITTED:I:Virtio SCSI Adapter (f41a0800) :
+/etc/objrepos:devices.pciex.1410110614101106.diag:7.2.5.100::COMMITTED:I:IBM 4769 PCIe3 Cryptographic Coprocessor (1410110614101106) Diagnostics Software :
+/etc/objrepos:devices.pciex.1410110614101106.rte:7.2.5.100::COMMITTED:I:IBM 4769 PCIe3 Cryptographic Coprocessor (1410110614101106) Device Software :
+/etc/objrepos:devices.pciex.14104b0414104b04.com:7.2.4.0::COMMITTED:F:Common PCIe FPGA Accelerator Adapter Device Software:
+/etc/objrepos:devices.pciex.1410660414100000.rte:7.2.5.100::COMMITTED:I:IBM 4767 PCIe3 Cryptographic Coprocessor (1410660414100000) Device Software :
+/etc/objrepos:devices.pciex.14107a0314107b03.rte:7.2.5.100::COMMITTED:I:IBM Y4 PCI-E Cryptographic Coprocessor (14107a0314107b03) Device Software :
+/etc/objrepos:devices.pciex.771000801410b003.rte:7.2.3.15::COMMITTED:I:10 Gb Ethernet-SR PCI Express Dual Port Adapter Software :
+/etc/objrepos:devices.pciex.7710612214105006.com:7.2.5.102::APPLIED:F:Common PCIe3 FC Adapter Device Software:
+/etc/objrepos:devices.pciex.8680c71014108003.rte:7.2.3.16::COMMITTED:I:10 Gigabit Ethernet-LR PCI-Express Adapter Software :
+/etc/objrepos:devices.pciex.a21910071410d003.rte:7.2.5.0::COMMITTED:I:PCIe2 2-port 10GbE SR Adapter Software :
+/etc/objrepos:devices.pciex.b31503101410b504.rte:7.2.1.0::COMMITTED:I:RoCE Host Bus Adapter (b31503101410b504) :
+/etc/objrepos:devices.pciex.b31507101410e704.rte:7.2.3.0::COMMITTED:I:RoCE Host Bus Adapter (b31507101410e704) :
+/etc/objrepos:devices.pciex.b31507101410eb04.rte:7.2.3.0::COMMITTED:I:RoCE Host Bus Adapter (b31507101410eb04) :
+/etc/objrepos:devices.pciex.b3154a63.rte:7.2.3.16::COMMITTED:I:4X PCI-E DDR Infiniband Device Driver :
+/etc/objrepos:devices.pciex.b315506714101604.rte:7.2.1.0::COMMITTED:I:RoCE Host Bus Adapter (b315506714101604) :
+/etc/objrepos:devices.pciex.b315506714106104.rte:7.2.1.0::COMMITTED:I:RoCE Host Bus Adapter (b315506714106104) :
+/etc/objrepos:devices.pciex.b3155067b3157265.rte:7.2.1.0::COMMITTED:I:RoCE Host Bus Adapter (b3155067b3157265) :
+/etc/objrepos:devices.pciex.b3155067b3157365.rte:7.2.1.0::COMMITTED:I:RoCE Host Bus Adapter (b3155067b3157365) :
+/etc/objrepos:devices.pciex.df1060e214103404.com:7.2.5.102::APPLIED:F:Common PCIe3 FC Adapter Device Software:
+/etc/objrepos:devices.pciex.df1060e214103404.diag:7.2.5.101::APPLIED:F:PCIe2 10Gb 4-Port FCoE Mezzanine Adapter Device Diagnostics:
+/etc/objrepos:devices.pciex.e4143a16e4143009.rte:7.2.3.0::COMMITTED:I:4-Port Gigabit Ethernet PCI-Express Adapter Software :
+/etc/objrepos:devices.pciex.e4145616e4140518.rte:7.2.5.100::COMMITTED:I:2-Port Gigabit Ethernet PCI-Express Adapter Software :
+/etc/objrepos:devices.pciex.pciexclass.010802.rte:7.2.5.101::APPLIED:F:PCIe NVMe Adapter Software:
+/etc/objrepos:devices.sas.diag:7.2.5.101::APPLIED:F:Serial Attached SCSI Device Diagnostics:
+/etc/objrepos:devices.sas.rte:7.2.5.0::COMMITTED:I:Serial Attached SCSI Device Software :
+/etc/objrepos:devices.scsi.disk.diag.com:7.2.5.101::APPLIED:F:Common Disk Diagnostic Service Aid:
+/etc/objrepos:devices.scsi.disk.diag.rte:7.2.5.0::COMMITTED:I:SCSI CD_ROM, Disk Device Diagnostics :
+/etc/objrepos:devices.scsi.disk.rte:7.2.5.101::APPLIED:F:SCSI CD-ROM, Disk, Read/Write Optical Device Software:
+/etc/objrepos:devices.scsi.ses.diag:7.2.5.0::COMMITTED:I:SCSI Enclosure Services Device Diagnostics :
+/etc/objrepos:devices.scsi.ses.rte:7.2.5.0::COMMITTED:I:SCSI Enclosure Device Software :
+/etc/objrepos:devices.scsi.tape.diag:7.2.5.0::COMMITTED:I:SCSI Tape Device Diagnostics :
+/etc/objrepos:devices.scsi.tape.rte:7.2.5.0::COMMITTED:I:SCSI Tape Device Software :
+/etc/objrepos:devices.scsi.tm.rte:7.2.5.0::COMMITTED:I:SCSI Target Mode Software :
+/etc/objrepos:devices.serial.sb1.X11:7.2.5.0::COMMITTED:I:AIXwindows 6094-030 Spaceball 3-D Input Device Software :
+/etc/objrepos:devices.serial.tablet1.X11:7.2.5.0::COMMITTED:I:AIXwindows Serial Tablet Input Device Software :
+/etc/objrepos:devices.tty.rte:7.2.5.0::COMMITTED:I:TTY Device Driver Support Software :
+/etc/objrepos:devices.usbif.010100.rte:7.2.4.0::COMMITTED:F:USB Audio Device Driver:
+/etc/objrepos:devices.usbif.03000008.rte:7.2.4.0::COMMITTED:F:USB 3D Mouse Client Driver:
+/etc/objrepos:devices.usbif.030101.rte:7.2.4.0::COMMITTED:F:USB Keyboard Client Driver:
+/etc/objrepos:devices.usbif.030102.rte:7.2.4.0::COMMITTED:F:USB Mouse Client Driver:
+/etc/objrepos:devices.usbif.08025002.diag:7.2.5.0::COMMITTED:I:USB Mass Storage Diagnostics :
+/etc/objrepos:devices.usbif.08025002.rte:7.2.5.101::APPLIED:F:USB Mass Storage Device Software:
+/etc/objrepos:devices.usbif.080400.rte:7.2.4.0::COMMITTED:F:USB Diskette Client Driver:
+/etc/objrepos:devices.usbif.usblibke.rte:7.2.4.0::COMMITTED:F:LIBUSB Device Support Software:
+/etc/objrepos:devices.vdevice.IBM.l-lan.rte:7.2.5.101::APPLIED:F:Virtual I/O Ethernet Software:
+/etc/objrepos:devices.vdevice.IBM.v-scsi.rte:7.2.5.101::APPLIED:F:Virtual SCSI Client Support:
+/etc/objrepos:devices.vdevice.IBM.vfc-client.rte:7.2.5.103::APPLIED:F:Virtual Fibre Channel Client Support:
+/etc/objrepos:devices.vdevice.IBM.vnic.rte:7.2.5.101::APPLIED:F:Virtual NIC Client Software:
+/etc/objrepos:devices.vdevice.hvterm1.rte:7.2.3.0::COMMITTED:I:Virtual Terminal Devices :
+/etc/objrepos:devices.vdevice.vty-server.rte:7.2.4.0::COMMITTED:F:Virtual Terminal Devices:
+/etc/objrepos:devices.virtio.core.rte:7.2.4.0::COMMITTED:F:Virtio Core Device Software:
+/etc/objrepos:devices.virtio.ethernet.rte:7.2.4.0::COMMITTED:F:Virtio Ethernet Device Software:
+/etc/objrepos:devices.virtio.scsi.rte:7.2.5.0::COMMITTED:I:virtio SCSI Adapter Device Software :
+/etc/objrepos:expect.base:5.45.4.0::COMMITTED:I:Binary executable files of Expect:
+/etc/objrepos:idsldap.clt32bit64.rte:6.4.0.23::COMMITTED:I:Directory Server - 32 bit Client:
+/etc/objrepos:idsldap.clt64bit64.rte:6.4.0.23::COMMITTED:I:Directory Server - 64 bit Client:
+/etc/objrepos:idsldap.cltbase64.rte:6.4.0.23::COMMITTED:I:Directory Server - Base Client:
+/etc/objrepos:invscout.com:2.2.0.1::COMMITTED:I:Inventory Scout Microcode Catalog:
+/etc/objrepos:invscout.ldb:2.2.0.2::COMMITTED:I:Inventory Scout Logic Database:
+/etc/objrepos:invscout.rte:2.2.0.20::COMMITTED:I:Inventory Scout Runtime:
+/etc/objrepos:lsof.base:6.1.0.4820::COMMITTED:I:List Of Open Files:
+/etc/objrepos:mcr.rte:7.2.5.102::APPLIED:F:Metacluster Checkpoint and Restart:
+/etc/objrepos:openssh.base.client:8.1.102.2105::COMMITTED:I:Open Secure Shell Commands:
+/etc/objrepos:openssh.base.server:8.1.102.2105::COMMITTED:I:Open Secure Shell Server:
+/etc/objrepos:openssl.base:1.0.2.2104::COMMITTED:I:Open Secure Socket Layer:EFIXLOCKED
+/etc/objrepos:perfagent.server:7.2.4.0::COMMITTED:F:Performance Agent Daemons & Utilities:
+/etc/objrepos:perfagent.tools:7.2.5.101::APPLIED:F:Local Performance Analysis & Control Commands:
+/etc/objrepos:perl.libext:2.4.5.0::COMMITTED:I:Perl Library Extensions :
+/etc/objrepos:perl.rte:5.28.1.4::COMMITTED:I:Perl Version 5 Runtime Environment:
+/etc/objrepos:printers.rte:7.2.4.0::COMMITTED:F:Printer Backend:
+/etc/objrepos:rpm.rte:4.15.1.3::COMMITTED:I:RPM Package Manager:
+/etc/objrepos:rsct.basic.rte:3.2.6.4::APPLIED:F:RSCT Basic Function:
+/etc/objrepos:rsct.compat.basic.rte:3.2.6.0::COMMITTED:I:RSCT Event Management Basic Function:
+/etc/objrepos:rsct.core.auditrm:3.2.6.0::COMMITTED:I:RSCT Audit Log Resource Manager:
+/etc/objrepos:rsct.core.errm:3.2.6.2::APPLIED:F:RSCT Event Response Resource Manager:
+/etc/objrepos:rsct.core.fsrm:3.2.6.0::COMMITTED:I:RSCT File System Resource Manager:
+/etc/objrepos:rsct.core.gui:3.2.6.0::COMMITTED:I:RSCT Graphical User Interface:
+/etc/objrepos:rsct.core.hostrm:3.2.6.3::APPLIED:F:RSCT Host Resource Manager:
+/etc/objrepos:rsct.core.lprm:3.2.6.0::COMMITTED:I:RSCT Least Privilege Resource Manager:
+/etc/objrepos:rsct.core.microsensor:3.2.6.0::COMMITTED:I:RSCT MicroSensor Resource Manager:
+/etc/objrepos:rsct.core.rmc:3.2.6.4::APPLIED:F:RSCT Resource Monitoring and Control:
+/etc/objrepos:rsct.core.sec:3.2.6.1::APPLIED:F:RSCT Security:
+/etc/objrepos:rsct.core.sensorrm:3.2.6.0::COMMITTED:I:RSCT Sensor Resource Manager:
+/etc/objrepos:rsct.core.sr:3.2.6.4::APPLIED:F:RSCT Registry:
+/etc/objrepos:rsct.core.utils:3.2.6.4::APPLIED:F:RSCT Utilities:
+/etc/objrepos:rsct.opt.stackdump:3.2.6.0::COMMITTED:I:RSCT Stackdump module:
+/etc/objrepos:rsct.opt.storagerm:3.2.6.3::APPLIED:F:RSCT Storage Resource Manager:
+/etc/objrepos:sam.adapter:4.1.0.4::COMMITTED:I:IBM Tivoli System Automation for Multiplatforms - End-to-End Adapter:
+/etc/objrepos:sam.core.rte:4.1.0.4::COMMITTED:I:IBM Tivoli System Automation for Multiplatforms:
+/etc/objrepos:sam.policies.one:4.1.0.4::COMMITTED:I:IBM Tivoli System Automation for Multiplatforms - Policies:
+/etc/objrepos:sam.policies.two:4.1.0.4::COMMITTED:I:IBM Tivoli System Automation for Multiplatforms - Policies:
+/etc/objrepos:sam.sappolicy:4.1.0.4::COMMITTED:I:IBM Tivoli System Automation for Multiplatforms - SAP HA Policy:
+/etc/objrepos:security.acf:7.2.5.103::APPLIED:F:ACF/PKCS11 Device Driver:
+/etc/objrepos:sysmgt.cfgassist:7.2.5.0::COMMITTED:I:Configuration Assistant :
+/etc/objrepos:tcl.base:8.6.10.0::COMMITTED:I:Binary executable files of Tcl:
+/etc/objrepos:tivoli.tivguid:1.3.4.1::COMMITTED:I:IBM Tivoli GUID on AIX:
+/etc/objrepos:tk.base:8.6.10.0::COMMITTED:I:Binary executable files of Tk:
+/etc/objrepos:wio.common:7.2.5.0::COMMITTED:I:Common I/O Support for Workload Partitions :
+/etc/objrepos:wio.fcp:7.2.4.0::COMMITTED:F:FC I/O Support for Workload Partitions:
+/etc/objrepos:wio.vscsi:7.2.5.0::COMMITTED:I:VSCSI I/O Support for Workload Partitions :
+/usr/share/lib/objrepos:bos.terminfo.ansi.data:7.2.0.0::COMMITTED:I:Amer National Stds Institute Terminal Defs :
+/usr/share/lib/objrepos:bos.terminfo.com.data:7.2.0.0::COMMITTED:I:Common Terminal Definitions :
+/usr/share/lib/objrepos:bos.terminfo.dec.data:7.2.0.0::COMMITTED:I:Digital Equipment Corp. Terminal Definitions :
+/usr/share/lib/objrepos:bos.terminfo.ibm.data:7.2.0.0::COMMITTED:I:IBM Terminal Definitions :
+/usr/share/lib/objrepos:bos.terminfo.pc.data:7.2.0.0::COMMITTED:I:Personal Computer Terminal Definitions :
+/usr/share/lib/objrepos:bos.terminfo.print.data:7.2.0.0::COMMITTED:I:Generic Line Printer Terminal Definitions :
+/usr/share/lib/objrepos:bos.terminfo.televideo.data:7.2.0.0::COMMITTED:I:Televideo Terminal Definitions :
+/usr/share/lib/objrepos:bos.terminfo.wyse.data:7.2.0.0::COMMITTED:I:Wyse Terminal Definitions :
+/usr/share/lib/objrepos:bos.txt.spell.data:7.2.0.0::COMMITTED:I:Writer's Tools Data :
+/usr/share/lib/objrepos:bos.txt.tfs.data:7.2.0.0::COMMITTED:I:Text Formatting Services Data :
+/usr/share/lib/objrepos:devices.common.IBM.modemcfg.data:7.2.0.0::COMMITTED:I:Sample Service Processor Modem Configuration Files :  
+END_OF_BLOCK
+
+sudo -V 
+ Sudo version 1.9.5p2
+Configure options: --prefix=/opt/freeware --sbindir=/opt/freeware/sbin --mandir=/opt/freeware/man --libexecdir=/opt/freeware/libexec --docdir=/opt/freeware/share/doc/sudo_ids-1.9.5p2 --libdir=/opt/freeware/lib --with-logging=syslog --with-aixauth --with-logfac=auth --with-pam --with-pam-login --with-env-editor --with-ignore-dot --with-tty-tickets --with-ldap --with-ldap-conf-file=/etc/sudo-ldap.conf
+Sudoers policy plugin version 1.9.5p2
+Sudoers file grammar version 48
+
+Sudoers path: /etc/sudoers
+ldap.conf path: /etc/sudo-ldap.conf
+ldap.secret path: /etc/ldap.secret
+Authentication methods: 'aixauth' 'pam'
+Syslog facility if syslog is being used for logging: auth
+Syslog priority to use when user authenticates successfully: notice
+Syslog priority to use when user authenticates unsuccessfully: alert
+Ignore '.' in $PATH
+Send mail if user authentication fails
+Send mail if the user is not in sudoers
+Send mail if the user is not allowed to run a command
+Lecture user the first time they run sudo
+Require users to authenticate by default
+Root may run sudo
+Log the hostname in the (non-syslog) log file
+Log the year in the (non-syslog) log file
+Allow some information gathering to give useful error messages
+Visudo will honor the EDITOR environment variable
+Set the LOGNAME and USER environment variables
+Length at which to wrap log file lines (0 for no wrap): 80
+Authentication timestamp timeout: 5.0 minutes
+Password prompt timeout: 5.0 minutes
+Number of tries to enter a password: 3
+Umask to use or 0777 to use user's: 022
+Path to mail program: /usr/sbin/sendmail
+Flags for mail program: -t
+Address to send mail to: root
+Subject line for mail messages: *** SUDO SECURITY ALERT on %h ***
+Incorrect password message: Sorry, try again.
+Path to lecture status dir: /var/lib/sudo/lectured
+Path to authentication timestamp dir: /var/run/sudo/ts
+Default password prompt: Password: 
+Default user to run commands as: root
+Path to the editor for use by visudo: /usr/bin/vi
+When to require a password for 'list' pseudocommand: any
+When to require a password for 'verify' pseudocommand: all
+File descriptors >= 3 will be closed before executing a command
+Environment variables to check for safety:
+	TZ
+	TERM
+	LINGUAS
+	LC_*
+	LANGUAGE
+	LANG
+	COLORTERM
+Environment variables to remove:
+	*=()*
+	RUBYOPT
+	RUBYLIB
+	PYTHONUSERBASE
+	PYTHONINSPECT
+	PYTHONPATH
+	PYTHONHOME
+	TMPPREFIX
+	ZDOTDIR
+	READNULLCMD
+	NULLCMD
+	FPATH
+	PERL5DB
+	PERL5OPT
+	PERL5LIB
+	PERLLIB
+	PERLIO_DEBUG
+	JAVA_TOOL_OPTIONS
+	SHELLOPTS
+	BASHOPTS
+	GLOBIGNORE
+	PS4
+	BASH_ENV
+	ENV
+	TERMCAP
+	TERMPATH
+	TERMINFO_DIRS
+	TERMINFO
+	AUTHSTATE
+	LIBPATH
+	LDR_*
+	_RLD*
+	LD_*
+	PATH_LOCALE
+	NLSPATH
+	HOSTALIASES
+	RES_OPTIONS
+	LOCALDOMAIN
+	CDPATH
+	IFS
+Environment variables to preserve:
+	ENV
+	XAUTHORIZATION
+	XAUTHORITY
+	PS2
+	PS1
+	PATH
+	LS_COLORS
+	KRB5CCNAME
+	HOSTNAME
+	DISPLAY
+	COLORS
+Locale to use while parsing sudoers: C
+Compress I/O logs using zlib
+Directory in which to store input/output logs: /var/log/sudo-io
+File in which to store the input/output log: %{seq}
+Add an entry to the utmp/utmpx file when allocating a pty
+PAM service name to use: sudo
+PAM service name to use for login shells: sudo-i
+Attempt to establish PAM credentials for the target user
+Create a new PAM session for the command to run in
+Perform PAM account validation management
+Enable sudoers netgroup support
+Check parent directories for writability when editing files with sudoedit
+Allow commands to be run even if sudo cannot write to the audit log
+Allow commands to be run even if sudo cannot write to the log file
+Log entries larger than this value will be split into multiple syslog messages: 960
+File mode to use for the I/O log files: 0600
+Execute commands by file descriptor instead of by path: digest_only
+Type of authentication timestamp record: tty
+Ignore case when matching user names
+Ignore case when matching group names
+Log when a command is allowed by sudoers
+Log when a command is denied by sudoers
+Sudo log server timeout in seconds: 30
+Enable SO_KEEPALIVE socket option on the socket connected to the logserver
+Verify that the log server's certificate is valid
+Set the pam remote user to the user running sudo
+The format of logs to produce: sudo
+
+Local IP address and netmask pairs:
+	10.55.36.13/255.255.252.0
+	172.16.51.70/255.255.252.0
+
+Sudoers I/O plugin version 1.9.5p2
+Sudoers audit plugin version 1.9.5p2  
+END_OF_BLOCK
+
+openssl version 
+ OpenSSL 1.0.2u  20 Dec 2019  
+END_OF_BLOCK
+
+ps -ef | grep -i microf 
+     root 10355068  8061402   1 14:58:09  pts/0  0:00 /bin/sh -c ps -ef | grep -i microf  
+END_OF_BLOCK
+
+ctl_lan.ksh 
+ ### ataai018: 230420_14:59 Controle du reseau en cours ...
+### ataai018: 230420_14:59 Controle OK reseau nominal et backup OK
+ Connection to ataai018 closed.
+ 
+END_OF_BLOCK
+
+ctl_mpio.ksh 
+ ### ataai018: 230420_14:59 Controle MPIO '(Liens FC, pilote HDS/Pure, GAD et atributs LUN)' en cours ...
+### ataai018: 230420_14:59 Controle INFINITE RETRY des VG
+### ataai018: 230420_14:59 Controle des attributs fcs
+### ataai018: 230420_14:59 Controle OK Liens/bests practices FC/LUN/VG OK
+ Connection to ataai018 closed.
+ 
+END_OF_BLOCK
+
+ctl_errpt.ksh 
+ #   info: 230420_14:59 Controle errpt (quotidien) de ataai018
+#   info: 230420_14:59 Controle errpt de ataai018 OK
+ Connection to ataai018 closed.
+ 
+END_OF_BLOCK
+

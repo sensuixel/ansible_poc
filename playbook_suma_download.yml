@@ -1,0 +1,24 @@
+---
+# playbookplaybook_suma_download.yml
+- name: AIX suma download 
+  gather_facts: false
+  hosts: apaai001.server.lan
+  vars:
+    oslevel: 7200-05-05-2246
+    nim_lpp_source: 7200-05-05-2246-lpp_source
+   
+  tasks:
+  
+  - name: Download AIX Updates
+    ibm.power_aix.nim_suma:
+      action: download
+      download_dir: "/export/nim/lpp_source"
+      lpp_source_name: "{{ nim_lpp_source }}"
+      oslevel: "{{ oslevel }}"
+      targets: ataai028-bck
+    register: suma_output
+    
+  - name: Print suma result
+    debug:
+      msg: "{{ suma_output }}"
+    

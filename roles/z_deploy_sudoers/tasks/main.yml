@@ -1,0 +1,52 @@
+---
+# tasks file for z_deploy_sudoers
+- name: "Create backup directory if it does'nt exist"
+  ansible.builtin.file:
+    path: "{{ sudoers_remote_backup_path }}"
+    state: directory
+    mode: '0775'
+
+- name: "Check if target file already exists"
+  ansible.builtin.stat:
+    path: "{{ sudoers_remote_path }}/{{ sudoers_file }}"
+  register: sudoers_file_status
+  
+- name: "Backup sudoers file if it exists"
+  ibm.ibm_zos_core.zos_copy:
+    src: "{{ sudoers_remote_path }}/{{ sudoers_file }}"
+    dest: "{{ sudoers_remote_backup_path }}/{{ sudoers_file }}_{{ ansible_date_time.date }}_{{ ansible_date_time.time }}.bck"
+    encoding:
+      from: IBM-1047
+      to: IBM-1047
+    remote_src: true
+    mode: '0755'
+  when: sudoers_file_status.stat.exists
+  
+- name: "Remove sudoers file if it exists"
+  ansible.builtin.file:
+    path: "{{ sudoers_remote_path }}/{{ sudoers_file }}"
+    state: absent
+  when: sudoers_file_status.stat.exists
+
+- name: "Copy package to remote dir"
+  ibm.ibm_zos_core.zos_copy:
+    src: "{{ sudoers_local_path }}/{{ sudoers_file }}"
+    dest: "{{ sudoers_remote_path }}/{{ sudoers_file }}"
+    mode: '0440'
+    encoding:
+      from: ISO8859-1
+      to: IBM-1047
+      
+- name: "Validate new sudoers file"
+  ansible.builtin.shell: "visudo -cf {{ sudoers_remote_path }}/{{ sudoers_file }}" 
+  register: sudoers_file_validation
+  
+- debug:
+    msg: " {{ sudoers_file_validation.stdout }} on {{ inventory_hostname }}"
+  when: "'parsed OK' in sudoers_file_validation.stdout"
+
+- name: "visudo failed on new sudoers files"
+  ansible.builtin.fail:
+    msg: "visudo on file {{ sudoers_local_path }}/{{ sudoers_file }} failed on {{ inventory_hostname }}"
+  when: "'parsed OK' not in sudoers_file_validation.stdout"
+  

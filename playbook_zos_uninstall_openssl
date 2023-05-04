@@ -1,0 +1,8 @@
+- name: Gather zos facts
+  hosts: mvssyst.server.lan
+  become: true
+  gather_facts: false
+  environment: "{{ environment_vars }}"
+
+  roles:
+    - z_uninstall_openssl

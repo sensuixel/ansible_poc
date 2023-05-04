@@ -1,0 +1,17 @@
+---
+- name: AIX update
+  hosts: ataai028.server.lan
+  gather_facts: false
+  vars:
+    report_path: "/home/pichard/ansible/aix_output"
+    
+  tasks:
+
+  - name: "Migration yum to dnf"
+    ansible.builtin.include_role:
+      name: "{{ role_name }}"
+    loop:
+      - aix_alt_disk_copy
+      - aix_yum_to_dnf
+    loop_control:
+        loop_var: role_name

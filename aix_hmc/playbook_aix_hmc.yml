@@ -1,0 +1,22 @@
+---
+# playbook_aix_hmc.yml
+- name: AIX update
+  hosts: xpa1i001.server.lan
+  connection: local
+  vars:
+    curr_hmc_auth:
+      username: pichard
+           
+  tasks:
+
+  - name: List the properties of hmc user
+    ibm.power_hmc.hmc_user:
+      hmc_host: "{{ inventory_hostname }}"
+      hmc_auth: "{{curr_hmc_auth}}"
+      type: user
+      state: facts
+    register: hmc_output
+    
+  - name:
+    debug:
+      msg: "{{ hmc_output }}"

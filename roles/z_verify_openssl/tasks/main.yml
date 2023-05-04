@@ -1,0 +1,4 @@
+---
+# tasks file for z_verify_openssl
+- name: "Check openssl version on {{ inventory_hostname }}"
+  include_tasks: check_openssl.yml

@@ -1,0 +1,30 @@
+---
+# tasks file for tasks_delete_user_8x.yml
+- name: "Check if user is defined "
+  ansible.builtin.shell: "lsuser {{ item_user }} || /bin/true"
+  register: lsuser_result
+  
+- debug:
+    msg: " {{ item_user }} does'nt exist on {{ inventory_hostname }} => Nothing to do !"
+  when: "'does not exist' in lsuser_result.stderr"
+  
+- block:
+  - name: "Remove 8X Directory"
+    ansible.builtin.file:
+      path: "{{ dir_item }}/{{ item_user }}"
+      state: absent
+    with_items: "{{ dir_8x | list }}"
+    loop_control:
+      loop_var: dir_item
+      
+  - name: "Delete user"
+    ibm.power_aix.user:
+      name: "{{ item_user }}"
+      state: absent
+      
+  - name: "Remove home directory"
+    ansible.builtin.file:
+      path: "/home/{{ item_user }}"
+      state: absent     
+      
+  when: "'does not exist' not in lsuser_result.stderr"

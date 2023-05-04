@@ -1,0 +1,23 @@
+---
+# tasks file for omvs_syntax_check
+- name: "Verify updated contents are valid"
+  ibm.ibm_zos_core.zos_operator:
+    cmd: "SETOMVS SYNTAXCHECK=({{ item }})"
+  register: syntaxcheck_response
+  no_log: true
+  ignore_errors: true
+  when: item
+  
+- name: Assert syntax check failed
+  ansible.builtin.fail:
+    msg: "OMVS syntax check FAILED on BPXPRM{{ item }} on {{ inventory_hostname }} !!!!"
+  when: syntaxcheck_response.get("rc", 4) > 0
+  tags:
+    - never
+  
+- name: Control Return Code of Syntaxcheck
+  ansible.builtin.assert:
+    that:
+      - not syntaxcheck_response.failed
+    fail_msg: "OMVS syntax check FAILED on BPXPRM{{ item }} on {{ inventory_hostname }} !!!!"
+    success_msg: "OMVS syntax OK on BPXPRM{{ item }} on  {{ inventory_hostname }}"

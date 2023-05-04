@@ -1,0 +1,6 @@
+---
+# tasks file for check_user
+#
+- include_tasks: check_user_exist.yml
+  with_items: "{{ user_names }}"
+   

@@ -1,0 +1,25 @@
+---
+# tasks file for aix_yum_update
+- name: Get current date
+  ansible.builtin.set_fact:
+    custom_date: "{{ lookup( 'pipe',  'date +%Y-%m-%d') }}"
+    custom_timestamp: "{{ lookup( 'pipe',  'date +%Y-%m-%d-%Hh%Mm%Ss') }}"
+    
+- name: Update virtual package manager
+  ansible.builtin.shell: updtvpkg
+    
+- name: Upgrade all packages
+  ansible.builtin.yum:
+    name: '*'
+    state: latest
+  register: yum_output
+
+- name: Store yum outut on local node
+  local_action:
+    module: copy
+    content: "{{ yum_output.results | to_nice_json }}"
+    dest: "{{ report_path }}/{{ inventory_hostname_short }}/log_{{ custom_date }}/yum_update_{{ custom_timestamp}}.txt"
+  
+- name: 
+  debug:
+    msg: "yum update log for {{ inventory_hostname_short }} => {{ report_path }}/{{ inventory_hostname_short }}/log_{{ custom_date }}/yum_update_{{ custom_timestamp}}.txt"

@@ -1,0 +1,19 @@
+---
+# playbook_update_sudo.yml
+- name: AIX update
+  gather_facts: false
+  hosts: ataai028.server.lan
+  vars:
+    sudo_fileset: freeware.sudo.rte
+    sudo_rpm: sudo_ids
+    sudo_version: 1.9.5p2-1
+    sudo_path: /opt/freeware/bin
+    sudo_link:
+      - /usr/bin
+      - /usr/local/bin
+   
+  tasks:
+   
+  - name: "Update sudo"  
+    ansible.builtin.include_role:
+      name: aix_update_sudo  

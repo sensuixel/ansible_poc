@@ -1,0 +1,57 @@
+
+*******************************************************************************
+installp PREVIEW:  installation will not actually occur.
+*******************************************************************************
+
++-----------------------------------------------------------------------------+
+		    Pre-installation Verification...
++-----------------------------------------------------------------------------+
+Verifying selections...done
+Verifying requisites...done
+Results...
+
+SUCCESSES
+---------
+  Filesets listed in this section passed pre-installation verification
+  and will be installed.
+
+  Mandatory Fileset Updates
+  -------------------------
+  (being installed automatically due to their importance)
+  bos.rte.install 7.2.5.201                   # LPP Install Commands
+
+  << End of Success Section >>
+
++-----------------------------------------------------------------------------+
+		   BUILDDATE Verification ...
++-----------------------------------------------------------------------------+
+Verifying build dates...done
+FILESET STATISTICS 
+------------------
+  206  Selected to be installed, of which:
+        1  Passed pre-installation verification
+      205  Deferred (see *NOTE below)
+  ----
+    1  Total to be installed
+
+*NOTE  The deferred filesets mentioned above will be processed after the
+       installp update and its requisites are successfully installed.
+
+RESOURCES
+---------
+  Estimated system resource requirements for filesets being installed:
+		(All sizes are in 512-byte blocks)
+      Filesystem                     Needed Space             Free Space
+      /usr                                13200                 345776
+      /tmp                                  560                4081320
+      -----                            --------                 ------
+      TOTAL:                              13760                4427096
+
+  NOTE:  "Needed Space" values are calculated from data available prior
+  to installation.  These are the estimated resources required for the
+  entire operation.  Further resource checks will be made during
+  installation to verify that these initial estimates are sufficient.
+
+******************************************************************************
+End of installp PREVIEW.  No apply operation has actually occurred.
+******************************************************************************

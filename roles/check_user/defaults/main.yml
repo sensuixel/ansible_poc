@@ -1,0 +1,3 @@
+---
+# defaults file for check_user
+user_names: ALL

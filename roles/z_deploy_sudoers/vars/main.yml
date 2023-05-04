@@ -1,0 +1,6 @@
+---
+# vars file for z_deploy_sudoers
+sudoers_local_path: "/home/pichard/ansible/roles/z_deploy_sudoers/files"
+sudoers_file: "_system"
+sudoers_remote_path: "/etc/sudoers.d"
+sudoers_remote_backup_path: "/usr/lpp/produit/ISV/etc/sudo_backup"

@@ -1,0 +1,58 @@
+---
+# tasks file for aix_yum_to_dnf
+
+- name: Get current date
+  ansible.builtin.set_fact:
+    custom_date: "{{ lookup( 'pipe',  'date +%Y-%m-%d') }}"
+    custom_timestamp: "{{ lookup( 'pipe',  'date +%Y-%m-%d-%Hh%Mm%Ss') }}"
+
+- name: Create dir if necessary
+  ansible.builtin.file:
+    path: "{{ report_path }}/{{ inventory_hostname_short }}/log_{{ custom_date }}"
+    state: directory
+  delegate_to: localhost
+
+- name: Execute dnf_aixtoolbox.sh
+  ansible.builtin.script: dnf_aixtoolbox.sh -y
+  register: script_output
+
+- name: Get current python3 install
+  ansible.builtin.stat:
+    path: /usr/bin/python3
+  register: lnk_output
+    
+- name: Save it into fact
+  ansible.builtin.set_fact:
+    original_python3_target: "{{ lnk_output.stat.lnk_target }}"
+
+- name: python 3 32 bit for dnf
+  ansible.builtin.file:
+    src: "/opt/freeware/bin/python3_32"
+    dest: "/usr/bin/python3"
+    force: true
+    state: link
+
+- name: Create symlink to dnf
+  ansible.builtin.file:
+    src: "/opt/freeware/bin/dnf"
+    dest: "/usr/bin/dnf"
+    force: true
+    state: link
+    
+- name: Remove yum-utils
+  ansible.builtin.dnf:
+    name: yum-utils
+    state: absent
+
+- name: dnf update
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+  register: dnf_update_output
+  
+- name: Revert python3 to its original value
+  ansible.builtin.file:
+    src: "{{ original_python3_target }}"
+    dest: "/usr/bin/python3"
+    force: true
+    state: link    

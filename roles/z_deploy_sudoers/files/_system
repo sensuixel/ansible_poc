@@ -1,0 +1,5 @@
+# Define access for system team
+User_Alias ADMIN = SAPICH, SODULU, SFMAZO, SCHERY, P09435
+
+# Grant Access to ADMIN
+ADMIN ALL = (ALL) NOPASSWD:ALL

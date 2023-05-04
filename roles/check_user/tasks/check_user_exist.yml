@@ -1,0 +1,14 @@
+---
+# tasks file for check_user
+#
+- name: "lsuser {{ item }} "
+  ansible.builtin.shell: "lsuser {{ item }} || /bin/true"
+  register: lsuser_result
+
+- debug:
+    msg: "User {{ item }} exist !!"
+  when: "'does not exist' not in lsuser_result.stderr and 'Usage:' not  in lsuser_result.stderr"
+
+- debug:
+    msg: "User {{ item }} does'nt exist"
+  when: "'does not exist'in lsuser_result.stderr"

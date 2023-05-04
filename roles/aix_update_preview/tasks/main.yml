@@ -1,0 +1,45 @@
+---
+# tasks file for aix_update_preview
+- name: Get current date
+  ansible.builtin.set_fact:
+    custom_date: "{{ lookup( 'pipe',  'date +%Y-%m-%d') }}"
+    custom_timestamp: "{{ lookup( 'pipe',  'date +%Y-%m-%d-%Hh%Mm%Ss') }}"
+    
+- name: Create output directory
+  ansible.builtin.file:
+    path: "{{ dir_name }}"
+    state: directory
+  delegate_to: localhost
+  loop:
+    - "{{ report_path }}/{{ inventory_hostname_short }}/log_{{ custom_date }}"
+  loop_control:
+    loop_var: dir_name
+    
+- name: Preview install of {{ nim_lpp_source }}
+  ansible.builtin.shell: "nimclient -o cust -a lpp_source={{ nim_lpp_source }} -a fixes=update_all -a installp_flags=-pacNYgX || /bin/true"
+  register: preview_output
+  ignore_errors: true
+  no_log: true
+  
+- name: Store output on local node
+  local_action:
+    module: copy
+    content: "{{ preview_output.stdout }}"
+    dest: "{{ report_path }}/{{ inventory_hostname_short }}/log_{{ custom_date }}/update_preview_{{ custom_timestamp}}.txt"
+  when: preview_output.stdout != ""
+
+- name: Store outut on local node
+  local_action:
+    module: copy
+    content: "{{ preview_output.stderr }}"
+    dest: "{{ report_path }}/{{ inventory_hostname_short }}/log_err_{{ custom_date }}/update_preview_{{ custom_timestamp}}.txt"
+  when: preview_output.stderr != ""
+  
+- name: Stop process
+  debug:
+    msg: "Preview failed on {{ inventory_hostname_short }} \n {{ preview_output.stderr }}"
+  when: preview_output.stderr != ""
+  failed_when: preview_output.stderr != ""
+ 
+   
+  

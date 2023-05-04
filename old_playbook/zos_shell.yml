@@ -1,0 +1,15 @@
+---
+- name: Gather zos facts
+  hosts: ZOS
+  become: true
+  gather_facts: false
+  environment: "{{ environment_vars }}"
+  tasks:
+
+  - name: "Check group"
+    ansible.builtin.shell: date
+    register: shell_out
+
+  - debug:
+      msg:
+        - "{{ shell_out.stdout }}"

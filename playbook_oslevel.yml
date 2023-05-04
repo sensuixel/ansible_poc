@@ -1,0 +1,16 @@
+---
+# playbook_oslevel
+- name: AIX Check Oslevel 
+  gather_facts: false
+  hosts: AIX_LPAR
+   
+  tasks:
+  
+  - name: "Get oslevel"
+    ansible.builtin.shell: oslevel -s
+    register: cmd_result
+  
+  - name: 
+    debug:
+      msg: "{{ cmd_result.stdout }}"
+    

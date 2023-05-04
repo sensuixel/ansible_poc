@@ -1,0 +1,14 @@
+---
+# vars file for create_user_8X
+user_id: apic
+group_name: CCUsr 
+user_name: Alexandre Pichard (Test)
+model_name: jota
+default_password: aixpwd1234
+
+# Additionnal directory to create
+dir_8x:
+  - /u01/universe/MOND01/E/users
+  - /u01/universe/MOND01/D/users
+  - /8X_GEN/travail/D/users
+  - /8X_GEN/travail/E/users

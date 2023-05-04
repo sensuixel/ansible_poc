@@ -1,0 +1,23 @@
+---
+# tasks file for create_openssl_directory.yml
+- name: "Check if {{openssl_directory}}/v{{openssl_version}} exists"
+  ansible.builtin.stat:
+    path: "{{openssl_directory}}/v{{openssl_version}}"
+  register: dir_status
+  
+- debug: 
+    msg: "directory {{openssl_directory}}/v{{openssl_version}} already exists on {{ inventory_hostname }}"
+  when: dir_status.stat.exists
+  
+- name: "Remove current directory {{openssl_directory}}/v{{openssl_version}}"
+  ansible.builtin.file:
+    path: "{{openssl_directory}}/v{{openssl_version}}"
+    state: absent
+  when: dir_status.stat.exists
+    
+- name: "Create target dir {{openssl_directory}}/v{{openssl_version}} if it does'nt exist"
+  ansible.builtin.file:
+    path: "{{openssl_directory}}/v{{openssl_version}}"
+    state: directory
+    mode: '0775'
+

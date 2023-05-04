@@ -1,0 +1,19 @@
+---
+# playbookplaybook_yum_check.yml
+- name: AIX suma download 
+  gather_facts: false
+  hosts: ataai028.server.lan
+   
+  tasks:
+  
+  - name: Yum check 
+    ansible.builtin.yum:
+      name: '*'
+      state: latest
+    check_mode: true
+    register: yum_output
+       
+  - name: Print suma result
+    debug:
+      msg: "{{ yum_output }}"
+    

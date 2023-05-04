@@ -1,0 +1,53 @@
+---
+# tasks file for create_user_8X
+- name: "lsuser {{ user_id }} "
+  ansible.builtin.shell: "lsuser {{ user_id }} || /bin/true"
+  register: lsuser_result
+
+- name: "Stop is user already exists"
+  ansible.builtin.fail:
+    msg: "User {{ user_id }} already exists on {{ inventory_hostname}} => Nothing to Do !"
+  when: "'does not exist' not in lsuser_result.stderr"
+
+- block:
+  - name: "Create User {{ user_id }}"
+    ibm.power_aix.user:
+      state: present
+      name: "{{ user_id }}"
+      change_passwd_on_login: True
+      attributes:
+        shell: /usr/bin/ksh
+        home: "/home/{{ user_id }}"
+        groups: "{{ group_name }}"
+        gecos: "{{ user_name }}"
+  - name: "Init password for {{ user_id }}"
+    shell: "echo \"{{user_id}}:{{default_password}}\" | chpasswd"
+    
+  - name: "Change owner/group of home directoy /home/{{ user_id }}"
+    ansible.builtin.file:
+      path: "/home/{{ user_id }}"
+      owner: "{{ user_id }}"
+      group: "{{ group_name }}"
+      mode: 0755
+      
+  - name: "Copy profile from mode {{ model_name }}"
+    ansible.builtin.copy:
+      src: "/home/{{ model_name }}/.profile"
+      dest: "/home/{{ user_id }}/.profile"
+      remote_src: yes
+      owner: "{{ user_id }}"
+      group: "{{ group_name }}"
+      mode: 0744
+      
+  - name: "Create 8X directory"
+    ansible.builtin.file:
+      path: "{{ item_dir }}/{{ user_id }}"
+      state: directory
+      owner: "{{ user_id }}"
+      group: "{{ group_name }}"
+      mode: 0755
+    with_items: "{{ dir_8x | list }}"
+    loop_control:
+      loop_var: item_dir
+
+  when: "'does not exist' in lsuser_result.stderr"

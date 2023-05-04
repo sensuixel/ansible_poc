@@ -1,0 +1,30 @@
+---
+# playbook_mksysb_preview_size.yml
+- name: AIX update
+  gather_facts: false
+  hosts: apaai001.server.lan
+  vars:
+    nim_client: ataai028-bck
+   
+  tasks:
+   
+  - name: Get current date
+    ansible.builtin.set_fact:
+      custom_date: "{{ lookup( 'pipe',  'date +%Y%m%d') }}"
+    
+  - name: Create mksysb
+    ibm.power_aix.nim_backup:
+      action: create
+      targets: "{{ nim_client }}"
+      name_prefix: mksysb_
+      name_postfix: "_{{ custom_date }}"
+      location: "/export/mksysb/tmp/{{ inventory_hostname_short }}"
+      other_attributes: '-a size_preview=yes -a comments="pre_patch" -a mksysb_flags=Xp'
+    register: mksysb_output
+    
+  - name: Display
+    debug:
+      msg: "{{ mksysb_output.meta }}"
+
+  
+    

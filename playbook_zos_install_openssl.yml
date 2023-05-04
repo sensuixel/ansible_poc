@@ -1,0 +1,8 @@
+- name: Gather zos facts
+  hosts: ZOS 
+  become: true
+  gather_facts: false
+  environment: "{{ environment_vars }}"
+
+  roles:
+    - z_install_openssl

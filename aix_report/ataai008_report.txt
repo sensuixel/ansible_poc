@@ -1,0 +1,26 @@
+
+ataai008 ==> a iFix is installed 
+
+ 
+ID  STATE LABEL      INSTALL TIME      UPDATED BY ABSTRACT
+=== ===== ========== ================= ========== ======================================
+1    S    1022104a   09/16/22 15:36:03            Ifix for CVE-2022-2068.               
+STATE codes:
+ S = STABLE
+ M = MOUNTED
+ U = UNMOUNTED
+ Q = REBOOT REQUIRED
+ B = BROKEN
+ I = INSTALLING
+ R = REMOVING
+ T = TESTED
+ P = PATCHED
+ N = NOT PATCHED
+ SP = STABLE + PATCHED
+ SN = STABLE + NOT PATCHED
+ QP = BOOT IMAGE MODIFIED + PATCHED
+ QN = BOOT IMAGE MODIFIED + NOT PATCHED
+ RQ = REMOVING + REBOOT REQUIRED  
+ataai008 ==> check space on the following mount point of rootvg  => 
+ {'/home': 0.11, '/opt': 0.08} 
+

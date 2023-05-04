@@ -1,0 +1,33 @@
+---
+# tasks file for aix_nim_update
+- name : Get nim client name
+  ansible.builtin.shell: "lsnim -t standalone | grep  {{ inventory_hostname_short }} | awk '{print $1}'"
+  register: lsnim_output
+  delegate_to: "{{ nim_master }}"
+  
+- name: Set facts nim_client
+  ansible.builtin.set_fact:
+    nim_client: "{{ lsnim_output.stdout }}"
+
+- name:
+  debug:
+    msg: "No nim client found for  {{ inventory_hostname_short }}"
+  when: lsnim_output.stdout == "" or lsnim_output.rc != 0
+  
+- name: Run AIX Update
+  ibm.power_aix.nim:
+    action: update
+    lpp_source: "{{ nim_lpp_source }}"
+    targets: "{{ nim_client }}"
+  delegate_to: "{{ nim_master }}" 
+  register: nim_update_output
+  
+- name: Store update outut on local node
+  local_action:
+    module: copy
+    content: "{{ nim_update_output.meta | to_nice_json}}"
+    dest: "{{ report_path }}/{{ inventory_hostname_short }}/log_{{ custom_date }}/nim_update_{{ custom_timestamp}}.txt"
+  
+- name: 
+  debug:
+    msg: "nim update log for {{ inventory_hostname_short }} => {{ report_path }}/{{ inventory_hostname_short }}/log_{{ custom_date }}/nim_update_{{ custom_timestamp}}.txt"

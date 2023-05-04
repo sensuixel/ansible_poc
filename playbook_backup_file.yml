@@ -1,0 +1,25 @@
+---
+- name: AIX update
+  hosts: ataai028.server.lan
+  gather_facts: false
+  vars:
+    report_path: "/home/pichard/ansible/aix_output"
+    file_suffix: "pre_patch"
+    file_list:
+      - /home/pichard/scripts/t.txt
+      - /home/pichard/scripts/t1.txt
+      - /home/pichard/scripts/t3.txt
+      - /home/pichard/scripts/t4.txt
+   
+  tasks:
+  
+  - name: Backup File
+    ansible.builtin.copy:
+      src: "{{ file_name }}"
+      dest: "{{ file_name }}_{{ file_suffix }}"
+      backup: yes
+      force: true
+      remote_src: true
+    loop: "{{ file_list }}"
+    loop_control:
+      loop_var: file_name

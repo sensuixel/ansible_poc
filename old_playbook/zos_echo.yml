@@ -1,0 +1,34 @@
+---
+- name: Gather zos facts
+  hosts: mvssyst.server.lan
+  gather_facts: false
+  environment: "{{ environment_vars }}"
+  tasks:
+
+  - name: "Create target dir if it does'nt exist"
+    ansible.builtin.file:
+      path: /usr/lpp/produit/ISV/openssl/v1.1.1k
+      state: directory
+      mode: '0775'
+  
+  - name: "Copy package to remote dir"
+    ibm.ibm_zos_core.zos_copy:
+      src: /home/pichard/ansible/roles/zos_install_opensssl/files/openssl-1.1.1k-6.tar
+      dest: /usr/lpp/produit/ISV/openssl/v1.1.1k/openssl-1.1.1k-6.tar
+      is_binary: true
+      mode: '0775'
+
+  - name: "Extract openssl"
+    ansible.builtin.shell: cd /usr/lpp/produit/ISV/openssl/v1.1.1k && pax -p p -r -f openssl-1.1.1k-6.tar
+
+  - name: "Create symlink to openssl bin"
+    ansible.builtin.file:
+      src: /usr/lpp/produit/ISV/openssl/v1.1.1k/bin/openssl
+      dest: /usr/lpp/produit/ISV/bin/openssl
+      state: link
+
+  - name: "Create symlink to openssl cnf"
+    ansible.builtin.file:
+      src: /usr/lpp/produit/ISV/openssl/v1.1.1k/ssl/openssl.cnf
+      dest: /etc/openssl/openssl.cnf
+      state: link

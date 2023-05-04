@@ -1,0 +1,29 @@
+
+ataai009 ==> a iFix is installed 
+
+ 
+ID  STATE LABEL      INSTALL TIME      UPDATED BY ABSTRACT
+=== ===== ========== ================= ========== ======================================
+1    S    1022104a   11/09/22 14:50:50            Ifix for CVE-2022-2068.               
+STATE codes:
+ S = STABLE
+ M = MOUNTED
+ U = UNMOUNTED
+ Q = REBOOT REQUIRED
+ B = BROKEN
+ I = INSTALLING
+ R = REMOVING
+ T = TESTED
+ P = PATCHED
+ N = NOT PATCHED
+ SP = STABLE + PATCHED
+ SN = STABLE + NOT PATCHED
+ QP = BOOT IMAGE MODIFIED + PATCHED
+ QN = BOOT IMAGE MODIFIED + NOT PATCHED
+ RQ = REMOVING + REBOOT REQUIRED  
+ataai009 ==> yum checked failed => ['  There was a problem importing one of the Python modules', 'required to run yum. The error leading to this problem was:', '   Symbol resolution failed for /opt/freeware/lib/libkrb5support.so because:', '\tSymbol _GLOBAL__AIXI_libintl_so (number 58) is not exported from dependent', '\t  module /usr/opt/rpm/lib/libintl.a(libintl.so.8).', '\tSymbol _GLOBAL__AIXD_libintl_so (number 59) is not exported from dependent', '\t  module /usr/opt/rpm/lib/libintl.a(libintl.so.8).', 'Could not load module /opt/freeware/lib/python2.7/site-packages/pycurl.so.', 'System error: Exec format error', "Examine .loader section symbols with the 'dump -Tv' command.", 'Please install a package which provides this module, or', 'verify that the module is installed correctly.', "It's possible that the above module doesn't match the", 'current version of Python, which is:', '2.7.18 (default, May 31 2021, 11:28:01) ', '[GCC 8.3.0]', 'If you cannot solve this problem yourself, please go to ', 'the yum faq at:', '  http://yum.baseurl.org/wiki/Faq', '   '] 
+
+
+ataai009 ==> check space on the following mount point of rootvg  => 
+ {'/opt': 0.18} 
+

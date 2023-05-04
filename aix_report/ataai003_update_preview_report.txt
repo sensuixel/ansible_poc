@@ -1,0 +1,1 @@
+ataai003 ==> update preview has failed look for /home/pichard/ansible/aix_output/ataai003/log_2023-04-20/update_preview_2023-04-20-14h54m13s.txt 
